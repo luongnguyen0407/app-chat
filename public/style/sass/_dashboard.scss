@@ -1,0 +1,268 @@
+.content_dashboard {
+  &_header {
+    padding: 20px 0;
+    p {
+      font-weight: 600;
+      font-size: 24px;
+      color: $primary-color;
+    }
+  }
+  &_statistical {
+    @include flex($aItem: unset, $jus: unset);
+    flex-direction: column;
+    gap: 20px 0;
+    .dashboard_card_list {
+      font-size: 20px;
+      @include grid($cols: 4, $gap: 20px);
+      .dashboard_card_item {
+        padding: 20px;
+        border-radius: 20px;
+        color: white;
+        cursor: pointer;
+        h4 {
+          font-weight: 600;
+          font-size: 42px;
+        }
+        &:first-child {
+          background: linear-gradient(89.69deg, #f39034 2.03%, #ff2727 99.73%);
+        }
+        &:nth-child(2) {
+          background: linear-gradient(270deg, #003ad2 0%, #0097ec 100%);
+        }
+        &:nth-child(3) {
+          background: linear-gradient(270.23deg, #00a843 0.19%, #1fd071 99.8%);
+        }
+        &:nth-child(4) {
+          background: linear-gradient(269.97deg, #5900c9 0.02%, #9852f0 99.98%);
+        }
+        .card_header p {
+          font-weight: 700;
+          font-size: 14px;
+        }
+        .card_footer p {
+          font-weight: 400;
+          font-size: 14px;
+        }
+        .card_header,
+        .card_footer {
+          @include flex($jus: space-between);
+        }
+      }
+      .dashboard_card_item_2 {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        .card_header_2 {
+          @include flex($jus: unset);
+          gap: 10px;
+          margin-bottom: 20px;
+          p {
+            font-weight: 700;
+            font-size: 14px;
+            color: $primary-color;
+          }
+        }
+        .card_footer_2 {
+          @include flex($jus: space-between);
+          p {
+            font-weight: 600;
+            font-size: 32px;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+    .dashboard_list_table {
+      @include grid($cols: 2, $gap: 20px);
+      .dashboard_table_item_1 {
+        background: #ffffff;
+        padding: 25px;
+        overflow: hidden;
+        border-radius: 20px;
+        .dashboard_table_item_1_header {
+          font-weight: 700;
+          font-size: 16px;
+          color: $primary-color;
+          margin-bottom: 20px;
+        }
+      }
+      .dashboard_table_input,
+      .dashboard_table_search_tab,
+      .dashboard_table_search {
+        @include flex($jus: space-between);
+        gap: 10px;
+      }
+      .dashboard_table_search {
+        margin: 20px 0;
+      }
+      .dashboard_table_input {
+        border-bottom: 1px solid #e6eaf0;
+        input {
+          border: none;
+          outline: none;
+        }
+        .table_icon_search {
+          cursor: pointer;
+        }
+      }
+      .dashboard_table_list {
+        max-height: 300px;
+        overflow-y: scroll;
+        .dashboard_table_list_item {
+          border-bottom: 1px solid #e6eaf0;
+          padding: 10px 0;
+          @include grid($cols: 4, $gap: 20px);
+          align-items: center;
+          p {
+            text-align: center;
+            @include text($width: 100px);
+          }
+          .table_item_id {
+            color: $blue_color;
+          }
+          .table_item_customer {
+            color: $primary-color;
+          }
+          .table_item_status {
+            padding: 3px 0;
+          }
+          .table_item_status.danger {
+            background: #facccc;
+            border-radius: 5px;
+            color: #e80000;
+          }
+          .table_item_status.success {
+            background: #b5f4ce;
+            border-radius: 5px;
+            color: #16c35b;
+          }
+        }
+        .dashboard_table_list_item_head {
+          font-weight: 700;
+          font-size: 12px;
+          color: $primary-color;
+        }
+        .dashboard_table_list_item_content {
+          cursor: pointer;
+          font-weight: 400;
+          font-size: 14px;
+        }
+      }
+      .wrap_top_salary {
+        @include grid($cols: 3, $gap: 30px);
+        .wrap_top_salary_item {
+          @include flex($jus: unset);
+          flex-direction: column;
+        }
+        .top_salary_avatar {
+          border-radius: 10px;
+          height: 80px;
+          width: 50px;
+          object-fit: cover;
+          user-select: none;
+        }
+        .top_salary_name {
+          font-weight: 400;
+          font-size: 14px;
+          color: $blue_color;
+          @include text($width: 100px);
+        }
+        .top_salary_money {
+          font-weight: 700;
+          font-size: 14px;
+          color: $primary-color;
+        }
+      }
+    }
+    .chart-container {
+      position: relative;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 20px;
+      width: 100%;
+      border-radius: 20px;
+    }
+    .dashboard_manage_end,
+    .dashboard_manage_uni {
+      @include grid($cols: 2, $gap: 20px);
+      .dashboard_manage_item {
+        padding: 25px;
+        background-color: white;
+        border-radius: 20px;
+      }
+
+      .dashboard_manage_list {
+        max-height: 300px;
+        overflow-y: scroll;
+        margin-top: 20px;
+      }
+      .dashboard_manage_item_content,
+      .dashboard_manage_item_title {
+        border-bottom: 1px solid #e6eaf0;
+        padding: 10px 0;
+        @include grid($cols: 3, $gap: 20px);
+        text-align: center;
+        & p:nth-child(2),
+        & p:nth-child(3) {
+          @include text($width: 130px);
+        }
+      }
+      .dashboard_manage_item_title {
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: $primary-color;
+      }
+      .dashboard_manage_item_content {
+        font-weight: 400;
+        font-size: 14px;
+        color: $primary-color;
+        & p:first-child {
+          color: $blue_color;
+        }
+      }
+    }
+    .dashboard_manage_end_head,
+    .dashboard_manage_head {
+      @include flex($jus: space-between);
+      p {
+        font-weight: 700;
+        font-size: 16px;
+        color: $primary-color;
+      }
+    }
+    .dashboard_table_input {
+      @include flex($jus: space-between);
+      padding: 5px;
+      border-bottom: 1px solid #e6eaf0;
+      input {
+        border: none;
+      }
+    }
+    .dashboard_manage_end {
+      display: block;
+      .dashboard_manage_item_content,
+      .dashboard_manage_item_title {
+        @include grid($cols: 5, $gap: 20px);
+      }
+    }
+    .dashboard_manage_end_table {
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 20px;
+      .dashboard_manage_list {
+        max-height: 300px;
+        overflow-y: scroll;
+        margin-top: 20px;
+      }
+      .dashboard_manage_search {
+        flex: 1;
+        max-width: 300px;
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

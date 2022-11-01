@@ -1,0 +1,113 @@
+.wrap_form_add_staff {
+  padding: 20px;
+  .field_form {
+    @include grid($cols: 4, $gap: 20px);
+    align-items: center;
+    input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #d7dbe0;
+      border-radius: 5px;
+      outline: none;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      color: $primary-color;
+    }
+    select {
+      border-radius: 5px;
+      padding: 5px;
+      border: $blue-color;
+      background-color: white;
+      padding-left: 0;
+    }
+  }
+  .form_add_staff_heading {
+    font-weight: 600;
+    font-size: 24px;
+    color: $primary-color;
+    margin-bottom: 20px;
+  }
+  .form_add {
+    background-color: #ffffff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+  }
+  .from_add_avatar_lable {
+    height: 150px;
+    width: 150px;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #cccc;
+    border-radius: 100rem;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+    user-select: none;
+    @include flex;
+    .img_upload {
+      width: 60px;
+      height: 60px;
+    }
+    img {
+      object-fit: cover;
+    }
+    .img_peview {
+      position: absolute;
+      inset: 0;
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .list_province {
+    position: absolute;
+    display: none;
+    background-color: white;
+    width: 100%;
+    list-style: none;
+    margin-top: 5px;
+    max-height: 200px;
+    overflow-y: scroll;
+    z-index: 10;
+    li {
+      padding: 10px;
+      cursor: pointer;
+      &:hover {
+        background-color: bisque;
+      }
+    }
+  }
+  .input_province {
+    position: relative;
+  }
+  .list_province.open {
+    display: block;
+  }
+  .one_column_input {
+    padding-bottom: 25px;
+    position: relative;
+    .error_from {
+      position: absolute;
+      bottom: 0;
+      color: red;
+      font-size: 14px;
+    }
+  }
+  .btn_add_staff {
+    padding: 15px 20px;
+    background-color: $blue-color;
+    color: white;
+    font-weight: 600;
+    outline: none;
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+  }
+}

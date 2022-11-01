@@ -1,0 +1,120 @@
+.main {
+  display: flex;
+  .side_bar {
+    height: 100vh;
+    width: 180px;
+    padding: 0 10px;
+    background: #ffffff;
+    @include flex($jus: start);
+    flex-direction: column;
+    .logo {
+      padding: 20px 0;
+    }
+    .side_bar_wrap {
+      @include flex;
+      flex-direction: column;
+      gap: 20px 0;
+      margin-top: 40px;
+      width: 100%;
+    }
+    .side_bar_item {
+      @include flex($jus: start);
+      min-width: 150px;
+      gap: 10px;
+    }
+  }
+  .content {
+    .header {
+      padding: 15px 0;
+      background-color: #ffffff;
+      -webkit-box-shadow: 0px 10px 68px -31px rgba(0, 0, 0, 0.64);
+      -moz-box-shadow: 0px 10px 68px -31px rgba(0, 0, 0, 0.64);
+      box-shadow: 0px 10px 68px -31px rgba(0, 0, 0, 0.64);
+      &_flex {
+        @include flex($jus: space-between);
+      }
+    }
+    flex: 1;
+    .wrap_nav {
+      list-style: none;
+      @include flex($jus: start);
+      gap: 10px;
+    }
+    .nav_item {
+      @include flex($jus: start);
+      gap: 10px;
+    }
+    .nav_search {
+      padding: 7px 15px;
+      position: relative;
+      border-radius: 10px;
+      width: 300px;
+      @include flex($jus: space-between);
+      background-color: #f5f7fb;
+      input {
+        background-color: transparent;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+  .nav_profile {
+    position: relative;
+    .img-md,
+    .avatar-img {
+      user-select: none;
+    }
+    .img-md {
+      width: 40px;
+      height: 40px;
+      border-radius: 100rem;
+      pointer-events: none;
+    }
+    .nav_profile_show {
+      cursor: pointer;
+      @include flex;
+      font-weight: 500;
+      text-align: center;
+      gap: 5px;
+      color: $primary-color;
+      .profi-name {
+        pointer-events: none;
+      }
+    }
+    .dropdown-menu {
+      z-index: 100;
+      height: 0;
+      overflow: hidden;
+      position: absolute;
+      background-color: white;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      border-radius: 10px;
+      left: auto;
+      right: 0;
+      top: 50px;
+      padding: 0 20px;
+      transition: height 0.25s linear;
+      .show {
+        height: auto;
+      }
+      .cotrol-user {
+        display: flex;
+        flex-direction: column;
+        .dropdown-item {
+          padding: 10px 10px;
+          border-radius: 3px;
+          cursor: pointer;
+          border-bottom: 1px solid #ccc;
+          transition: background 0.25s linear;
+          font-size: 14px;
+          &:hover {
+            background-color: #ccc;
+          }
+        }
+        .dropdown-item:last-child {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
