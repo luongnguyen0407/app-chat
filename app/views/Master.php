@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="http://localhost/quanlynhanvien/" target="_parent">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="public/js/jquery.js"></script>
     <link rel="stylesheet" href="public/style/main.css">
     <link rel="icon" type="image/x-icon" href="./public/images/title.ico">
@@ -108,7 +109,7 @@
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="public/js/main.js"></script>
 </body>
 
 </html>

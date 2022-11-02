@@ -3,7 +3,7 @@
     <div class="table_staff_manage_search">
         <div class="add_new_staff">
             <button>
-                <a href="">Thêm nhân viên</a>
+                <a href="AddStaff">Thêm nhân viên</a>
             </button>
         </div>
         <div class="table_staff_manage_search_input">
