@@ -1,5 +1,8 @@
 <?php
-// PrintDisplay::printFix($data['old_value']);
+$newDate = date("Y-m-d");
+$today = '2000-11-03';
+
+
 ?>
 
 <div class="wrap_form_add_staff">
@@ -15,22 +18,22 @@
         <div class="field_form from_name">
             <div class="one_column_input ">
                 <label for="name">Họ và tên</label>
-                <input class="util_input" type="text" name="name" id="name">
+                <input class="util_input" type="text" name="name" id="name" value="<?= PrintDisplay::printValue($data, 'name') ?>">
                 <p class="error_from"><?php PrintDisplay::printError($data, 'name') ?></p>
             </div>
             <div class="one_column_input ">
                 <label for="phone">Số điện thoại</label>
-                <input class="util_input" type="text" name="phone" id="phone">
+                <input class="util_input" type="text" name="phone" id="phone" value="<?= PrintDisplay::printValue($data, 'phone') ?>">
                 <p class="error_from"><?php PrintDisplay::printError($data, 'phone') ?></p>
             </div>
             <div class="one_column_input ">
                 <label for="can_cuoc">Căn cước</label>
-                <input class="util_input" type="text" name="can_cuoc" id="can_cuoc">
+                <input class="util_input" type="text" name="can_cuoc" id="can_cuoc" value="<?= PrintDisplay::printValue($data, 'can_cuoc') ?>">
                 <p class="error_from"><?php PrintDisplay::printError($data, 'can_cuoc') ?></p>
             </div>
             <div class="one_column_input ">
                 <label for="datecc">Ngày cấp</label>
-                <input class="util_input" type="date" name="can_cuoc_date" id="datecc">
+                <input class="util_input" type="date" name="can_cuoc_date" id="datecc" value="<?= PrintDisplay::printValue($data, 'can_cuoc_date') ?>">
                 <p class="error_from"><?php PrintDisplay::printError($data, 'can_cuoc_date') ?></p>
             </div>
         </div>
@@ -75,28 +78,28 @@
             </div>
             <div class="one_column_input ">
                 <label for="birthday">Ngày Sinh</label>
-                <input class="util_input" type="date" name="sinh_nhat" id="birthday">
+                <input class="util_input" type="date" name="sinh_nhat" id="birthday" value="<?= PrintDisplay::printValue($data, 'sinh_nhat') ?>">
                 <p class="error_from"><?php PrintDisplay::printError($data, 'sinh_nhat') ?></p>
             </div>
         </div>
         <div class="field_form from_name">
             <div class="one_column_input wrap_list_pr1 input_province" data-parent=1>
                 <label for="province">Thành phố</label>
-                <input class="util_input" type="text" name="thanh_pho" id="province" readonly="readonly">
+                <input class="util_input" type="text" name="thanh_pho" id="province" readonly="readonly" value="<?= PrintDisplay::printValue($data, 'thanh_pho') ?>">
                 <ul class="list_province scroll_style">
                 </ul>
                 <p class="error_from"><?php PrintDisplay::printError($data, 'thanh_pho') ?></p>
             </div>
             <div class="one_column_input wrap_list_pr2 input_province" data-parent=2>
                 <label for="district">Huyện </label>
-                <input class="util_input" type="text" name="huyen" id="phone" readonly="readonly">
+                <input class="util_input" type="text" name="huyen" id="phone" readonly="readonly" value="<?= PrintDisplay::printValue($data, 'huyen') ?>">
                 <ul class="list_province scroll_style">
                 </ul>
                 <p class="error_from"><?php PrintDisplay::printError($data, 'huyen') ?></p>
             </div>
             <div class="one_column_input wrap_list_pr3 input_province" data-parent=3>
                 <label for="ward">Xã</label>
-                <input class="util_input" type="text" name="xa" id="ward" readonly="readonly">
+                <input class="util_input" type="text" name="xa" id="ward" readonly="readonly" value="<?= PrintDisplay::printValue($data, 'xa') ?>">
                 <ul class="list_province scroll_style">
                 </ul>
                 <p class="error_from"><?php PrintDisplay::printError($data, 'xa') ?></p>
@@ -114,22 +117,22 @@
         <div class="field_form from_name">
             <div class="one_column_input ">
                 <label for="name">Số hợp đồng</label>
-                <input class="util_input" type="text" name="hop_dong_id" id="hopdongid">
+                <input class="util_input" type="text" name="hop_dong_id" id="hopdongid" value="<?= PrintDisplay::printValue($data, 'hop_dong_id') ?>">
                 <p class="error_from"><?php PrintDisplay::printError($data, 'hop_dong_id') ?></p>
             </div>
             <div class="one_column_input ">
                 <label for="phone">Lương Cứng (VND)</label>
-                <input class="util_input" type="text" name="salary" id="phone">
+                <input class="util_input" type="text" name="salary" id="salary" value="<?= PrintDisplay::printValue($data, 'salary') ?>">
                 <p class="error_from"><?php PrintDisplay::printError($data, 'salary') ?></p>
             </div>
             <div class="one_column_input ">
                 <label for="date_start">Ngày bắt đầu(Hợp đồng)</label>
-                <input class="util_input" type="date" name="date_start" id="date_start">
+                <input class="util_input" type="date" name="date_start" id="date_start" value="<?= PrintDisplay::printValue($data, 'date_start') ?>">
                 <p class="error_from"><?php PrintDisplay::printError($data, 'date_start') ?></p>
             </div>
             <div class="one_column_input ">
                 <label for="date">Ngày kết thúc(Hợp đồng)</label>
-                <input class="util_input" type="date" name="date_end" id="date_end">
+                <input class="util_input" type="date" name="date_end" id="date_end" value="<?= PrintDisplay::printValue($data, 'date_end') ?>">
                 <p class="error_from"><?php PrintDisplay::printError($data, 'date_end') ?></p>
             </div>
         </div>
