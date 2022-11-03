@@ -1,19 +1,13 @@
-<?php
-$newDate = date("Y-m-d");
-$today = '2000-11-03';
-
-
-?>
-
 <div class="wrap_form_add_staff">
     <h3 class="form_add_staff_heading">Thêm nhân viên mới</h3>
-    <form action="./AddStaff/Add" method="POST" class="form_add">
-        <div class="from_avatar">
+    <form action="./AddStaff/Add" method="POST" class="form_add" enctype="multipart/form-data">
+        <div class="from_avatar one_column_input">
             <label for="avatar" class="from_add_avatar_lable">
                 <img class="img_upload" src="public/img/img-upload.png" alt="">
-                <input type="file" class="hidden-input" id="avatar">
-                <img class="img_peview" src="https://images.unsplash.com/photo-1661956602153-23384936a1d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="">
+                <input type="file" class="hidden-input" id="avatar" name="file_avatar">
+                <img class="img_peview" src="" alt="">
             </label>
+            <p style="text-align:center;width: 100%;" class="error_from"><?php PrintDisplay::printError($data, 'file_avatar') ?></p>
         </div>
         <div class="field_form from_name">
             <div class="one_column_input ">
@@ -139,4 +133,20 @@ $today = '2000-11-03';
         <button class="btn_add_staff">Thêm Nhân Viên</button>
     </form>
 </div>
-<script defer src="./public/js/province.js"></script>
+<?php
+if (!empty($data['status'])) {
+?>
+    <script>
+        Toastify({
+            text: "Thêm nhân viên thành công",
+            className: "Toast_success",
+            duration: 3000,
+            background: "#07bc0c",
+            // #e74c3c
+        }).showToast();
+    </script>
+<?php
+}
+?>
+
+<script defer src="./public/js/addStaff.js"></script>

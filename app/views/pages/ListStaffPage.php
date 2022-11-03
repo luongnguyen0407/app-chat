@@ -5,6 +5,9 @@
             <button>
                 <a href="AddStaff">Thêm nhân viên</a>
             </button>
+            <button>
+                <a href="HandleExcel/Export">Xuất file excel</a>
+            </button>
         </div>
         <div class="table_staff_manage_search_input">
             <input type="text" placeholder="Search....">

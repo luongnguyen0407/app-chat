@@ -63,4 +63,15 @@ window.addEventListener("load", () => {
       e.target.nextElementSibling.classList.toggle("open");
     });
   });
+
+  //handle pe view
+  const inputFile = document.querySelector(".hidden-input");
+  const imgPew = document.querySelector(".img_peview");
+  inputFile.addEventListener("change", (e) => {
+    const [file] = e.target.files;
+    if (file) {
+      src = URL.createObjectURL(file);
+      imgPew.setAttribute("src", src);
+    }
+  });
 });

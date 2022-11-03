@@ -25,21 +25,14 @@ class PrintDisplay
 }
 trait LoopData
 {
-    public function returnArray($res, $field = '')
+    public function returnArray($res)
     {
         if (empty($res)) return;
         $arr = array();
-        if (empty($field)) {
-            while ($row = mysqli_fetch_array($res)) {
-                $arr[] = $row;
-            }
-            return $arr;
-        } else {
-            while ($row = mysqli_fetch_array($res)) {
-                $arr[] = $row[$field];
-            }
-            return $arr;
+        while ($row = mysqli_fetch_array($res)) {
+            $arr[] = $row;
         }
+        return $arr;
     }
     public function LoopCheckError($data, $dataForm)
     {
@@ -51,5 +44,26 @@ trait LoopData
             }
         }
         return $error;
+    }
+
+    public function ValidateImg($file)
+    {
+        if (empty($file)) return false;
+        $alow_ext = ['jpg', "jpeg", 'gif', 'png', "svg", 'tiff', "bmp", 'tga', "raw", "jfif"];
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $file_size = $file['size'];
+        if (!in_array($ext, $alow_ext)) {
+            return false;
+        } else {
+            $size = 10;
+            $sizeFile = $file_size / 1024 / 1024;
+            if ($sizeFile > $size) {
+                return false;
+            } else {
+                $file_name =  strlen($file['name']) > 10 ? substr($file['name'], 0, 10) : $file['name'];
+                $newFileName = $file_name . time() . "." . $ext;
+                return $newFileName;
+            }
+        }
     }
 }

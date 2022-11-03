@@ -4,25 +4,20 @@ class AddStaff extends Controller
     use LoopData;
     public $positionModal;
     public $staffModal;
-    private $resPo;
-    private $resDep;
     function __construct()
     {
         //modal
         $this->positionModal = $this->callModal('PositionModal');
         $this->departmentModal = $this->callModal('DepartmentModal');
         $this->staffModal = $this->callModal('StaffModal');
-        $this->resPo =  $this->positionModal->getPosition();
-        $this->resDep =  $this->departmentModal->getDepartment();
     }
     function Show()
     {
 
         $this->callView('Master', [
             'Page' => 'AddStaffPage',
-            'Position' => $this->returnArray($this->resPo),
-            'Department' => $this->returnArray($this->resDep),
-            'error' => 'this loi'
+            'Position' => $this->returnArray($this->positionModal->getPosition()),
+            'Department' => $this->returnArray($this->departmentModal->getDepartment()),
         ]);
     }
     function Add()
@@ -47,12 +42,23 @@ class AddStaff extends Controller
             "date_start",
             "date_end",
         ];
+        //check value empty
         $error = $this->LoopCheckError($arrData, $_POST);
         $dataOld = $_POST;
-        // $departmentId = $this->returnArray($this->resPo, 'maCV');
-        // $departmentModal = $this->returnArray($this->resDep, 'maPB');
         $today = date("Y-m-d");
         $nowYear = date("Y");
+        $file = $_FILES['file_avatar'];
+        // if (!empty($file)) PrintDisplay::printFix($dataOld);
+
+        //check img
+        $imgUp =  $this->ValidateImg($file);
+        if (!$imgUp) {
+            $error["file_avatar"] = 'Ảnh không đúng định dạng hoặc quá lớn';
+        } else {
+            $dataOld['img'] = $imgUp;
+        }
+
+        //check date birthday
         if (!empty($dataOld['sinh_nhat'])) {
             $date = DateTime::createFromFormat("Y-m-d", $dataOld['sinh_nhat']);
             $yearSN = $date->format("Y");
@@ -62,23 +68,22 @@ class AddStaff extends Controller
         if ($dataOld['date_end'] <= $today) $error['date_end'] = 'Invalid value';
         if ($dataOld['date_start'] >= $dataOld['date_end']) $error['date_start'] = 'Invalid value';
         if (empty($error)) {
-            PrintDisplay::printFix($dataOld);
-
-            echo $this->staffModal->createNewStaff($dataOld);
-
-            // $this->callView('Master', [
-            //     'Page' => 'AddStaffPage',
-            //     'Position' => $this->returnArray($this->resPo),
-            //     'Department' => $this->returnArray($this->resDep),
-            //     'status' => 'false',
-            //     'error' => $error,
-            // ]);
+            $kq = $this->staffModal->createNewStaff($dataOld);
+            if ($kq) {
+                $this->callView('Master', [
+                    'Page' => 'AddStaffPage',
+                    'Position' => $this->returnArray($this->positionModal->getPosition()),
+                    'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                    'status' => true,
+                    'error' => $error,
+                ]);
+                move_uploaded_file($file['tmp_name'], './public/img/upload' . $imgUp);
+            }
         } else {
             $this->callView('Master', [
                 'Page' => 'AddStaffPage',
-                'Position' => $this->returnArray($this->resPo),
-                'Department' => $this->returnArray($this->resDep),
-                'status' => 'false',
+                'Position' => $this->returnArray($this->positionModal->getPosition()),
+                'Department' => $this->returnArray($this->departmentModal->getDepartment()),
                 'error' => $error,
                 'old_value' => $dataOld
             ]);

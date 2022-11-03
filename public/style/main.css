@@ -740,7 +740,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .wrap_form_add_staff .from_add_avatar_lable .img_peview {
   position: absolute;
   inset: 0;
-  display: none;
   width: 100%;
   height: 100%;
 }

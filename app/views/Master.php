@@ -8,6 +8,8 @@
     <base href="http://localhost/quanlynhanvien/" target="_parent">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="public/js/jquery.js"></script>
     <link rel="stylesheet" href="public/style/main.css">
     <link rel="icon" type="image/x-icon" href="./public/images/title.ico">
