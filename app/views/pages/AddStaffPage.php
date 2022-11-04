@@ -1,5 +1,6 @@
 <div class="wrap_form_add_staff">
     <h3 class="form_add_staff_heading">Thêm nhân viên mới</h3>
+    <h3 class="global_btn btn_open_modal">Nhập bằng file Excel</h3>
     <form action="./AddStaff/Add" method="POST" class="form_add" enctype="multipart/form-data">
         <div class="from_avatar one_column_input">
             <label for="avatar" class="from_add_avatar_lable">
@@ -35,8 +36,8 @@
             <div class="one_column_input ">
                 <label for="">Giới tính</label>
                 <select name="gender">
-                    <option value="1">Nam</option>
-                    <option value="2">Nữ</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nu">Nữ</option>
                 </select>
                 <p class="error_from"><?php PrintDisplay::printError($data, 'gender') ?></p>
             </div>
@@ -101,9 +102,9 @@
             <div class="one_column_input ">
                 <label for="">Trình độ</label>
                 <select name="trinh_do">
-                    <option value="1">Đại học</option>
-                    <option value="2">Cao đẳng</option>
-                    <option value="3">Cấp 3</option>
+                    <option value="DH">Đại học</option>
+                    <option value="CD">Cao đẳng</option>
+                    <option value="C3">Cấp 3</option>
                 </select>
                 <p class="error_from"><?php PrintDisplay::printError($data, 'trinh_do') ?></p>
             </div>
@@ -133,6 +134,30 @@
         <button class="btn_add_staff">Thêm Nhân Viên</button>
     </form>
 </div>
+<div class="modal micromodal-slide" id="modal-3" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+            <header class="modal__header">
+                <h2 class="modal__title" id="modal-1-title">
+                    Nhập File Excel
+                </h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            <main class="modal__content modal__content2" id="modal-1-content">
+                <button class="global_btn"><a href="./public/template/nhap_nhan_vien_mau.xlsx">Tải mẫu Excel</a></button>
+                <form action="./HandleExcel/Import" class="form_modal_excel" enctype="multipart/form-data" method="post">
+                    <label for="">Chọn file upload</label>
+                    <input type="file" name="import_excel">
+                    <footer class="modal__footer">
+                        <button type="submit" class="modal__btn modal__btn-primary btn_save">Save</button>
+                        <button class="modal__btn modal__btn_add" data-micromodal-close aria-label="Close this dialog window"><a href="Profile">Thoát</a></button>
+                    </footer>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
 <?php
 if (!empty($data['status'])) {
 ?>

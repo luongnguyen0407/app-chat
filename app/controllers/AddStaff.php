@@ -68,6 +68,7 @@ class AddStaff extends Controller
         if ($dataOld['date_end'] <= $today) $error['date_end'] = 'Invalid value';
         if ($dataOld['date_start'] >= $dataOld['date_end']) $error['date_start'] = 'Invalid value';
         if (empty($error)) {
+            $dataOld['dia_chi'] = $dataOld['thanh_pho'] . "," . $dataOld['huyen'] . "," . $dataOld['xa'];
             $kq = $this->staffModal->createNewStaff($dataOld);
             if ($kq) {
                 $this->callView('Master', [
@@ -77,7 +78,7 @@ class AddStaff extends Controller
                     'status' => true,
                     'error' => $error,
                 ]);
-                move_uploaded_file($file['tmp_name'], './public/img/upload' . $imgUp);
+                move_uploaded_file($file['tmp_name'], './public/img/upload/' . $imgUp);
             }
         } else {
             $this->callView('Master', [

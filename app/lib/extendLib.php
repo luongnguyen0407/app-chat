@@ -66,4 +66,45 @@ trait LoopData
             }
         }
     }
+
+    public function ValidateDataExcel($data)
+    {
+        if (empty($data)) return;
+
+        $pb = ['MKT', 'IT', 'SEO'];
+        $gender = ['NAM', 'NU'];
+        $td = ['DH', 'CD', 'C3'];
+        $rexPhone = "/(84|0[3|5|7|8|9])+([0-9]{8})\b/";
+        $rexCMND = "/^([04]){2}([0-9]{10})$/";
+
+        // if()
+        if (count($data) != 15) {
+            return false;
+        };
+        if (!in_array($data[7], $pb) || !in_array($data[9], $gender) || !in_array($data[10], $td)) return false;
+        if (!preg_match($rexPhone, $data[1]) || !preg_match($rexCMND, $data[2])) return false;
+        if ($data[14] != 'photo-def.jpg') return false;
+
+        // return true;
+        $keyArray = [
+            'name', 'phone', 'can_cuoc', 'can_cuoc_date', 'hop_dong_id', 'date_start', 'date_end', 'department', 'dia_chi', 'gender', 'trinh_do', 'salary', 'position', 'sinh_nhat', 'img'
+        ];
+        $coverArray = array_combine($keyArray, $data);
+        return $coverArray;
+        //    [0] => Tin Học 1
+        //    [1] => 0325847556
+        //    [2] => 0456683424
+        //    [3] => 2022-11-01
+        //    [4] => hd4352
+        //    [5] => 2022-11-02
+        //    [6] => 2022-11-30
+        //    [7] => MKT
+        //    [8] => Tỉnh Hà Tĩnh,Thị xã Hồng Lĩnh,Phường Trung Lương
+        //    [9] => NAM
+        //    [10] => DH
+        //    [11] => 1200000
+        //    [12] => TP
+        //    [13] => 36819
+        //    [14] => photo-def.jpg
+    }
 }

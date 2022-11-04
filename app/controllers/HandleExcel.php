@@ -59,4 +59,64 @@ class HandleExcel extends Controller
             PHPExcel_IOFactory::createWriter($excel, 'Excel2007')->save('php://output');
         }
     }
+    public function Import()
+    {
+        $status = array();
+        if (empty($_FILES['import_excel'])) $status['error'] = 'Missing file excel';
+        $file = $_FILES['import_excel'];
+        $file_size = $file['size'];
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+        if ($ext != 'xlsx') {
+            $status['error'] = 'Định dạng file không đúng';
+        } else {
+            $size = 10;
+            $sizeFile = $file_size / 1024 / 1024;
+            if ($sizeFile > $size) {
+                $status['error'] = 'Dung lượng file quá lớn';
+            } else {
+                $file_name =  strlen($file['name']) > 10 ? substr($file['name'], 0, 10) : $file['name'];
+                $newFileName = $file_name . time() . "." . $ext;
+                $upload =  move_uploaded_file($file['tmp_name'], './public/excel/' . $newFileName);
+            }
+        }
+        if (empty($status) && !empty($upload)) {
+            $readFile = './public/excel/' . $newFileName;
+
+            $objFile = PHPExcel_IOFactory::identify($readFile);
+            $objData = PHPExcel_IOFactory::createReader($objFile);
+
+            //only read
+
+            // $objData->setReadDataOnly(true);
+
+            // cover data to obj
+
+            $objPHPExcel =  $objData->load($readFile);
+
+            //ch sheet
+
+            $sheet = $objPHPExcel->setActiveSheetIndex(0);
+
+            //get row end
+            $totalRow = $sheet->getHighestRow();
+            //get name col end
+            $lastCol = $sheet->getHighestColumn();
+
+
+            $totalCol = PHPExcel_Cell::columnIndexFromString($lastCol);
+
+            $data = array();
+
+            for ($i = 2; $i <=  $totalRow; $i++) {
+                # code...
+                for ($j = 0; $j <  $totalCol; $j++) {
+                    # code...
+                    $data[$i - 2][$j] = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                }
+            }
+            if (!empty($data)) {
+                $this->staffModal->addNewStaffExcel($data);
+            }
+        }
+    }
 }

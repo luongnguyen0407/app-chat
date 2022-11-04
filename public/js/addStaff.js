@@ -74,4 +74,17 @@ window.addEventListener("load", () => {
       imgPew.setAttribute("src", src);
     }
   });
+
+  //handle modal
+  const btnOpen = document.querySelector(".btn_open_modal");
+  const btnClose = document.querySelector(".modal__close");
+  const modal = document.querySelector("#modal-3");
+  btnOpen.addEventListener("click", () => {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+  });
+  btnClose.addEventListener("click", () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+  });
 });

@@ -68,3 +68,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 5px;
   cursor: pointer;
 }
+.global_btn {
+  background-color: $blue-color;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+  a {
+    color: white;
+  }
+}
