@@ -63,14 +63,28 @@ class StaffModal extends DB
         return $fieldError;
     }
 
-    public function findData($name, $data)
+    public function findData($name, $data, $wh = 0)
     {
-        $sql = "SELECT $name FROM `tb_nhanvien` WHERE $name = '" . $data . "'";
-        $kq = $this->link->query($sql);
-        if (mysqli_num_rows($kq)) {
-            return true;
+        if (empty($wh)) {
+            $sql = "SELECT $name FROM `tb_nhanvien` WHERE $name = '" . $data . "'";
+            $kq = $this->link->query($sql);
+            if (mysqli_num_rows($kq)) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            $sql = "SELECT email FROM `tb_nhanvien` WHERE $name = '" . $data . "'";
+            $kq = $this->link->query($sql);
+            return $kq;
         }
+    }
+
+    public function updateData($table, $what, $new, $where, $whereid)
+    {
+        $sql = "UPDATE `$table` SET `$what`='$new' WHERE $where = '" . $whereid . "'";
+        $kq = $this->link->query($sql);
+        if ($kq) return true;
+        return false;
     }
 }

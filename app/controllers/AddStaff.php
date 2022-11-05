@@ -84,8 +84,6 @@ class AddStaff extends Controller
         if (empty($error)) {
             $dataOld['dia_chi'] = $dataOld['thanh_pho'] . "," . $dataOld['huyen'] . "," . $dataOld['xa'];
             $kq = $this->staffModal->createNewStaff($dataOld);
-            var_dump($kq);
-            print_r($kq);
             if ($kq) {
                 $this->callView('Master', [
                     'Page' => 'AddStaffPage',

@@ -126,7 +126,7 @@ trait LoopData
 
 trait HandleMail
 {
-    public function SendMailPass()
+    public function SendMailPass($code, $email)
     {
         require 'Mail/src/Exception.php';
         require 'Mail/src/PHPMailer.php';
@@ -146,7 +146,7 @@ trait HandleMail
             $mail->CharSet = 'UTF-8';
             //Recipients
             $mail->setFrom('xshophello@gmail.com', 'Admin');
-            $mail->addAddress('lolwukonglee@gmail.com', 'JMail test');     // Add a recipient
+            $mail->addAddress($email, 'Hello');     // Add a recipient
             // $mail->addAddress('ellen@example.com');               // Name is optional
             // $mail->addReplyTo('info@example.com', 'Information');
             // $mail->addCC('cc@example.com');
@@ -159,13 +159,14 @@ trait HandleMail
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Khôi phục mật khẩu';
-            $mail->Body    = 'This is the HTML message body in bold!';
+            $mail->Body    = 'Mã khôi phục mật khẩu của bạn là ' . $code;
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
-            echo 'Message has been sent';
+            return true;
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+            return false;
         }
     }
 }
