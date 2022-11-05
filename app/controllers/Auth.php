@@ -1,7 +1,7 @@
 <?php
 class Auth extends Controller
 {
-
+    use HandleMail;
 
     function __construct()
     {
@@ -11,6 +11,13 @@ class Auth extends Controller
     {
         $this->callView('MasterAuth', [
             'Page' => 'LoginPage',
+        ]);
+    }
+    function ResetPass()
+    {
+        $this->SendMailPass();
+        $this->callView('MasterAuth', [
+            'Page' => 'ResetPage',
         ]);
     }
 }

@@ -4,30 +4,29 @@ class StaffModal extends DB
     use LoopData;
     public function createNewStaff($data)
     {
-        $sql = "INSERT INTO `tb_nhanvien`(`ho_ten`, `gioi_tinh`, `dia_chi`, `so_dien_thoai`, `ngay_sinh`, `can_cuoc`, `ngay_cap`, `hinh_anh`, `maCV`, `maPB`, `maTD`) 
+        $sql = "INSERT INTO `tb_nhanvien`(`ho_ten`, `gioi_tinh`, `dia_chi`, `so_dien_thoai`,`email`, `ngay_sinh`, `can_cuoc`, `hinh_anh`, `maCV`, `maPB`, `maTD`) 
         VALUES ('" . $data['name'] . "','" . $data['gender'] . "','" .
-            $data['dia_chi'] . "','" . $data['phone'] . "','" . $data['sinh_nhat'] . "','" .
-            $data['can_cuoc'] . "','" . $data['can_cuoc_date'] . "','" . $data['img'] . "','" .
+            $data['dia_chi'] . "','" . $data['phone'] . "','" . $data['email'] . "','" . $data['sinh_nhat'] . "','" .
+            $data['can_cuoc'] . "','" . $data['img'] . "','" .
             $data['position'] . "','" . $data['department'] . "','" . $data['trinh_do'] . "')";
-        $res = $this->link->query($sql);
-        if ($res) {
+        try {
+            //code...
+            $this->link->query($sql);
             $id = $this->link->insert_id;
             $password = password_hash($data['can_cuoc'], PASSWORD_DEFAULT);
             //add hop dong
             $insertHD = "INSERT INTO `tb_hopdong`( `so_hop_dong`, `ngay_bat_dau`, `ngay_ket_thuc`, `luong_cung`, `chi_tiet`, `maNV`) 
             VALUES ('" . $data['hop_dong_id'] . "','" . $data['date_start'] . "','" . $data['date_end'] . "','" . $data['salary'] . "','null','" . $id . "')";
-
             //add acc
             $insertAcc = "INSERT INTO `tb_taikhoan`(`tai_khoan`, `mat_khau`, `chuc_vu`, `maNV`) 
             VALUES ('" . $data['can_cuoc'] . "','" . $password . "','0', '" . $id . "')";
-
-
             if ($this->link->query($insertHD) && $this->link->query($insertAcc)) {
                 return true;
             } else {
                 return false;
             }
-        } else {
+        } catch (\Throwable $th) {
+            // throw $th;
             return false;
         }
     }
@@ -51,13 +50,27 @@ class StaffModal extends DB
         foreach ($data as $row) {
             // PrintDisplay::printFix($row);
             $checkValue = $this->ValidateDataExcel($row);
-            if (!empty($checkValue)) {
-                $this->createNewStaff($checkValue);
+            if (is_array($checkValue)) {
+                $res = $this->createNewStaff($checkValue);
+                if (!$res) {
+                    continue;
+                }
             } else {
-                $fieldError[] =  $row[0];
+                $fieldError[] =  $row[0] . ':' . $checkValue;
                 // continue;
             }
         }
         return $fieldError;
+    }
+
+    public function findData($name, $data)
+    {
+        $sql = "SELECT $name FROM `tb_nhanvien` WHERE $name = '" . $data . "'";
+        $kq = $this->link->query($sql);
+        if (mysqli_num_rows($kq)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

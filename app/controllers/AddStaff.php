@@ -27,8 +27,8 @@ class AddStaff extends Controller
         $arrData = [
             "name",
             "phone",
+            "email",
             "can_cuoc",
-            "can_cuoc_date",
             "gender",
             "department",
             "position",
@@ -50,6 +50,18 @@ class AddStaff extends Controller
         $file = $_FILES['file_avatar'];
         // if (!empty($file)) PrintDisplay::printFix($dataOld);
 
+        if (!empty($error)) {
+            $this->callView('Master', [
+                'Page' => 'AddStaffPage',
+                'Position' => $this->returnArray($this->positionModal->getPosition()),
+                'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                'error' => $error,
+                'old_value' => $dataOld
+            ]);
+            return;
+        }
+        if ($this->staffModal->findData('can_cuoc', $dataOld['can_cuoc'])) $error['can_cuoc'] = 'Số căn cước này đã tồn tại';
+        if ($this->staffModal->findData('email', $dataOld['email'])) $error['email'] = 'Email này đã tồn tại';
         //check img
         $imgUp =  $this->ValidateImg($file);
         if (!$imgUp) {
@@ -57,19 +69,23 @@ class AddStaff extends Controller
         } else {
             $dataOld['img'] = $imgUp;
         }
-
+        if (!filter_var($dataOld['email'], FILTER_VALIDATE_EMAIL)) {
+            $error['email'] = "Email không đúng hoặc bị trống";
+        }
         //check date birthday
         if (!empty($dataOld['sinh_nhat'])) {
             $date = DateTime::createFromFormat("Y-m-d", $dataOld['sinh_nhat']);
             $yearSN = $date->format("Y");
             if ($nowYear - $yearSN <= 18) $error['sinh_nhat'] = 'Invalid value';
         }
-        if ($dataOld['can_cuoc_date'] >= $today) $error['can_cuoc_date'] = 'Invalid value';
         if ($dataOld['date_end'] <= $today) $error['date_end'] = 'Invalid value';
         if ($dataOld['date_start'] >= $dataOld['date_end']) $error['date_start'] = 'Invalid value';
+
         if (empty($error)) {
             $dataOld['dia_chi'] = $dataOld['thanh_pho'] . "," . $dataOld['huyen'] . "," . $dataOld['xa'];
             $kq = $this->staffModal->createNewStaff($dataOld);
+            var_dump($kq);
+            print_r($kq);
             if ($kq) {
                 $this->callView('Master', [
                     'Page' => 'AddStaffPage',
@@ -79,6 +95,14 @@ class AddStaff extends Controller
                     'error' => $error,
                 ]);
                 move_uploaded_file($file['tmp_name'], './public/img/upload/' . $imgUp);
+            } else {
+                $this->callView('Master', [
+                    'Page' => 'AddStaffPage',
+                    'Position' => $this->returnArray($this->positionModal->getPosition()),
+                    'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                    'error' => $error,
+                    'old_value' => $dataOld
+                ]);
             }
         } else {
             $this->callView('Master', [

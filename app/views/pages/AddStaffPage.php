@@ -27,9 +27,9 @@
                 <p class="error_from"><?php PrintDisplay::printError($data, 'can_cuoc') ?></p>
             </div>
             <div class="one_column_input ">
-                <label for="datecc">Ngày cấp</label>
-                <input class="util_input" type="date" name="can_cuoc_date" id="datecc" value="<?= PrintDisplay::printValue($data, 'can_cuoc_date') ?>">
-                <p class="error_from"><?php PrintDisplay::printError($data, 'can_cuoc_date') ?></p>
+                <label for="email">Email</label>
+                <input class="util_input" type="text" name="email" id="email" value="<?= PrintDisplay::printValue($data, 'email') ?>">
+                <p class="error_from"><?php PrintDisplay::printError($data, 'email') ?></p>
             </div>
         </div>
         <div class="field_form from_name">
@@ -176,7 +176,7 @@ if (!empty($data['status'])) {
 if (!empty($data['excelError'])) {
     $error = "";
     foreach ($data['excelError'] as $item) {
-        $error .= $item . ';';
+        $error .= $item . ';' . '--';
     }
 ?>
     <script>

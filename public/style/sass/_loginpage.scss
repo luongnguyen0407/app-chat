@@ -1,0 +1,40 @@
+.main_login {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../img/bg-auth.jpg);
+  background-size: 100%;
+  .wrap_from {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      align-items: center;
+      gap: 20px 0;
+      .one_field {
+        width: 100%;
+      }
+      label {
+        display: block;
+        cursor: pointer;
+      }
+      input {
+        border-radius: 5px;
+        width: 100%;
+        padding: 5px 10px;
+        border: 1px solid #d7dbe0;
+        outline: none;
+      }
+    }
+    h3 {
+      font-size: 30px;
+      color: $blue-color;
+      margin-bottom: 20px;
+    }
+  }
+}

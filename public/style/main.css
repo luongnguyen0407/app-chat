@@ -1222,4 +1222,45 @@ input[type=date]::-webkit-calendar-picker-indicator {
   }
 }
 
+.main_login {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../img/bg-auth.jpg);
+  background-size: 100%;
+}
+.main_login .wrap_from {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+.main_login .wrap_from form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-items: center;
+  gap: 20px 0;
+}
+.main_login .wrap_from form .one_field {
+  width: 100%;
+}
+.main_login .wrap_from form label {
+  display: block;
+  cursor: pointer;
+}
+.main_login .wrap_from form input {
+  border-radius: 5px;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #d7dbe0;
+  outline: none;
+}
+.main_login .wrap_from h3 {
+  font-size: 30px;
+  color: #003ad2;
+  margin-bottom: 20px;
+}
+
 /*# sourceMappingURL=main.css.map */

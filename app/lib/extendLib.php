@@ -1,4 +1,8 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class PrintDisplay
 {
     static public function printError($data, $nameField)
@@ -75,8 +79,10 @@ trait LoopData
 
     public function ValidateDataExcel($data)
     {
+        require_once "./app/models/StaffModal.php";
         if (empty($data)) return;
-
+        // PrintDisplay::printFix($data);
+        // die;
         $pb = ['MKT', 'IT', 'SEO'];
         $gender = ['NAM', 'NU'];
         $td = ['DH', 'CD', 'C3'];
@@ -85,15 +91,18 @@ trait LoopData
 
         // if()
         if (count($data) != 15) {
-            return false;
+            return 'Không đủ dữ liệu';
         };
-        if (!in_array($data[7], $pb) || !in_array($data[9], $gender) || !in_array($data[10], $td)) return false;
-        if (!preg_match($rexPhone, $data[1]) || !preg_match($rexCMND, $data[2])) return false;
-        if ($data[14] != 'photo-def.jpg') return false;
+        if (!filter_var($data[2], FILTER_VALIDATE_EMAIL)) return 'Loi email';
+        if (!in_array($data[7], $pb) || !in_array($data[9], $gender) || !in_array($data[10], $td)) return 'Lỗi phòng ban hoặc giới tính';
+        if (!preg_match($rexPhone, $data[1]) || !preg_match($rexCMND, $data[3])) return 'Lỗi số điện thoại hoặc căn cước';
+        if ($this->findData('can_cuoc', $data[3])) return 'Số căn cước này đã tồn tại';
+        if ($this->findData('email', $data[2])) return 'Email này đã tồn tại';
+        if ($data[14] != 'photo-def.jpg') return 'Lỗi ảnh';
 
         // return true;
         $keyArray = [
-            'name', 'phone', 'can_cuoc', 'can_cuoc_date', 'hop_dong_id', 'date_start', 'date_end', 'department', 'dia_chi', 'gender', 'trinh_do', 'salary', 'position', 'sinh_nhat', 'img'
+            'name', 'phone', 'email', 'can_cuoc', 'hop_dong_id', 'date_start', 'date_end', 'department', 'dia_chi', 'gender', 'trinh_do', 'salary', 'position', 'sinh_nhat', 'img'
         ];
         $coverArray = array_combine($keyArray, $data);
         return $coverArray;
@@ -112,5 +121,51 @@ trait LoopData
         //    [12] => TP
         //    [13] => 36819
         //    [14] => photo-def.jpg
+    }
+}
+
+trait HandleMail
+{
+    public function SendMailPass()
+    {
+        require 'Mail/src/Exception.php';
+        require 'Mail/src/PHPMailer.php';
+        require 'Mail/src/SMTP.php';
+        $mail = new PHPMailer(true);
+        # code...
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'xshophello@gmail.com';                 // SMTP username
+            $mail->Password = 'znflxmjjnqybgdjs';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+            $mail->CharSet = 'UTF-8';
+            //Recipients
+            $mail->setFrom('xshophello@gmail.com', 'Admin');
+            $mail->addAddress('lolwukonglee@gmail.com', 'JMail test');     // Add a recipient
+            // $mail->addAddress('ellen@example.com');               // Name is optional
+            // $mail->addReplyTo('info@example.com', 'Information');
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
+
+            //Attachments
+            // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Khôi phục mật khẩu';
+            $mail->Body    = 'This is the HTML message body in bold!';
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
     }
 }
