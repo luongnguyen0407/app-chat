@@ -22,6 +22,12 @@ class PrintDisplay
             echo $data['old_value'][$nameField];
         }
     }
+    static public function printShow($data, $nameField)
+    {
+        if (!empty($data[$nameField])) {
+            echo $data[$nameField];
+        }
+    }
 }
 trait LoopData
 {

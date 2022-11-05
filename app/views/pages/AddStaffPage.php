@@ -172,6 +172,23 @@ if (!empty($data['status'])) {
     </script>
 <?php
 }
+
+if (!empty($data['excelError'])) {
+    $error = "";
+    foreach ($data['excelError'] as $item) {
+        $error .= $item . ';';
+    }
+?>
+    <script>
+        swal({
+            title: "Dữ liệu lỗi",
+            text: "<?= $error ?>",
+            icon: "warning",
+            button: "OK",
+        });
+    </script>
+<?php
+}
 ?>
 
 <script defer src="./public/js/addStaff.js"></script>

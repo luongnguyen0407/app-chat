@@ -3,10 +3,13 @@ class HandleExcel extends Controller
 {
     use LoopData;
     public $staffModal;
+    public $positionModal;
     function __construct()
     {
         //modal
         $this->staffModal = $this->callModal('StaffModal');
+        $this->positionModal = $this->callModal('PositionModal');
+        $this->departmentModal = $this->callModal('DepartmentModal');
     }
     public function Export()
     {
@@ -115,8 +118,24 @@ class HandleExcel extends Controller
                 }
             }
             if (!empty($data)) {
-                $this->staffModal->addNewStaffExcel($data);
+                $kq =  $this->staffModal->addNewStaffExcel($data);
+                if (empty($kq)) {
+                    $this->callView('Master', [
+                        'Page' => 'AddStaffPage',
+                        'Position' => $this->returnArray($this->positionModal->getPosition()),
+                        'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                        'status' => true,
+                    ]);
+                } else {
+                    $this->callView('Master', [
+                        'Page' => 'AddStaffPage',
+                        'Position' => $this->returnArray($this->positionModal->getPosition()),
+                        'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                        'excelError' => $kq
+                    ]);
+                }
             }
+            unlink('./public/excel/' . $newFileName);
         }
     }
 }

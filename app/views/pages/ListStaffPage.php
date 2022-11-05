@@ -1,3 +1,6 @@
+<?php
+// PrintDisplay::printFix($data['staff']);
+?>
 <div>
     <h3 class="staff_manage_heading">Danh sách nhân viên</h3>
     <div class="table_staff_manage_search">
@@ -28,251 +31,62 @@
                 <th class="column5">Điện thoại</th>
                 <th class="column6">Ngày sinh</th>
                 <th class="column7">Phòng ban</th>
-                <th class="column7">Tình trạng</th>
+                <th class="column7">Hợp Đồng</th>
                 <th class="column7">Thao tác</th>
             </tr>
         </thead>
         <tbody class="table_staff_manage_body">
-            <tr>
-                <td class="column1">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="">
-                </td>
-                <td class="column2">
-                    <p>Nguyễn văn a</p>
-                </td>
-                <td class="column3">
-                    <p>Nam</p>
-                </td>
-                <td class="column4">
-                    <p>814063636</p>
-                </td>
-                <td class="column5">
-                    <p>068255276</p>
-                </td>
-                <td class="column6">
-                    <p> 04-07-2000</p>
-                </td>
-                <td class="column7">
-                    <p> IT</p>
-                </td>
-                <td class="column7">
-                    <p class="success">Đang làm</p>
-                </td>
-                <td class="column8">
-                    <p class="action_update">Sửa</p>
-                    <p class="action_del">Xem</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="column1">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="">
-                </td>
-                <td class="column2">
-                    <p>Nguyễn văn a</p>
-                </td>
-                <td class="column3">
-                    <p>Nam</p>
-                </td>
-                <td class="column4">
-                    <p>814063636</p>
-                </td>
-                <td class="column5">
-                    <p>068255276</p>
-                </td>
-                <td class="column6">
-                    <p> 04-07-2000</p>
-                </td>
-                <td class="column7">
-                    <p> IT</p>
-                </td>
-                <td class="column7">
-                    <p class="success">Đang làm</p>
-                </td>
-                <td class="column8">
-                    <p class="action_update">Sửa</p>
-                    <p class="action_del">Xem</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="column1">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="">
-                </td>
-                <td class="column2">
-                    <p>Nguyễn văn a</p>
-                </td>
-                <td class="column3">
-                    <p>Nam</p>
-                </td>
-                <td class="column4">
-                    <p>814063636</p>
-                </td>
-                <td class="column5">
-                    <p>068255276</p>
-                </td>
-                <td class="column6">
-                    <p> 04-07-2000</p>
-                </td>
-                <td class="column7">
-                    <p> IT</p>
-                </td>
-                <td class="column7">
-                    <p class="success">Đang làm</p>
-                </td>
-                <td class="column8">
-                    <p class="action_update">Sửa</p>
-                    <p class="action_del">Xem</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="column1">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="">
-                </td>
-                <td class="column2">
-                    <p>Nguyễn văn a</p>
-                </td>
-                <td class="column3">
-                    <p>Nam</p>
-                </td>
-                <td class="column4">
-                    <p>814063636</p>
-                </td>
-                <td class="column5">
-                    <p>068255276</p>
-                </td>
-                <td class="column6">
-                    <p> 04-07-2000</p>
-                </td>
-                <td class="column7">
-                    <p> IT</p>
-                </td>
-                <td class="column7">
-                    <p class="success">Đang làm</p>
-                </td>
-                <td class="column8">
-                    <p class="action_update">Sửa</p>
-                    <p class="action_del">Xem</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="column1">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="">
-                </td>
-                <td class="column2">
-                    <p>Nguyễn văn a</p>
-                </td>
-                <td class="column3">
-                    <p>Nam</p>
-                </td>
-                <td class="column4">
-                    <p>814063636</p>
-                </td>
-                <td class="column5">
-                    <p>068255276</p>
-                </td>
-                <td class="column6">
-                    <p> 04-07-2000</p>
-                </td>
-                <td class="column7">
-                    <p> IT</p>
-                </td>
-                <td class="column7">
-                    <p class="success">Đang làm</p>
-                </td>
-                <td class="column8">
-                    <p class="action_update">Sửa</p>
-                    <p class="action_del">Xem</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="column1">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="">
-                </td>
-                <td class="column2">
-                    <p>Nguyễn văn a</p>
-                </td>
-                <td class="column3">
-                    <p>Nam</p>
-                </td>
-                <td class="column4">
-                    <p>814063636</p>
-                </td>
-                <td class="column5">
-                    <p>068255276</p>
-                </td>
-                <td class="column6">
-                    <p> 04-07-2000</p>
-                </td>
-                <td class="column7">
-                    <p> IT</p>
-                </td>
-                <td class="column7">
-                    <p class="success">Đang làm</p>
-                </td>
-                <td class="column8">
-                    <p class="action_update">Sửa</p>
-                    <p class="action_del">Xem</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="column1">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="">
-                </td>
-                <td class="column2">
-                    <p>Nguyễn văn a</p>
-                </td>
-                <td class="column3">
-                    <p>Nam</p>
-                </td>
-                <td class="column4">
-                    <p>814063636</p>
-                </td>
-                <td class="column5">
-                    <p>068255276</p>
-                </td>
-                <td class="column6">
-                    <p> 04-07-2000</p>
-                </td>
-                <td class="column7">
-                    <p> IT</p>
-                </td>
-                <td class="column7">
-                    <p class="success">Đang làm</p>
-                </td>
-                <td class="column8">
-                    <p class="action_update">Sửa</p>
-                    <p class="action_del">Xem</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="column1">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="">
-                </td>
-                <td class="column2">
-                    <p>Nguyễn văn a</p>
-                </td>
-                <td class="column3">
-                    <p>Nam</p>
-                </td>
-                <td class="column4">
-                    <p>814063636</p>
-                </td>
-                <td class="column5">
-                    <p>068255276</p>
-                </td>
-                <td class="column6">
-                    <p> 04-07-2000</p>
-                </td>
-                <td class="column7">
-                    <p> IT</p>
-                </td>
-                <td class="column7">
-                    <p class="success">Đang làm</p>
-                </td>
-                <td class="column8">
-                    <p class="action_update">Sửa</p>
-                    <p class="action_del">Xem</p>
-                </td>
-            </tr>
+            <?php
+            if (!empty($data['staff'])) {
+                $today = date("Y-m-d");
+                foreach ($data['staff'] as &$row) {
+            ?>
+                    <tr>
+                        <td class="column1">
+                            <img src="./public/img/upload/<?php PrintDisplay::printShow($row, 'hinh_anh') ?>" alt="">
+                        </td>
+                        <td class="column2">
+                            <p><?php PrintDisplay::printShow($row, 'ho_ten') ?></p>
+                        </td>
+                        <td class="column3">
+                            <p><?php PrintDisplay::printShow($row, 'gioi_tinh') ?></p>
+                        </td>
+                        <td class="column4">
+                            <p><?php PrintDisplay::printShow($row, 'can_cuoc') ?></p>
+                        </td>
+                        <td class="column5">
+                            <p><?php PrintDisplay::printShow($row, 'so_dien_thoai') ?></p>
+                        </td>
+                        <td class="column6">
+                            <p><?php PrintDisplay::printShow($row, 'ngay_sinh') ?></p>
+                        </td>
+                        <td class="column7">
+                            <p><?php PrintDisplay::printShow($row, 'ten_phong') ?></p>
+                        </td>
+                        <td class="column7">
+                            <?php
+                            if ($row['ngay_ket_thuc'] > $today) {
+                            ?>
+                                <p class="danger">Hết hạn</p>
+                            <?php
+                            } else {
+                            ?>
+                                <p class="success">Đang làm</p>
+                            <?php
+                            }
+                            ?>
+                        </td>
+                        <td class="column8">
+                            <p class="action_update">Sửa</p>
+                            <p class="action_del">Xem</p>
+                        </td>
+                    </tr>
+            <?php
+                }
+            }
+
+            ?>
+
         </tbody>
     </table>
 </div>

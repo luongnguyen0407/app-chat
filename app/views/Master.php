@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="public/js/jquery.js"></script>
     <link rel="stylesheet" href="public/style/main.css">
@@ -17,6 +18,17 @@
 </head>
 
 <body>
+    <div class="loading_main">
+        <div class="music-waves-2">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
     <main class="main">
         <aside class="side_bar">
             <div class="logo">
@@ -29,16 +41,13 @@
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0H8V8H0V0ZM0 10H8V18H0V10ZM10 0H18V8H10V0ZM10 10H18V18H10V10ZM12 2V6H16V2H12ZM12 12V16H16V12H12ZM2 2V6H6V2H2ZM2 12V16H6V12H2Z" fill="#003AD2" />
                     </svg>
-                    <a href="Dashboard">Dashboard</a>
+                    <a href="Dashboard ">Dashboard</a>
                 </div>
                 <div class="side_bar_item">
                     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.083 14.1999L19.285 14.9209C19.3591 14.9653 19.4205 15.0282 19.4631 15.1034C19.5058 15.1786 19.5282 15.2635 19.5282 15.3499C19.5282 15.4364 19.5058 15.5213 19.4631 15.5965C19.4205 15.6717 19.3591 15.7346 19.285 15.7789L10.515 21.0409C10.3594 21.1344 10.1814 21.1838 9.99998 21.1838C9.81853 21.1838 9.64051 21.1344 9.48498 21.0409L0.714977 15.7789C0.640823 15.7346 0.579442 15.6717 0.536823 15.5965C0.494204 15.5213 0.471802 15.4364 0.471802 15.3499C0.471802 15.2635 0.494204 15.1786 0.536823 15.1034C0.579442 15.0282 0.640823 14.9653 0.714977 14.9209L1.91698 14.1999L9.99998 19.0499L18.083 14.1999ZM18.083 9.49995L19.285 10.2209C19.3591 10.2653 19.4205 10.3282 19.4631 10.4034C19.5058 10.4786 19.5282 10.5635 19.5282 10.6499C19.5282 10.7364 19.5058 10.8213 19.4631 10.8965C19.4205 10.9717 19.3591 11.0346 19.285 11.0789L9.99998 16.6499L0.714977 11.0789C0.640823 11.0346 0.579442 10.9717 0.536823 10.8965C0.494204 10.8213 0.471802 10.7364 0.471802 10.6499C0.471802 10.5635 0.494204 10.4786 0.536823 10.4034C0.579442 10.3282 0.640823 10.2653 0.714977 10.2209L1.91698 9.49995L9.99998 14.3499L18.083 9.49995ZM10.514 0.308948L19.285 5.57095C19.3591 5.61534 19.4205 5.6782 19.4631 5.75338C19.5058 5.82857 19.5282 5.91352 19.5282 5.99995C19.5282 6.08637 19.5058 6.17132 19.4631 6.24651C19.4205 6.3217 19.3591 6.38455 19.285 6.42895L9.99998 11.9999L0.714977 6.42895C0.640823 6.38455 0.579442 6.3217 0.536823 6.24651C0.494204 6.17132 0.471802 6.08637 0.471802 5.99995C0.471802 5.91352 0.494204 5.82857 0.536823 5.75338C0.579442 5.6782 0.640823 5.61534 0.714977 5.57095L9.48498 0.308948C9.64051 0.215504 9.81853 0.166138 9.99998 0.166138C10.1814 0.166138 10.3594 0.215504 10.515 0.308948H10.514ZM9.99998 2.33195L3.88698 5.99995L9.99998 9.66795L16.113 5.99995L9.99998 2.33195Z" fill="#003AD2" />
                     </svg>
                     <a href="ListStaff">Nhân viên</a>
-                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5.00002 6.00002L0.757019 1.75702L2.17202 0.343018L5.00002 3.17202L7.82802 0.343018L9.24302 1.75702L5.00002 6.00002Z" fill="#003AD2" />
-                    </svg>
                 </div>
                 <div class="side_bar_item">
                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,6 +119,12 @@
             </section>
         </div>
     </main>
+
+    <script>
+        $(window).on('load', function() {
+            $('.loading_main').hide();
+        })
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="public/js/main.js"></script>
 </body>

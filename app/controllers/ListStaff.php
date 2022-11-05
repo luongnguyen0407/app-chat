@@ -1,6 +1,7 @@
 <?php
 class ListStaff extends Controller
 {
+    use LoopData;
     public $staffModal;
 
 
@@ -13,6 +14,7 @@ class ListStaff extends Controller
     {
         $this->callView('Master', [
             'Page' => 'ListStaffPage',
+            'staff' => $this->returnArray($this->staffModal->getAllStaff())
         ]);
     }
 }

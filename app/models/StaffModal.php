@@ -34,11 +34,16 @@ class StaffModal extends DB
 
     public function getStaffExcel()
     {
-        $sql = "SELECT tb_nhanvien.ho_ten, tb_nhanvien.dia_chi,tb_nhanvien.ngay_sinh,tb_nhanvien.so_dien_thoai,tb_nhanvien.can_cuoc,tb_hopdong.so_hop_dong, tb_hopdong.ngay_bat_dau, tb_hopdong.ngay_ket_thuc, tb_phongban.ten_phong FROM tb_hopdong INNER JOIN tb_nhanvien ON tb_hopdong.maNV=tb_nhanvien.maNV INNER JOIN tb_phongban ON tb_nhanvien.maPB=tb_phongban.maPB";
+        $sql = "SELECT tb_nhanvien.ho_ten, tb_nhanvien.dia_chi,tb_nhanvien.ngay_sinh,tb_nhanvien.so_dien_thoai,tb_nhanvien.can_cuoc, tb_nhanvien.hinh_anh,tb_hopdong.so_hop_dong, tb_hopdong.ngay_bat_dau, tb_hopdong.ngay_ket_thuc, tb_phongban.ten_phong FROM tb_hopdong INNER JOIN tb_nhanvien ON tb_hopdong.maNV=tb_nhanvien.maNV INNER JOIN tb_phongban ON tb_nhanvien.maPB=tb_phongban.maPB";
         $kq = $this->link->query($sql);
         if ($kq) return $kq;
     }
-
+    public function getAllStaff()
+    {
+        $sql = "SELECT tb_nhanvien.ho_ten, tb_nhanvien.dia_chi,tb_nhanvien.ngay_sinh,tb_nhanvien.so_dien_thoai,tb_nhanvien.can_cuoc, tb_nhanvien.hinh_anh, tb_nhanvien.gioi_tinh,tb_hopdong.so_hop_dong, tb_hopdong.ngay_bat_dau, tb_hopdong.ngay_ket_thuc, tb_phongban.ten_phong FROM tb_hopdong INNER JOIN tb_nhanvien ON tb_hopdong.maNV=tb_nhanvien.maNV INNER JOIN tb_phongban ON tb_nhanvien.maPB=tb_phongban.maPB";
+        $kq = $this->link->query($sql);
+        if ($kq) return $kq;
+    }
     public function addNewStaffExcel($data)
     {
         if (empty($data)) return;
@@ -47,12 +52,12 @@ class StaffModal extends DB
             // PrintDisplay::printFix($row);
             $checkValue = $this->ValidateDataExcel($row);
             if (!empty($checkValue)) {
-                PrintDisplay::printFix($checkValue);
                 $this->createNewStaff($checkValue);
             } else {
                 $fieldError[] =  $row[0];
                 // continue;
             }
         }
+        return $fieldError;
     }
 }
