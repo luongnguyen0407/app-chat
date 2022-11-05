@@ -133,6 +133,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .global_btn a {
   color: white;
 }
+.global_btn:disabled {
+  opacity: 0.5;
+}
 
 .side_bar_item {
   position: relative;
@@ -1230,6 +1233,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
   align-items: center;
   background-image: url(../img/bg-auth.jpg);
   background-size: 100%;
+}
+.main_login .forgot_pass {
+  color: #003ad2;
+  cursor: pointer;
 }
 .main_login .wrap_from {
   background-color: white;

@@ -6,6 +6,10 @@
   align-items: center;
   background-image: url(../img/bg-auth.jpg);
   background-size: 100%;
+  .forgot_pass {
+    color: $blue-color;
+    cursor: pointer;
+  }
   .wrap_from {
     background-color: white;
     padding: 20px;

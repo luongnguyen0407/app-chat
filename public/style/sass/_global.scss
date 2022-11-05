@@ -79,6 +79,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   a {
     color: white;
   }
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 .side_bar_item {
   position: relative;
