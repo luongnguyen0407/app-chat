@@ -1,0 +1,10 @@
+- Hiện danh sách nhân viên - done
+- Thêm mới nhân viên -done
+- Xuất/nhập file excel danh sách nhân viên -done
+- Validate -done
+- Forgot password with phpmailer -done
+- Login/logout - done
+- Tìm kiếm nhân viên
+- Điểm danh
+- Thống kê lương tháng
+- Cập nhật profile

@@ -113,3 +113,13 @@
     margin: 10px 0;
   }
 }
+@include maxw(870px) {
+  .wrap_form_add_staff .field_form {
+    @include grid($cols: 2, $gap: 20px);
+  }
+}
+@include maxw(470px) {
+  .wrap_form_add_staff .field_form {
+    @include grid($cols: 1, $gap: 20px);
+  }
+}

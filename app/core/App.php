@@ -27,7 +27,7 @@ class App
 
             call_user_func_array([$this->controller, $this->action], $this->params);
         } else {
-            require_once "./app/controllers/Home.php";
+            require_once "./app/controllers/Auth.php";
         }
     }
     function UrlProcess()

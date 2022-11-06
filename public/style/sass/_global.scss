@@ -95,3 +95,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   bottom: -7px;
   background: $blue-color;
 }
+@include maxw(640px) {
+  .wrap_content_ad {
+    height: auto;
+  }
+}

@@ -12,7 +12,7 @@ class Controller
     {
         $user = isset($_SESSION['user']) ? $_SESSION['user'] : [];
         if ($isAdmin) {
-            return isset($user["chucVu"]) && $user["chucVu"] == 1 ? true : false;
+            return isset($user["role"]) && $user["role"] == 1 ? true : false;
         } else {
             return !empty($user) ? true : false;
         }

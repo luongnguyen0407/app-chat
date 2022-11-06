@@ -7,14 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="http://localhost/quanlynhanvien/" target="_parent">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="public/js/jquery.js"></script>
     <link rel="stylesheet" href="public/style/main.css">
     <link rel="icon" type="image/x-icon" href="./public/images/title.ico">
-    <title>Quản Lý Nhân Viên</title>
+    <title>Hồ sơ cá nhân</title>
 </head>
 
 <body>
@@ -41,13 +40,13 @@
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0H8V8H0V0ZM0 10H8V18H0V10ZM10 0H18V8H10V0ZM10 10H18V18H10V10ZM12 2V6H16V2H12ZM12 12V16H16V12H12ZM2 2V6H6V2H2ZM2 12V16H6V12H2Z" fill="#003AD2" />
                     </svg>
-                    <p>Dashboard</p>
+                    <p>Điểm danh</p>
                 </a>
                 <a href="ListStaff" class="side_bar_item">
                     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.083 14.1999L19.285 14.9209C19.3591 14.9653 19.4205 15.0282 19.4631 15.1034C19.5058 15.1786 19.5282 15.2635 19.5282 15.3499C19.5282 15.4364 19.5058 15.5213 19.4631 15.5965C19.4205 15.6717 19.3591 15.7346 19.285 15.7789L10.515 21.0409C10.3594 21.1344 10.1814 21.1838 9.99998 21.1838C9.81853 21.1838 9.64051 21.1344 9.48498 21.0409L0.714977 15.7789C0.640823 15.7346 0.579442 15.6717 0.536823 15.5965C0.494204 15.5213 0.471802 15.4364 0.471802 15.3499C0.471802 15.2635 0.494204 15.1786 0.536823 15.1034C0.579442 15.0282 0.640823 14.9653 0.714977 14.9209L1.91698 14.1999L9.99998 19.0499L18.083 14.1999ZM18.083 9.49995L19.285 10.2209C19.3591 10.2653 19.4205 10.3282 19.4631 10.4034C19.5058 10.4786 19.5282 10.5635 19.5282 10.6499C19.5282 10.7364 19.5058 10.8213 19.4631 10.8965C19.4205 10.9717 19.3591 11.0346 19.285 11.0789L9.99998 16.6499L0.714977 11.0789C0.640823 11.0346 0.579442 10.9717 0.536823 10.8965C0.494204 10.8213 0.471802 10.7364 0.471802 10.6499C0.471802 10.5635 0.494204 10.4786 0.536823 10.4034C0.579442 10.3282 0.640823 10.2653 0.714977 10.2209L1.91698 9.49995L9.99998 14.3499L18.083 9.49995ZM10.514 0.308948L19.285 5.57095C19.3591 5.61534 19.4205 5.6782 19.4631 5.75338C19.5058 5.82857 19.5282 5.91352 19.5282 5.99995C19.5282 6.08637 19.5058 6.17132 19.4631 6.24651C19.4205 6.3217 19.3591 6.38455 19.285 6.42895L9.99998 11.9999L0.714977 6.42895C0.640823 6.38455 0.579442 6.3217 0.536823 6.24651C0.494204 6.17132 0.471802 6.08637 0.471802 5.99995C0.471802 5.91352 0.494204 5.82857 0.536823 5.75338C0.579442 5.6782 0.640823 5.61534 0.714977 5.57095L9.48498 0.308948C9.64051 0.215504 9.81853 0.166138 9.99998 0.166138C10.1814 0.166138 10.3594 0.215504 10.515 0.308948H10.514ZM9.99998 2.33195L3.88698 5.99995L9.99998 9.66795L16.113 5.99995L9.99998 2.33195Z" fill="#003AD2" />
                     </svg>
-                    <p>Nhân viên</p>
+                    <p>Hồ sơ</p>
                 </a>
                 <a href="" class="side_bar_item">
                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,27 +70,10 @@
         <div class="content">
             <header class="header">
                 <div class="content_fix header_flex">
-                    <ul class="wrap_nav">
-                        <li class="nav_item">
-                            <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 0L20 4V17C20 17.2652 19.8946 17.5196 19.7071 17.7071C19.5196 17.8946 19.2652 18 19 18H1C0.734784 18 0.48043 17.8946 0.292893 17.7071C0.105357 17.5196 0 17.2652 0 17V4.004L2 0H18ZM18 6H2V16H18V6ZM10 7L14 11H11V15H9V11H6L10 7ZM16.764 2H3.236L2.237 4H17.764L16.764 2Z" fill="#003AD2" />
-                            </svg>
-                            <a href="#">Sales Orders</a>
-                        </li>
-                        <li class="nav_item">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15.366 3.43799L18.577 8.99999H22V11H20.833L20.076 20.083C20.0552 20.3329 19.9413 20.5658 19.7568 20.7357C19.5723 20.9055 19.3308 20.9999 19.08 21H4.92C4.66925 20.9999 4.4277 20.9055 4.24322 20.7357C4.05875 20.5658 3.94481 20.3329 3.924 20.083L3.166 11H2V8.99999H5.422L8.634 3.43799L10.366 4.43799L7.732 8.99999H16.267L13.634 4.43799L15.366 3.43799V3.43799ZM18.826 11H5.173L5.84 19H18.159L18.826 11ZM13 13V17H11V13H13ZM9 13V17H7V13H9ZM17 13V17H15V13H17Z" fill="#003AD2" />
-                            </svg>
-                            <a href="#">Products</a>
-                        </li>
-                        <li class="nav_item">
-                            <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 0H18L20 4V17C20 17.2652 19.8946 17.5196 19.7071 17.7071C19.5196 17.8946 19.2652 18 19 18H1C0.734784 18 0.48043 17.8946 0.292893 17.7071C0.105357 17.5196 0 17.2652 0 17V4.004L2 0ZM18 6H2V16H18V6ZM17.764 4L16.764 2H3.237L2.237 4H17.764ZM11 11H14L10 15L6 11H9V7H11V11Z" fill="#003AD2" />
-                            </svg>
-
-                            <a href="#">Purchase Orders</a>
-                        </li>
-                    </ul>
+                    <div class="wrap_nav header_time">
+                        <p class="welcome"></p>
+                        <p class="now_time"></p>
+                    </div>
                     <div class="nav_search">
                         <input type="text" placeholder="Search">
                         <div class="search_icon">
@@ -111,7 +93,7 @@
                                 <a class="dropdown-item">
                                     <i class="fa-solid fa-user"></i> My Profile</a>
                                 <a style="color:black;" href="../index.php" class="dropdown-item"><i class="fa-solid fa-house"></i> Home</a>
-                                <a style="color:red;" href="../logOut.php" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Sign Out</a>
+                                <a style="color:red;" href="Logout" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Sign Out</a>
                             </div>
                         </div>
                     </div>
@@ -126,12 +108,10 @@
     </main>
 
     <script>
-        $(window).on('load', function() {
-            $('.loading_main').hide();
-        })
+
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="public/js/main.js"></script>
+    <script src="public/js/utils.js"></script>
 </body>
 
 </html>

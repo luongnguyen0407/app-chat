@@ -2,9 +2,9 @@
 class AccModal extends DB
 {
     use LoopData;
-    public function findData($where, $data)
+    public function findData($where, $data, $get = '')
     {
-        $sql = "SELECT `khoi_phuc` FROM `tb_taikhoan` WHERE $where = $data";
+        $sql = empty($get) ? "SELECT `khoi_phuc` FROM `tb_taikhoan` WHERE $where = $data" : "SELECT $get FROM `tb_taikhoan` WHERE $where = $data";
         $kq =  $this->link->query($sql);
         if ($kq) return $kq;
         return false;

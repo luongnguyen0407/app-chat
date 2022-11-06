@@ -266,3 +266,12 @@
     }
   }
 }
+@include maxw(740px) {
+  .content_dashboard_statistical .dashboard_card_list {
+    @include grid($cols: 2, $gap: 20px);
+  }
+  .content_dashboard_statistical .dashboard_manage_uni,
+  .content_dashboard_statistical .dashboard_list_table {
+    @include grid($cols: 1, $gap: 20px);
+  }
+}

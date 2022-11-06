@@ -2,11 +2,16 @@
 class Auth extends Controller
 {
     use HandleMail;
+    use LoopData;
     public $staffModal;
     public $accModal;
 
     function __construct()
     {
+        if ($this->checkUser()) {
+            header('location: ./Attendance');
+        }
+        $this->userModal = $this->callModal('UserModal');
         $this->staffModal = $this->callModal('StaffModal');
         $this->accModal = $this->callModal('AccModal');
     }
@@ -18,11 +23,45 @@ class Auth extends Controller
         ]);
     }
 
+
     function Login()
     {
-        if (empty($_POST['cmnd_login']) || empty($_POST['password'])) {
-            $error = "Missing Value";
+        $array_data = ['cmnd_login', 'password'];
+        $error = $this->LoopCheckError($array_data, $_POST);
+        // PrintDisplay::printFix($error);
+
+        if (empty($error)) {
+            $uid = $_POST['cmnd_login'];
+            $password = $_POST['password'];
+            $res = $this->accModal->findData('tai_khoan', $uid, "*");
+            $res = !empty($res) ? $res->fetch_assoc() : '';
+            if (!empty($res['mat_khau'])) {
+                $check_pass = password_verify($password, $res['mat_khau']);
+                if (!empty($check_pass)) {
+                    $dataNew = [
+                        'uid' => $res['tai_khoan'],
+                        'role' => $res['chuc_vu']
+                    ];
+                    $_SESSION['user'] = $dataNew;
+                    if ($dataNew['role'] == 1) {
+                        header('location: ../DashBoard');
+                    } else {
+                        header('location: ../Attendance');
+                    }
+                    return;
+                } else {
+                    $error['cmnd_login'] = 'Sai id căn cước hoặc mật khẩu';
+                }
+            } else {
+                $error['cmnd_login'] = 'Sai id căn cước hoặc mật khẩu';
+            }
         }
+
+        $this->callView('MasterAuth', [
+            'Page' => 'LoginPage',
+            'error' => $error,
+            'old_value' => $_POST
+        ]);
     }
 
     function ResetPass()
@@ -30,7 +69,7 @@ class Auth extends Controller
         if (empty($_POST['can_cuoc'])) {
             $this->callView('MasterAuth', [
                 'Page' => 'LoginPage',
-                'error' => 'Invalid CMND'
+                'status' => 'Invalid CMND'
             ]);
             return;
         }
@@ -51,14 +90,14 @@ class Auth extends Controller
                 } else {
                     $this->callView('MasterAuth', [
                         'Page' => 'LoginPage',
-                        'error' => 'Server bận'
+                        'status' => 'Server bận'
                     ]);
                 }
             }
         } else {
             $this->callView('MasterAuth', [
                 'Page' => 'LoginPage',
-                'error' => 'Không có tài khoản nào trùng khớp'
+                'status' => 'Không có tài khoản nào trùng khớp'
             ]);
             return;
         }
@@ -85,7 +124,7 @@ class Auth extends Controller
                         $this->accModal->updateData('khoi_phuc', null, $uid);
                         $this->callView('MasterAuth', [
                             'Page' => 'LoginPage',
-                            'error' => 'Đổi mật khẩu thành công'
+                            'status' => 'Đổi mật khẩu thành công'
                         ]);
                         return;
                     } else {
@@ -100,7 +139,7 @@ class Auth extends Controller
         }
         $this->callView('MasterAuth', [
             'Page' => 'ResetPage',
-            'error' => $error
+            'status' => $error
         ]);
     }
 }

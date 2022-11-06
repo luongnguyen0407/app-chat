@@ -1,7 +1,6 @@
 const showDrop = document.querySelector(".nav_profile_show");
 const dropDow = document.querySelector(".dropdown-menu");
 const sideBarList = document.querySelectorAll(".side_bar_item");
-
 switch (window.location.pathname) {
   case "/quanlynhanvien/ListStaff":
     sideBarList[1].classList.add("active");
@@ -12,7 +11,6 @@ switch (window.location.pathname) {
   default:
     break;
 }
-console.log(window.location.pathname);
 
 $(".nav_profile_show").click(function () {
   $(".dropdown-menu")
@@ -28,4 +26,19 @@ window.addEventListener("click", (e) => {
     dropDow.classList.remove("show");
     dropDow.style.height = "0px";
   }
+});
+
+$(document).ready(function () {
+  let status = localStorage.getItem("side_bar") || "false";
+  status = $.parseJSON(status.toLowerCase());
+  if (status) {
+    $(".side_bar").addClass("side_zoom");
+    localStorage.setItem("side_bar", status);
+  }
+  $(".control_sidebar").click(function () {
+    let status = localStorage.getItem("side_bar");
+    status = $.parseJSON(status.toLowerCase());
+    $(".side_bar").toggleClass("side_zoom");
+    localStorage.setItem("side_bar", !status);
+  });
 });
