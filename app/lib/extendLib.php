@@ -128,11 +128,16 @@ trait HandleMail
 {
     public function SendMailPass($code, $email)
     {
+        $body = file_get_contents('./app/lib/email.phtml');
         require 'Mail/src/Exception.php';
         require 'Mail/src/PHPMailer.php';
         require 'Mail/src/SMTP.php';
         $mail = new PHPMailer(true);
         # code...
+        $email_vars = array(
+            'code' => $code,
+            'email' => $email,
+        );
         try {
             //Server settings
             $mail->SMTPDebug = 0;                                 // Enable verbose debug output
@@ -157,11 +162,17 @@ trait HandleMail
             // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
             //Content
+
+            if (isset($email_vars)) {
+                foreach ($email_vars as $k => $v) {
+                    $body = str_replace('{' . strtoupper($k) . '}', $v, $body);
+                }
+            }
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Khôi phục mật khẩu';
-            $mail->Body    = 'Mã khôi phục mật khẩu của bạn là ' . $code;
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
+            // $mail->Body    = "Mã khôi phục mật khẩu của bạn là: body <strong>. $code .</strong> ";
+            // $mail->Body    = $body;
+            $mail->MsgHTML($body);
             $mail->send();
             return true;
         } catch (Exception $e) {
