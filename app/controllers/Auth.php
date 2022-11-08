@@ -39,6 +39,7 @@ class Auth extends Controller
                 $check_pass = password_verify($password, $res['mat_khau']);
                 if (!empty($check_pass)) {
                     $dataNew = [
+                        'id' => $res['maNV'],
                         'uid' => $res['tai_khoan'],
                         'role' => $res['chuc_vu']
                     ];

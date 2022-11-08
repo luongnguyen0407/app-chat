@@ -1375,5 +1375,8 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .warp_calendar {
   padding: 20px;
 }
+.warp_calendar .fc-event-title {
+  color: white;
+}
 
 /*# sourceMappingURL=main.css.map */
