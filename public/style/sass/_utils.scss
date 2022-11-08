@@ -74,12 +74,12 @@
         @include flex($jus: space-between);
       }
       .header_time {
+        width: 350px;
+        font-size: 25px;
+        color: $blue_color;
         .welcome {
           font-size: 20px;
         }
-        font-size: 25px;
-        color: $blue_color;
-        width: 310px;
       }
     }
     flex: 1;

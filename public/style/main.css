@@ -242,9 +242,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
   align-items: center;
 }
 .main .content .header .header_time {
+  width: 350px;
   font-size: 25px;
   color: #003ad2;
-  width: 310px;
 }
 .main .content .header .header_time .welcome {
   font-size: 20px;
@@ -1370,6 +1370,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
   font-size: 30px;
   color: #003ad2;
   margin-bottom: 20px;
+}
+
+.warp_calendar {
+  padding: 20px;
 }
 
 /*# sourceMappingURL=main.css.map */
