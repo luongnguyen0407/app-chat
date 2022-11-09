@@ -3,4 +3,20 @@
   .fc-event-title {
     color: white;
   }
+  .fc .fc-daygrid-day.fc-day-today {
+    background-color: inherit !important;
+  }
+  table {
+    border-radius: 5px;
+    thead th {
+      background-color: $blue-color;
+      a {
+        color: white;
+      }
+    }
+    .fc-daygrid-day-number {
+      color: $blue-color;
+      font-weight: 600;
+    }
+  }
 }

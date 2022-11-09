@@ -15,21 +15,17 @@ class Auth extends Controller
         $this->staffModal = $this->callModal('StaffModal');
         $this->accModal = $this->callModal('AccModal');
     }
-
     function Show()
     {
         $this->callView('MasterAuth', [
             'Page' => 'LoginPage',
         ]);
     }
-
-
     function Login()
     {
         $array_data = ['cmnd_login', 'password'];
         $error = $this->LoopCheckError($array_data, $_POST);
         // PrintDisplay::printFix($error);
-
         if (empty($error)) {
             $uid = $_POST['cmnd_login'];
             $password = $_POST['password'];

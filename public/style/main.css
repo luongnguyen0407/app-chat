@@ -1378,5 +1378,21 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .warp_calendar .fc-event-title {
   color: white;
 }
+.warp_calendar .fc .fc-daygrid-day.fc-day-today {
+  background-color: inherit !important;
+}
+.warp_calendar table {
+  border-radius: 5px;
+}
+.warp_calendar table thead th {
+  background-color: #003ad2;
+}
+.warp_calendar table thead th a {
+  color: white;
+}
+.warp_calendar table .fc-daygrid-day-number {
+  color: #003ad2;
+  font-weight: 600;
+}
 
 /*# sourceMappingURL=main.css.map */

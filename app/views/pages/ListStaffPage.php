@@ -66,9 +66,11 @@
                             </td>
                             <td class="column7">
                                 <?php
+
                                 if ($row['ngay_ket_thuc'] > $today) {
                                 ?>
                                     <p class="danger">Hết hạn</p>
+
                                 <?php
                                 } else {
                                 ?>

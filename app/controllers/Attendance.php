@@ -24,8 +24,7 @@ class Attendance extends Controller
 
     function getCalendarAttendance()
     {
-        if (empty($_POST['month'])) return;
         $user = $_SESSION['user'];
-        $this->attendanceModal->getAttend($user['id'], 11);
+        $this->attendanceModal->getAttend($user['id']);
     }
 }

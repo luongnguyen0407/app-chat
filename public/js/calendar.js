@@ -1,15 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let month = new Date().getMonth() + 1;
-  function getData(month) {
+  function getData() {
     $.ajax({
       url: "./Attendance/getCalendarAttendance",
       method: "POST",
-      data: {
-        month,
-      },
       success: function (res) {
         const data = JSON.parse(res);
         //   if (!data || data.length <= 0) return;
+        console.log(data);
         let ev = [];
         data.forEach((day) => {
           const check =
@@ -29,13 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
-  getData(month);
-  function createCalendar(ev, start) {
-    let today = new Date();
-    console.log(today.toISOString().split("T")[0]);
+  getData();
+  function createCalendar(ev) {
     const event = ev;
     var calendarEl = document.getElementById("calendar");
     var calendar = new FullCalendar.Calendar(calendarEl, {
+      validRange: {
+        end: "2022-12-30",
+      },
       headerToolbar: {
         left: "prev,next today",
         center: "title",
@@ -46,11 +44,5 @@ document.addEventListener("DOMContentLoaded", function () {
       events: event,
     });
     calendar.render();
-    document
-      .querySelector(".fc-prev-button")
-      .addEventListener("click", function () {
-        console.log(calendar.getDate().getMonth() + 1);
-        getData(calendar.getDate().getMonth() + 1);
-      });
   }
 });
