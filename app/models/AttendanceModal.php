@@ -12,4 +12,16 @@ class AttendanceModal extends DB
             echo json_encode($arr);
         }
     }
+    public function getTotal($uid)
+    {
+        if (!$uid) return;
+        try {
+            $sql = "SELECT time(gio_ra - gio_vao) as tong from tb_bangcong WHERE tb_bangcong.maNV = $uid AND  gio_vao IS NOT NULL AND gio_ra IS NOT NULL;";
+            $res = $this->link->query($sql);
+            $arr = $this->returnArray($res);
+            echo json_encode($arr);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }

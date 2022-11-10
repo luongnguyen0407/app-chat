@@ -1,22 +1,63 @@
-.warp_calendar {
-  padding: 20px;
-  .fc-event-title {
-    color: white;
-  }
-  .fc .fc-daygrid-day.fc-day-today {
-    background-color: inherit !important;
-  }
-  table {
-    border-radius: 5px;
-    thead th {
-      background-color: $blue-color;
-      a {
+.attendance {
+  .profile_user {
+    display: flex;
+    gap: 30px;
+    height: 200px;
+    padding: 20px;
+    .profile_avatar {
+      padding: 20px 20px 16px;
+      background-color: $primary-color;
+      border-radius: 12px;
+      width: 300px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 100rem;
+      }
+      p {
         color: white;
+        font-weight: 600;
+        @include text($width: 200px);
       }
     }
-    .fc-daygrid-day-number {
-      color: $blue-color;
-      font-weight: 600;
+    .attendance_time {
+      @include flex($aItem: unset, $jus: unset);
+      flex-direction: column;
+      gap: 20px;
+      h3 {
+        font-size: 25px;
+        font-weight: 600;
+        color: $primary-color;
+      }
+      p {
+        font-size: 14px;
+        color: $primary-color;
+      }
+    }
+  }
+  .warp_calendar {
+    padding: 20px;
+    .fc-event-title {
+      color: white;
+    }
+    .fc .fc-daygrid-day.fc-day-today {
+      background-color: inherit !important;
+    }
+    table {
+      border-radius: 5px;
+      thead th {
+        background-color: $primary-color;
+        a {
+          color: white;
+        }
+      }
+      .fc-daygrid-day-number {
+        color: $blue-color;
+        font-weight: 600;
+      }
     }
   }
 }

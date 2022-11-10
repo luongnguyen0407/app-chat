@@ -6,20 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
       success: function (res) {
         const data = JSON.parse(res);
         //   if (!data || data.length <= 0) return;
-        console.log(data);
         let ev = [];
         data.forEach((day) => {
-          const check =
-            day["gio_ra"] < "16:00:00"
-              ? false
-              : day["gio_vao"] > "7:00:00"
-              ? false
-              : true;
           ev.push({
-            title: `${day["gio_vao"]}-${day["gio_ra"] || "Con som"}`,
+            title: `${day["gio_vao"]}-${day["gio_ra"] || "Vắng"}`,
             start: `${day["ngay_cham"]}`,
-            backgroundColor: `${check ? "#16c35b" : "#e80000"}`,
-            display: "background",
+            backgroundColor: `${
+              day["gio_ra"] && day["gio_vao"] ? "#16c35b" : "#e80000"
+            }`,
+            // display: "background",
           });
         });
         createCalendar(ev);
@@ -28,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   getData();
   function createCalendar(ev) {
+    console.log(ev);
     const event = ev;
     var calendarEl = document.getElementById("calendar");
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -45,4 +41,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     calendar.render();
   }
+
+  $.ajax({
+    url: "./Attendance/getTotalWork",
+    method: "POST",
+    success: function (res) {
+      const data = JSON.parse(res);
+      console.log(data);
+      //   if (!data || data.length <= 0) return;
+    },
+  });
 });

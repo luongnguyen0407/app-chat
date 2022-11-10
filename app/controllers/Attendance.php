@@ -27,4 +27,10 @@ class Attendance extends Controller
         $user = $_SESSION['user'];
         $this->attendanceModal->getAttend($user['id']);
     }
+    public function getTotalWork()
+    {
+        # code...
+        $user = $_SESSION['user'];
+        $this->attendanceModal->getTotal($user['id']);
+    }
 }

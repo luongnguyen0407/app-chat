@@ -1372,25 +1372,69 @@ input[type=date]::-webkit-calendar-picker-indicator {
   margin-bottom: 20px;
 }
 
-.warp_calendar {
+.attendance .profile_user {
+  display: flex;
+  gap: 30px;
+  height: 200px;
   padding: 20px;
 }
-.warp_calendar .fc-event-title {
+.attendance .profile_user .profile_avatar {
+  padding: 20px 20px 16px;
+  background-color: #1f4173;
+  border-radius: 12px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.attendance .profile_user .profile_avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100rem;
+}
+.attendance .profile_user .profile_avatar p {
+  color: white;
+  font-weight: 600;
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.attendance .profile_user .attendance_time {
+  display: flex;
+  justify-content: unset;
+  align-items: unset;
+  flex-direction: column;
+  gap: 20px;
+}
+.attendance .profile_user .attendance_time h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #1f4173;
+}
+.attendance .profile_user .attendance_time p {
+  font-size: 14px;
+  color: #1f4173;
+}
+.attendance .warp_calendar {
+  padding: 20px;
+}
+.attendance .warp_calendar .fc-event-title {
   color: white;
 }
-.warp_calendar .fc .fc-daygrid-day.fc-day-today {
+.attendance .warp_calendar .fc .fc-daygrid-day.fc-day-today {
   background-color: inherit !important;
 }
-.warp_calendar table {
+.attendance .warp_calendar table {
   border-radius: 5px;
 }
-.warp_calendar table thead th {
-  background-color: #003ad2;
+.attendance .warp_calendar table thead th {
+  background-color: #1f4173;
 }
-.warp_calendar table thead th a {
+.attendance .warp_calendar table thead th a {
   color: white;
 }
-.warp_calendar table .fc-daygrid-day-number {
+.attendance .warp_calendar table .fc-daygrid-day-number {
   color: #003ad2;
   font-weight: 600;
 }
