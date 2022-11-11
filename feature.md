@@ -8,3 +8,9 @@
 - Điểm danh
 - Thống kê lương tháng
 - Cập nhật profile
+
+- Ca sáng : start 8h sau 8h30 không điểm danh được;
+  end 12h sau 1h không check out được;
+
+- Ca sáng : start 1h30 sau 2h không điểm danh được;
+  end 16h sau 19h không check out được;

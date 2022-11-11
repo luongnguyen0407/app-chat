@@ -5,9 +5,11 @@
             <p>Trưởng Phòng </p>
         </div>
         <div class="attendance_time">
-            <button class="global_btn">Chấm công hôm nay</button>
+            <form action="./Attendance/addAttendance" method="POST">
+                <button class="global_btn">Chấm công hôm nay</button>
+            </form>
             <div>
-                <h3>3h28p</h3>
+                <h3 class="total_time_work">3h28p</h3>
                 <p>Total work for month</p>
             </div>
         </div>

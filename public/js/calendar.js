@@ -47,8 +47,35 @@ document.addEventListener("DOMContentLoaded", function () {
     method: "POST",
     success: function (res) {
       const data = JSON.parse(res);
-      console.log(data);
+      if (data && data.length > 0) {
+        let totalMin = 0;
+        data.forEach((item) => {
+          totalMin += +item["totalMin"];
+        });
+        const hours = totalMin / 60;
+        const rhours = Math.floor(hours);
+        const minutes = (hours - rhours) * 60;
+        const rminutes = Math.round(minutes);
+        $(".total_time_work").text(`${rhours}h${rminutes}p`);
+      }
       //   if (!data || data.length <= 0) return;
     },
   });
+  const date = new Date();
+  const currentHours = date.getHours();
+  const currentMinutes = date.getMinutes();
+  const alowHour = [8, 12, 13, 16, 15]; //8h, 12h, 13h, 16h.
+  //   - Ca sáng : start 8h sau 9h không điểm danh được;
+  //   end 12h sau 1h không check out được;
+
+  // - Ca sáng : start 1h30 sau 2h không điểm danh được;
+  //   end 16h sau 19h không check out được;
+
+  if (alowHour.includes(currentHours)) {
+    $(".attendance_time .global_btn").text("Điểm danh ngay");
+  } else {
+    $(".attendance_time .global_btn")
+      .text("Chưa đến giờ điểm danh")
+      .attr("disabled", true);
+  }
 });
