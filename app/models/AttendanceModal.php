@@ -32,9 +32,40 @@ class AttendanceModal extends DB
             //code...
             $currentDate = date("Y-m-d");
             $sql = "SELECT * FROM `tb_bangcong` WHERE $where ngay_cham = '" . $currentDate . "'";
-            echo $sql;
             $kq =  $this->link->query($sql);
             return $kq;
+        } catch (\Throwable $th) {
+            throw $th;
+            return false;
+        }
+    }
+    public function addNewAtt($maCA, $maNV)
+    {
+
+        try {
+            //code...
+            $currentTime = date('H:i:s');
+            $currentDate = date("Y-m-d");
+            $sql = "INSERT INTO `tb_bangcong`(`gio_vao`, `gio_ra`, `ngay_cham`, `maCA`, `maNV`) 
+            VALUES ('$currentTime', NULL,'$currentDate','$maCA','$maNV')";
+            $this->link->query($sql);
+            return true;
+        } catch (\Throwable $th) {
+            throw $th;
+            return false;
+        }
+    }
+
+    public function updateAtt($maCA, $maNV)
+    {
+
+        try {
+            //code...
+            $currentTime = date('H:i:s');
+            $currentDate = date("Y-m-d");
+            $sql = "UPDATE `tb_bangcong` SET `gio_ra`='$currentTime' WHERE ngay_cham = '" . $currentDate . "' AND maNV = '" . $maNV . "' AND maCA = '" . $maCA . "'";
+            $this->link->query($sql);
+            return true;
         } catch (\Throwable $th) {
             throw $th;
             return false;

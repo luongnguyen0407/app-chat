@@ -30,6 +30,19 @@ class StaffModal extends DB
             return false;
         }
     }
+    public function getDetailStaff($maNV)
+    {
+        try {
+            $sql = "SELECT tb_nhanvien.ho_ten,  tb_nhanvien.hinh_anh, tb_chucvu.ten_chuc_vu
+            FROM tb_nhanvien
+            INNER JOIN tb_chucvu ON tb_nhanvien.maCV = tb_chucvu.maCV WHERE maNV = $maNV;";
+            $kq = $this->link->query($sql)->fetch_assoc();
+            return $kq;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return false;
+        }
+    }
 
     public function getStaffExcel()
     {
@@ -39,7 +52,7 @@ class StaffModal extends DB
     }
     public function getAllStaff()
     {
-        $sql = "SELECT tb_nhanvien.ho_ten, tb_nhanvien.dia_chi,tb_nhanvien.ngay_sinh,tb_nhanvien.so_dien_thoai,tb_nhanvien.can_cuoc, tb_nhanvien.hinh_anh, tb_nhanvien.gioi_tinh,tb_hopdong.so_hop_dong, tb_hopdong.ngay_bat_dau, tb_hopdong.ngay_ket_thuc, tb_phongban.ten_phong FROM tb_hopdong INNER JOIN tb_nhanvien ON tb_hopdong.maNV=tb_nhanvien.maNV INNER JOIN tb_phongban ON tb_nhanvien.maPB=tb_phongban.maPB";
+        $sql = "SELECT tb_nhanvien.maNV, tb_nhanvien.ho_ten, tb_nhanvien.dia_chi,tb_nhanvien.ngay_sinh,tb_nhanvien.so_dien_thoai,tb_nhanvien.can_cuoc, tb_nhanvien.hinh_anh, tb_nhanvien.gioi_tinh,tb_hopdong.so_hop_dong, tb_hopdong.ngay_bat_dau, tb_hopdong.ngay_ket_thuc, tb_phongban.ten_phong FROM tb_hopdong INNER JOIN tb_nhanvien ON tb_hopdong.maNV=tb_nhanvien.maNV INNER JOIN tb_phongban ON tb_nhanvien.maPB=tb_phongban.maPB";
         $kq = $this->link->query($sql);
         if ($kq) return $kq;
     }
@@ -74,7 +87,7 @@ class StaffModal extends DB
                 return false;
             }
         } else {
-            $sql = "SELECT email FROM `tb_nhanvien` WHERE $name = '" . $data . "'";
+            $sql = "SELECT $wh FROM `tb_nhanvien` WHERE $name = '" . $data . "'";
             $kq = $this->link->query($sql);
             return $kq;
         }

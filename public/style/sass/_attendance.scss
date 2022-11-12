@@ -2,10 +2,10 @@
   .profile_user {
     display: flex;
     gap: 30px;
-    height: 200px;
+    height: 230px;
     padding: 20px;
     .profile_avatar {
-      padding: 20px 20px 16px;
+      padding: 20px 20px 0px;
       background-color: $primary-color;
       border-radius: 12px;
       width: 300px;

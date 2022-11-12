@@ -17,4 +17,16 @@ class ListStaff extends Controller
             'staff' => $this->returnArray($this->staffModal->getAllStaff())
         ]);
     }
+
+    function viewDetails($id)
+    {
+        if (empty($id)) return;
+        $res = $this->staffModal->findData('maNV', $id, "*");
+        $res = $res->fetch_assoc();
+        // PrintDisplay::printFix($res);
+        $this->callView('Master', [
+            'Page' => 'ShowDetailPage',
+            'staff' => $this->returnArray($this->staffModal->getAllStaff())
+        ]);
+    }
 }

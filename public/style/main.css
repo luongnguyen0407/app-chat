@@ -773,15 +773,16 @@ input[type=date]::-webkit-calendar-picker-indicator {
   margin: 0 auto;
   border-radius: 5px;
 }
-.table_staff_manage .column8 p {
+.table_staff_manage .column8 a {
   padding: 5px;
   border: 4px;
   cursor: pointer;
 }
-.table_staff_manage .column8 p:first-child {
+.table_staff_manage .column8 a:first-child {
+  display: block;
   color: #003ad2;
 }
-.table_staff_manage .column8 p:nth-child(2) {
+.table_staff_manage .column8 a:nth-child(2) {
   color: #00ada3;
 }
 
@@ -929,6 +930,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999;
 }
 
 .modal__container {
@@ -1257,6 +1259,49 @@ input[type=date]::-webkit-calendar-picker-indicator {
   margin: 20px 0;
 }
 
+.modal__content2 .one_field {
+  margin: 10px 0;
+}
+.modal__content2 .one_field input {
+  width: 100px;
+  border: 1px solid #d7dbe0;
+  padding: 3px;
+  outline: none;
+  border-radius: 3px;
+}
+.modal__content2 .one_field select {
+  border-radius: 5px;
+  padding: 5px;
+  border: #003ad2;
+  background-color: white;
+  padding-left: 0;
+}
+.modal__content2 .one_field label {
+  display: block;
+}
+.modal__content2 .one_field .wrap_help {
+  position: relative;
+}
+.modal__content2 .one_field .help_timeline {
+  display: none;
+  position: absolute;
+  background-color: rgb(123, 114, 244);
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 10px;
+}
+.modal__content2 .one_field .open_help {
+  width: 20px;
+  height: 20px;
+  color: #003ad2;
+  cursor: pointer;
+}
+.modal__content2 .one_field .open_help:hover + .help_timeline {
+  display: block;
+}
+
 .loading_main {
   position: fixed;
   inset: 0;
@@ -1375,11 +1420,11 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .attendance .profile_user {
   display: flex;
   gap: 30px;
-  height: 200px;
+  height: 230px;
   padding: 20px;
 }
 .attendance .profile_user .profile_avatar {
-  padding: 20px 20px 16px;
+  padding: 20px 20px 0px;
   background-color: #1f4173;
   border-radius: 12px;
   width: 300px;
@@ -1437,6 +1482,34 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .attendance .warp_calendar table .fc-daygrid-day-number {
   color: #003ad2;
   font-weight: 600;
+}
+
+.detail_page_main {
+  display: flex;
+  padding: 20px 0;
+  gap: 20px;
+}
+.detail_page_main .staff_profile {
+  width: 30%;
+  display: flex;
+  justify-content: unset;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.detail_page_main .staff_profile img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.detail_page_main .staff_profile .staff_name {
+  font-size: 25px;
+  font-weight: 600;
+  color: #1f4173;
+}
+.detail_page_main .staff_attendance {
+  flex: 1;
 }
 
 /*# sourceMappingURL=main.css.map */

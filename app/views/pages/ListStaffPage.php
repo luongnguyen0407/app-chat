@@ -79,8 +79,8 @@
                                 ?>
                             </td>
                             <td class="column8">
-                                <p class="action_update">Sửa</p>
-                                <p class="action_del">Xem</p>
+                                <a href="" class="action_update">Sửa</a>
+                                <a href="ListStaff/viewDetails/<?php PrintDisplay::printShow($row, 'maNV') ?>" class="action_del">Xem</a>
                             </td>
                         </tr>
                 <?php

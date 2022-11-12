@@ -15,17 +15,25 @@ class Attendance extends Controller
         $this->user = $_SESSION['user'];
         $this->userModal = $this->callModal('UserModal');
         $this->attendanceModal = $this->callModal('AttendanceModal');
+        $this->staffModal = $this->callModal('StaffModal');
     }
     function Show()
     {
         $this->callView('MasterUser', [
             'Page' => 'AttendancePage',
+            'profile' => $this->staffModal->getDetailStaff($this->user['id'])
         ]);
     }
 
     function getCalendarAttendance()
     {
         $this->attendanceModal->getAttend($this->user['id']);
+    }
+    function getCalendarByAdmin()
+    {
+        $id = $_POST['id'];
+        if (empty($id)) return;
+        $this->attendanceModal->getAttend($id);
     }
     public function getTotalWork()
     {
@@ -36,15 +44,14 @@ class Attendance extends Controller
     {
         # code...
         $currentHours = date('H');
-        $alowHours = [8, 12, 13, 16, 15];
-        echo $currentHours;
+        $alowHours = [8, 12, 13, 16];
         if (in_array($currentHours, $alowHours)) {
             switch ($currentHours) {
                 case 8:
                     # code...
                     $this->handleCheckIn('SANG');
                     break;
-                case 15:
+                case 13:
                     # code...
                     $this->handleCheckIn('CHIEU');
                     break;
@@ -61,21 +68,58 @@ class Attendance extends Controller
                     break;
             }
         } else {
-            $error = 'Bây giờ không trong giờ điểm danh';
-        }
+            $this->callView('MasterUser', [
+                'Page' => 'AttendancePage',
+                'status' => 'Bây giờ không trong giờ điểm danh',
+                'profile' => $this->staffModal->getDetailStaff($this->user['id'])
 
-        // $where = ""
-        die;
+            ]);
+        }
     }
     private function handleCheckIn($time)
     {
         $where = "maNV = '" . $this->user['id'] . "' AND `maCa` = '" . $time . "' AND ";
         $res = $this->attendanceModal->findData($where);
         $res = !empty($res) ? $res->fetch_assoc() : '';
-        PrintDisplay::printFix($res);
+        if (empty($res)) {
+            $kq = $this->attendanceModal->addNewAtt($time, $this->user['id']);
+            if ($kq) {
+                $this->callView('MasterUser', [
+                    'Page' => 'AttendancePage',
+                    'status' => 'Điểm danh thành công',
+                    'profile' => $this->staffModal->getDetailStaff($this->user['id'])
+                ]);
+            }
+        } else {
+            $this->callView('MasterUser', [
+                'Page' => 'AttendancePage',
+                'status' => 'Bạn đã điểm danh rồi',
+                'profile' => $this->staffModal->getDetailStaff($this->user['id'])
+            ]);
+        }
     }
-    private function handleCheckOut()
+    private function handleCheckOut($time)
     {
-        echo 'ok';
+        $where = "maNV = '" . $this->user['id'] . "' AND `maCa` = '" . $time . "' AND ";
+        $res = $this->attendanceModal->findData($where);
+        $res = !empty($res) ? $res->fetch_assoc() : '';
+        if (!empty($res) && empty($res['gio_ra'])) {
+            // PrintDisplay::printFix($res);
+            // die;
+            $kq = $this->attendanceModal->updateAtt($time, $this->user['id']);
+            if ($kq) {
+                $this->callView('MasterUser', [
+                    'Page' => 'AttendancePage',
+                    'status' => 'Điểm danh thành công',
+                    'profile' => $this->staffModal->getDetailStaff($this->user['id'])
+                ]);
+            }
+        } else {
+            $this->callView('MasterUser', [
+                'Page' => 'AttendancePage',
+                'status' => 'Bạn đã điểm danh rồi',
+                'profile' => $this->staffModal->getDetailStaff($this->user['id'])
+            ]);
+        }
     }
 }

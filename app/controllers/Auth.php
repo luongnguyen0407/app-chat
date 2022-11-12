@@ -37,7 +37,9 @@ class Auth extends Controller
                     $dataNew = [
                         'id' => $res['maNV'],
                         'uid' => $res['tai_khoan'],
-                        'role' => $res['chuc_vu']
+                        'role' => $res['chuc_vu'],
+                        'name' => $res['ho_ten'],
+                        'avatar' => $res['hinh_anh'],
                     ];
                     $_SESSION['user'] = $dataNew;
                     if ($dataNew['role'] == 1) {

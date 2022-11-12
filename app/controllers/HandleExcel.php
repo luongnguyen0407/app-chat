@@ -77,7 +77,12 @@ class HandleExcel extends Controller
         $file_size = $file['size'];
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         if ($ext != 'xlsx') {
-            $status['error'] = 'Định dạng file không đúng';
+            $this->callView('Master', [
+                'Page' => 'AddStaffPage',
+                'Position' => $this->returnArray($this->positionModal->getPosition()),
+                'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                'status' => "Định dạng file không đúng",
+            ]);
         } else {
             $size = 10;
             $sizeFile = $file_size / 1024 / 1024;
@@ -91,7 +96,6 @@ class HandleExcel extends Controller
         }
         if (empty($status) && !empty($upload)) {
             $readFile = './public/excel/' . $newFileName;
-
             $objFile = PHPExcel_IOFactory::identify($readFile);
             $objData = PHPExcel_IOFactory::createReader($objFile);
 
@@ -131,7 +135,7 @@ class HandleExcel extends Controller
                         'Page' => 'AddStaffPage',
                         'Position' => $this->returnArray($this->positionModal->getPosition()),
                         'Department' => $this->returnArray($this->departmentModal->getDepartment()),
-                        'status' => true,
+                        'status' => "Thêm nhân viên thành công",
                     ]);
                 } else {
                     $this->callView('Master', [

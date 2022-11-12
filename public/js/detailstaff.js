@@ -1,8 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const timepicker = new TimePicker(["time_start", "time_end"], {
+    lang: "en",
+    theme: "blue",
+  });
+  timepicker.on("change", function (evt) {
+    const value = (evt.hour || "00") + ":" + (evt.minute || "00");
+    evt.element.value = value;
+  });
   function getData() {
+    const queryString = window.location.pathname;
+    let idStaff = queryString.match(/\d+/);
+    if (!idStaff) return;
+    idStaff = idStaff[0];
     $.ajax({
-      url: "./Attendance/getCalendarAttendance",
+      url: "./Attendance/getCalendarByAdmin",
       method: "POST",
+      data: {
+        id: idStaff,
+      },
       success: function (res) {
         const data = JSON.parse(res);
         //   if (!data || data.length <= 0) return;
@@ -23,10 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   getData();
   function createCalendar(ev) {
-    console.log(ev);
     const event = ev;
-    var calendarEl = document.getElementById("calendar");
-
+    var calendarEl = document.getElementById("calendar_staff");
     var calendar = new FullCalendar.Calendar(calendarEl, {
       validRange: {
         end: "2022-12-30",
@@ -39,37 +52,18 @@ document.addEventListener("DOMContentLoaded", function () {
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
       events: event,
+      dateClick: function (info) {
+        console.log(info.dateStr);
+      },
     });
     calendar.render();
   }
 
-  $.ajax({
-    url: "./Attendance/getTotalWork",
-    method: "POST",
-    success: function (res) {
-      const data = JSON.parse(res);
-      if (data && data.length > 0) {
-        let totalMin = 0;
-        data.forEach((item) => {
-          totalMin += +item["totalMin"];
-        });
-        const hours = totalMin / 60;
-        const rhours = Math.floor(hours);
-        const minutes = (hours - rhours) * 60;
-        const rminutes = Math.round(minutes);
-        $(".total_time_work").text(`${rhours}h${rminutes}p`);
-      }
-      //   if (!data || data.length <= 0) return;
-    },
+  //handle modal
+  const btnClose = document.querySelector(".modal__close");
+  const modal = document.querySelector("#modal-3");
+  btnClose.addEventListener("click", () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
   });
-  const date = new Date();
-  const currentHours = date.getHours();
-  const alowHour = [8, 12, 13, 16, 18]; //8h, 12h, 13h, 16h.
-  if (alowHour.includes(currentHours)) {
-    $(".attendance_time .global_btn").text("Điểm danh ngay");
-  } else {
-    $(".attendance_time .global_btn")
-      .text("Chưa đến giờ điểm danh")
-      .attr("disabled", true);
-  }
 });

@@ -6,7 +6,7 @@ class AccModal extends DB
     {
         try {
             //code...
-            $sql = empty($get) ? "SELECT `khoi_phuc` FROM `tb_taikhoan` WHERE $where = $data" : "SELECT $get FROM `tb_taikhoan` WHERE $where = $data";
+            $sql = empty($get) ? "SELECT `khoi_phuc` FROM `tb_taikhoan` WHERE $where = $data" : "SELECT $get FROM `tb_taikhoan` INNER JOIN `tb_nhanvien` ON tb_taikhoan.maNV = tb_nhanvien.maNV WHERE $where = $data";
             $kq =  $this->link->query($sql);
             return $kq;
         } catch (\Throwable $th) {

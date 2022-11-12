@@ -1,0 +1,25 @@
+.detail_page_main {
+  display: flex;
+  padding: 20px 0;
+  gap: 20px;
+  .staff_profile {
+    width: 30%;
+    @include flex($jus: unset);
+    flex-direction: column;
+    gap: 10px;
+    img {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .staff_name {
+      font-size: 25px;
+      font-weight: 600;
+      color: $primary-color;
+    }
+  }
+  .staff_attendance {
+    flex: 1;
+  }
+}

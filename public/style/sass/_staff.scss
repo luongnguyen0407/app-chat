@@ -79,11 +79,12 @@
     margin: 0 auto;
     border-radius: 5px;
   }
-  .column8 p {
+  .column8 a {
     padding: 5px;
     border: 4px;
     cursor: pointer;
     &:first-child {
+      display: block;
       color: $blue_color;
     }
     &:nth-child(2) {

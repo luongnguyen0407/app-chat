@@ -89,7 +89,7 @@ class AddStaff extends Controller
                     'Page' => 'AddStaffPage',
                     'Position' => $this->returnArray($this->positionModal->getPosition()),
                     'Department' => $this->returnArray($this->departmentModal->getDepartment()),
-                    'status' => true,
+                    'status' => "Thêm nhân viên thành công",
                     'error' => $error,
                 ]);
                 move_uploaded_file($file['tmp_name'], './public/img/upload/' . $imgUp);

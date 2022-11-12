@@ -163,7 +163,7 @@ if (!empty($data['status'])) {
 ?>
     <script>
         Toastify({
-            text: "Thêm nhân viên thành công",
+            text: "<?= $data['status'] ?>",
             className: "Toast_success",
             duration: 3000,
             background: "#07bc0c",

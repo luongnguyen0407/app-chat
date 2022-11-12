@@ -59,7 +59,7 @@ trait LoopData
     public function ValidateImg($file)
     {
         if (empty($file)) return false;
-        $alow_ext = ['jpg', "jpeg", 'gif', 'png', "svg", 'tiff', "bmp", 'tga', "raw", "jfif"];
+        $alow_ext = ['jpg', "jpeg", 'gif', 'png', "svg", 'tiff', "bmp", 'tga', "raw", "jfif", 'webp'];
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $file_size = $file['size'];
         if (!in_array($ext, $alow_ext)) {

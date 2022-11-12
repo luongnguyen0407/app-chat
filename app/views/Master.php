@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="public/js/calendar/lib/main.js"></script>
+    <link rel="stylesheet" href="public/js/calendar/lib/main.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="public/js/jquery.js"></script>
     <link rel="stylesheet" href="public/style/main.css">
@@ -50,8 +52,8 @@
                     <p>Nhân viên</p>
                 </a>
                 <a href="Attendance" class="side_bar_item">
-                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 14V2H0V0H3C3.26522 0 3.51957 0.105357 3.70711 0.292893C3.89464 0.48043 4 0.734784 4 1V13H16.438L18.438 5H6V3H19.72C19.872 3 20.022 3.03466 20.1586 3.10134C20.2952 3.16801 20.4148 3.26495 20.5083 3.38479C20.6019 3.50462 20.6668 3.6442 20.6983 3.79291C20.7298 3.94162 20.7269 4.09555 20.69 4.243L18.19 14.243C18.1358 14.4592 18.011 14.6512 17.8352 14.7883C17.6595 14.9255 17.4429 15 17.22 15H3C2.73478 15 2.48043 14.8946 2.29289 14.7071C2.10536 14.5196 2 14.2652 2 14ZM4 21C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19C2 18.4696 2.21071 17.9609 2.58579 17.5858C2.96086 17.2107 3.46957 17 4 17C4.53043 17 5.03914 17.2107 5.41421 17.5858C5.78929 17.9609 6 18.4696 6 19C6 19.5304 5.78929 20.0391 5.41421 20.4142C5.03914 20.7893 4.53043 21 4 21ZM16 21C15.4696 21 14.9609 20.7893 14.5858 20.4142C14.2107 20.0391 14 19.5304 14 19C14 18.4696 14.2107 17.9609 14.5858 17.5858C14.9609 17.2107 15.4696 17 16 17C16.5304 17 17.0391 17.2107 17.4142 17.5858C17.7893 17.9609 18 18.4696 18 19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21Z" fill="#003AD2" />
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 9V5H4V9H20ZM20 11H4V19H20V11ZM3 3H21C21.2652 3 21.5196 3.10536 21.7071 3.29289C21.8946 3.48043 22 3.73478 22 4V20C22 20.2652 21.8946 20.5196 21.7071 20.7071C21.5196 20.8946 21.2652 21 21 21H3C2.73478 21 2.48043 20.8946 2.29289 20.7071C2.10536 20.5196 2 20.2652 2 20V4C2 3.73478 2.10536 3.48043 2.29289 3.29289C2.48043 3.10536 2.73478 3 3 3ZM5 12H8V17H5V12ZM5 6H7V8H5V6ZM9 6H11V8H9V6Z" fill="#003AD2" />
                     </svg>
                     <p>Attendance</p>
                 </a>
@@ -101,20 +103,9 @@
 
                         </div>
                     </div>
-                    <div class="nav_profile">
-                        <div class="nav_profile_show">
-                            <img class="img-md" src="https://images.unsplash.com/photo-1638554115997-8f24575a1a01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Profile image">
-                            <p class="profi-name">Luong Nguyen</p>
-                        </div>
-                        <div class="dropdown-menu">
-                            <div class="cotrol-user">
-                                <a class="dropdown-item">
-                                    <i class="fa-solid fa-user"></i> My Profile</a>
-                                <a style="color:black;" href="../index.php" class="dropdown-item"><i class="fa-solid fa-house"></i> Home</a>
-                                <a style="color:red;" href="Logout" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Sign Out</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    require_once "./app/views/components/HeaderDropdown.php"
+                    ?>
                 </div>
             </header>
             <section class="wrap_content_ad content_fix">

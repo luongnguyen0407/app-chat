@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999;
 }
 
 .modal__container {
@@ -317,4 +318,47 @@
 }
 .modal__footer {
   margin: 20px 0;
+}
+
+.modal__content2 .one_field {
+  margin: 10px 0;
+  input {
+    width: 100px;
+    border: 1px solid #d7dbe0;
+    padding: 3px;
+    outline: none;
+    border-radius: 3px;
+  }
+  select {
+    border-radius: 5px;
+    padding: 5px;
+    border: $blue-color;
+    background-color: white;
+    padding-left: 0;
+  }
+  label {
+    display: block;
+  }
+  .wrap_help {
+    position: relative;
+  }
+  .help_timeline {
+    display: none;
+    position: absolute;
+    background-color: rgb(123, 114, 244);
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    z-index: 1000;
+    border-radius: 10px;
+  }
+  .open_help {
+    width: 20px;
+    height: 20px;
+    color: $blue-color;
+    cursor: pointer;
+    &:hover + .help_timeline {
+      display: block;
+    }
+  }
 }
