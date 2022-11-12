@@ -1061,7 +1061,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 .modal__btn-primary {
-  background-color: #00449e;
+  background-color: #003ad2;
   color: #fff;
 }
 
@@ -1302,6 +1302,28 @@ input[type=date]::-webkit-calendar-picker-indicator {
   display: block;
 }
 
+.modal_detail_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.modal_detail_page .modal__container_edit {
+  display: none;
+}
+
+.modal__container_edit {
+  width: 300px;
+}
+.modal__container_edit .old_ca {
+  padding: 5px;
+  background: #b5f4ce;
+  border-radius: 5px;
+  color: #16c35b;
+  display: inline-block;
+  margin: 5px 0;
+}
+
 .loading_main {
   position: fixed;
   inset: 0;
@@ -1510,6 +1532,20 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 .detail_page_main .staff_attendance {
   flex: 1;
+}
+
+.table_modal {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border-collapse: collapse;
+  text-align: center;
+}
+.table_modal tr {
+  border-bottom: 1px solid #e6eaf0;
+}
+.table_modal tbody .column4 {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */

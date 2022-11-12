@@ -29,11 +29,29 @@ class Attendance extends Controller
     {
         $this->attendanceModal->getAttend($this->user['id']);
     }
+
+    function handleUpdate()
+    {
+        $arr = ['id', 'timeStart', 'timeEnd'];
+        $error = $this->LoopCheckError($arr, $_POST);
+        if (!empty($error)) return;
+        $timeStart = $_POST['timeStart'] == '00:00:00' ? NULL : $_POST['timeStart'];
+        $timeEnd = $_POST['timeEnd'] == '00:00:00' ? NULL : $_POST['timeEnd'];
+        $this->attendanceModal->updateAttByAdmin($timeStart, $timeEnd, $_POST['id']);
+    }
+
     function getCalendarByAdmin()
     {
         $id = $_POST['id'];
         if (empty($id)) return;
         $this->attendanceModal->getAttend($id);
+    }
+    function getCalendarByDay()
+    {
+        $id = $_POST['id'];
+        $day = $_POST['day'];
+        if (empty($id) || empty($day)) return;
+        $this->attendanceModal->getAttendByDay($id, $day);
     }
     public function getTotalWork()
     {

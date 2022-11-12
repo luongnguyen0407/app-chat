@@ -131,7 +131,7 @@
 }
 
 .modal__btn-primary {
-  background-color: #00449e;
+  background-color: $blue-color;
   color: #fff;
 }
 .modal__btn_add {
@@ -360,5 +360,23 @@
     &:hover + .help_timeline {
       display: block;
     }
+  }
+}
+.modal_detail_page {
+  @include flex;
+  gap: 40px;
+  .modal__container_edit {
+    display: none;
+  }
+}
+.modal__container_edit {
+  width: 300px;
+  .old_ca {
+    padding: 5px;
+    background: #b5f4ce;
+    border-radius: 5px;
+    color: #16c35b;
+    display: inline-block;
+    margin: 5px 0;
   }
 }
