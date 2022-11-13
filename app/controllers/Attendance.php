@@ -35,9 +35,7 @@ class Attendance extends Controller
         $arr = ['id', 'timeStart', 'timeEnd'];
         $error = $this->LoopCheckError($arr, $_POST);
         if (!empty($error)) return;
-        $timeStart = $_POST['timeStart'] == '00:00:00' ? NULL : $_POST['timeStart'];
-        $timeEnd = $_POST['timeEnd'] == '00:00:00' ? NULL : $_POST['timeEnd'];
-        $this->attendanceModal->updateAttByAdmin($timeStart, $timeEnd, $_POST['id']);
+        $this->attendanceModal->updateAttByAdmin($_POST['timeStart'], $_POST['timeEnd'], $_POST['id']);
     }
 
     function getCalendarByAdmin()
@@ -45,6 +43,13 @@ class Attendance extends Controller
         $id = $_POST['id'];
         if (empty($id)) return;
         $this->attendanceModal->getAttend($id);
+    }
+    function updateAttendanceByAdmin()
+    {
+        $arr = ['uid', 'timeStart', 'timeEnd', 'timeLine', 'day'];
+        $error = $this->LoopCheckError($arr, $_POST);
+        if (!empty($error)) return;
+        $this->attendanceModal->addNewAttByAdmin($_POST);
     }
     function getCalendarByDay()
     {

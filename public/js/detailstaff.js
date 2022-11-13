@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const queryString = window.location.pathname;
   let idStaff = queryString.match(/\d+/);
   idStaff = idStaff[0];
+
+  //handle get att
   function getData() {
     $.ajax({
       url: "./Attendance/getCalendarByAdmin",
@@ -30,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   getData();
+
   function createCalendar(ev) {
     const event = ev;
     var calendarEl = document.getElementById("calendar_staff");
@@ -47,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       events: event,
       dateClick: function (info) {
         getDataByDay(info.dateStr);
+        $(".list_att_title").text(`Điểm danh ngày ${info.dateStr}`);
       },
     });
     calendar.render();
@@ -65,9 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.classList.add("is-open");
         modal.setAttribute("aria-hidden", "false");
         $(".list_tr_modal").text("");
-        if (!data || data.length <= 0) {
-          $(".list_tr_modal").text("Thêm điểm danh");
-        }
+        if (!data || data.length <= 0) return;
         listEvent = data;
         let flag = 0;
         data.forEach((item) => {
@@ -94,9 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
     $(".edit_time_end").val(listEvent[index].gio_ra);
     $(".btn_save_edit").data("id", listEvent[index].maBC);
   });
-  $(".modal__close_edit").click(function () {
-    $(".modal__container_edit").hide();
-  });
 
   $(".btn_save_edit").click(() => {
     const timeStart = $(".edit_time_start").val();
@@ -112,33 +111,108 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       success: function (res) {
         if (res === "ok") {
-          Toastify({
-            text: "Sửa thành công",
-            className: "Toast_success",
-            duration: 3000,
-            background: "#07bc0c",
-            // #e74c3c
-          }).showToast();
+          CreateToast("Sửa thành công");
           getData();
+          let day = getDayFromHeader();
+          if (!day) return;
+          day = day[0];
+          getDataByDay(day.trim());
+        }
+      },
+    });
+  });
+  $(".btn_add_new").click(() => {
+    const selectValue = $(".new_ca option:selected").val();
+    const timeStart = $("#time_start_new").val();
+    const timeEnd = $("#time_end_new").val();
+    const day = getDayFromHeader();
+    //return when invalid value
+    if (
+      !selectValue ||
+      !timeStart ||
+      !timeEnd ||
+      !day[0] ||
+      timeStart === "00:00:00" ||
+      timeEnd === "00:00:00"
+    ) {
+      CreateToast("Invalid Value");
+      return;
+    }
+
+    $.ajax({
+      url: "./Attendance/updateAttendanceByAdmin",
+      method: "POST",
+      data: {
+        timeStart,
+        timeEnd,
+        day: day[0],
+        timeLine: selectValue,
+        uid: idStaff,
+      },
+      success: function (res) {
+        if (res === "ok") {
+          CreateToast("Thêm thành công");
+          getData();
+          getDataByDay(day[0].trim());
+          $(".modal__container_add").hide();
         }
       },
     });
   });
 
-  const timepicker = new TimePicker(["edit_time_start", "edit_time_end"], {
-    lang: "en",
-    theme: "blue",
-  });
+  //input time format 24h
+  const timepicker = new TimePicker(
+    ["edit_time_start", "edit_time_end", "time_start_new", "time_end_new"],
+    {
+      lang: "en",
+      theme: "blue",
+    }
+  );
   timepicker.on("change", function (evt) {
-    const value = (evt.hour || "00") + ":" + (evt.minute || "00") + ":00";
+    const value =
+      (evt.hour = evt.hour < 10 ? "0" + evt.hour : evt.hour || "00") +
+      ":" +
+      (evt.minute || "00") +
+      ":00";
     evt.element.value = value;
   });
 
+  //create toast
+  function CreateToast(message) {
+    Toastify({
+      text: message,
+      className: "Toast_success",
+      duration: 3000,
+      background: "#07bc0c",
+      // #e74c3c
+    }).showToast();
+  }
+
+  //get day from header
+
+  function getDayFromHeader() {
+    const stringDay = $(".modal__title.date_attend").text();
+    let day = stringDay.match(/\d{4}-\d{2}-\d{2}/);
+    return day;
+  }
   //handle modal
+
   const btnClose = document.querySelector(".modal__close");
+
+  $(".modal__close_edit").click(function () {
+    $(".modal__container_edit").hide();
+  });
+  $(".modal__close_new").click(function () {
+    $(".modal__container_add").hide();
+  });
+  $(".btn_add_att").click(() => {
+    $(".modal__container_add").show();
+  });
+
   btnClose.addEventListener("click", () => {
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     $(".modal__container_edit").hide();
+    $(".modal__container_add").hide();
   });
 });

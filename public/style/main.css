@@ -128,6 +128,11 @@ input[type=date]::-webkit-calendar-picker-indicator {
   border: none;
   display: inline-block;
   padding: 10px 15px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  transition: -webkit-transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
   cursor: pointer;
 }
 .global_btn a {
@@ -135,6 +140,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 .global_btn:disabled {
   opacity: 0.5;
+}
+.global_btn:focus, .global_btn:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .side_bar_item {
@@ -997,6 +1006,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 30px;
 }
 
 .modal__title {
@@ -1324,6 +1334,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
   margin: 5px 0;
 }
 
+.modal__container_add {
+  display: none;
+}
+
 .loading_main {
   position: fixed;
   inset: 0;
@@ -1546,6 +1560,12 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 .table_modal tbody .column4 {
   cursor: pointer;
+}
+
+.btn_add_att {
+  margin: 0 auto;
+  display: block;
+  margin-top: 30px;
 }
 
 /*# sourceMappingURL=main.css.map */

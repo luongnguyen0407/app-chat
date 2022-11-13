@@ -75,6 +75,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border: none;
   display: inline-block;
   padding: 10px 15px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  transition: -webkit-transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
   cursor: pointer;
   a {
     color: white;
@@ -82,7 +87,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   &:disabled {
     opacity: 0.5;
   }
+  &:focus,
+  &:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
 }
+
 .side_bar_item {
   position: relative;
 }
