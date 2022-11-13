@@ -41,6 +41,28 @@ class StaffModal extends DB
         return false;
     }
 
+    public function updateStaff($newValue, $oldValue)
+    {
+        $sql = "UPDATE `tb_nhanvien` SET `ho_ten`='" . $newValue['name'] . "',
+        `gioi_tinh`='" . $newValue['gender'] . "',`dia_chi`= '" . $newValue['dia_chi'] . "',`so_dien_thoai`='" . $newValue['phone'] . "'
+        ,`email`='" . $newValue['email'] . "',`ngay_sinh`='" . $newValue['sinh_nhat'] . "',`can_cuoc`='" . $newValue['can_cuoc'] . "',
+        `hinh_anh`='" . $newValue['img'] . "',`maCV`='" . $newValue['position'] . "',`maPB`='" . $newValue['department'] . "',`maTD`= '" . $newValue['trinh_do'] . "' WHERE maNV = '" . $oldValue['maNV'] . "'";
+        $kq = $this->link->query($sql);
+        if (!$kq) return false;
+        if ($newValue['can_cuoc'] != $oldValue['can_cuoc'] || $newValue['hop_dong_id'] != $oldValue['so_hop_dong'] || $newValue['date_start'] != $oldValue['ngay_bat_dau'] || $newValue['date_end'] != $oldValue['ngay_ket_thuc'] || $newValue['salary'] != $oldValue['luong_cung']) {
+            $updateHD = "UPDATE `tb_hopdong` SET `so_hop_dong`='" . $newValue['hop_dong_id'] . "',`ngay_bat_dau`='" . $newValue['date_start'] . "',`ngay_ket_thuc`='" . $newValue['date_end'] . "',`luong_cung`='" . $newValue['salary'] . "' WHERE maNV= '" . $oldValue['maNV'] . "' AND maHD= '" . $oldValue['maHD'] . "'";
+            $res = $this->link->query($updateHD);
+            if ($res) {
+                $updateAcc = "UPDATE `tb_taikhoan` SET `tai_khoan`='" . $newValue['can_cuoc'] . "' WHERE maNV = '" . $oldValue['maNV'] . "'";
+                $res = $this->link->query($updateAcc);
+                if ($res) return true;
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
     public function getStaffExcel()
     {
         $sql = "SELECT tb_nhanvien.ho_ten, tb_nhanvien.dia_chi,tb_nhanvien.ngay_sinh,tb_nhanvien.so_dien_thoai,tb_nhanvien.can_cuoc, tb_nhanvien.hinh_anh,tb_hopdong.so_hop_dong, tb_hopdong.ngay_bat_dau, tb_hopdong.ngay_ket_thuc, tb_phongban.ten_phong FROM tb_hopdong INNER JOIN tb_nhanvien ON tb_hopdong.maNV=tb_nhanvien.maNV INNER JOIN tb_phongban ON tb_nhanvien.maPB=tb_phongban.maPB";
