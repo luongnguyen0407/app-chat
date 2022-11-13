@@ -45,6 +45,7 @@ h6 {
 body {
   font-family: "DM Sans", sans-serif;
   background-color: #f5f7fb;
+  overflow-y: hidden;
 }
 
 a {
@@ -1566,6 +1567,52 @@ input[type=date]::-webkit-calendar-picker-indicator {
   margin: 0 auto;
   display: block;
   margin-top: 30px;
+}
+
+.wrap_img_crop {
+  display: flex;
+  justify-content: unset;
+  align-items: unset;
+}
+.wrap_img_crop .col-md-8 {
+  width: 60%;
+}
+.wrap_img_crop .col-md-4 {
+  width: 30%;
+}
+
+#image {
+  display: block;
+  max-width: 100%;
+}
+
+.modal__content4 {
+  width: 80%;
+  height: 90%;
+  max-width: none;
+}
+
+.modal__content6 {
+  display: flex;
+}
+.modal__content6 .wrap_img {
+  width: 80%;
+}
+.modal__content6 .wrap_img img {
+  max-height: 500px;
+  width: 100%;
+  object-fit: cover;
+}
+.modal__content6 .img_preview {
+  overflow: hidden;
+  width: 160px;
+  height: 160px;
+  margin: 10px;
+  border: 1px solid red;
+}
+.modal__content6 #img_crop {
+  display: block;
+  max-width: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */

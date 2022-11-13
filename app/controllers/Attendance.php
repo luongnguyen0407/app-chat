@@ -95,7 +95,6 @@ class Attendance extends Controller
                 'Page' => 'AttendancePage',
                 'status' => 'Bây giờ không trong giờ điểm danh',
                 'profile' => $this->staffModal->getDetailStaff($this->user['id'])
-
             ]);
         }
     }
@@ -127,8 +126,6 @@ class Attendance extends Controller
         $res = $this->attendanceModal->findData($where);
         $res = !empty($res) ? $res->fetch_assoc() : '';
         if (!empty($res) && empty($res['gio_ra'])) {
-            // PrintDisplay::printFix($res);
-            // die;
             $kq = $this->attendanceModal->updateAtt($time, $this->user['id']);
             if ($kq) {
                 $this->callView('MasterUser', [

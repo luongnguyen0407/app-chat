@@ -8,6 +8,9 @@ class Staff extends Controller
 
     function __construct()
     {
+        if (!$this->checkUser(true)) {
+            header('location: ./Attendance');
+        }
         $this->staffModal = $this->callModal('StaffModal');
         $this->positionModal = $this->callModal('PositionModal');
         $this->departmentModal = $this->callModal('DepartmentModal');

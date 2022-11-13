@@ -1,0 +1,41 @@
+.wrap_img_crop {
+  @include flex($aItem: unset, $jus: unset);
+  .col-md-8 {
+    width: 60%;
+  }
+  .col-md-4 {
+    width: 30%;
+  }
+}
+
+#image {
+  display: block;
+  max-width: 100%;
+}
+.modal__content4 {
+  width: 80%;
+  height: 90%;
+  max-width: none;
+}
+.modal__content6 {
+  display: flex;
+  .wrap_img {
+    width: 80%;
+    img {
+      max-height: 500px;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .img_preview {
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    margin: 10px;
+    border: 1px solid red;
+  }
+  #img_crop {
+    display: block;
+    max-width: 100%;
+  }
+}
