@@ -80,7 +80,7 @@
                             </td>
                             <td class="column8">
                                 <a href="" class="action_update">Sửa</a>
-                                <a href="ListStaff/viewDetails/<?php PrintDisplay::printShow($row, 'maNV') ?>" class="action_del">Xem</a>
+                                <a href="Staff/viewDetails/<?php PrintDisplay::printShow($row, 'maNV') ?>" class="action_del">Xem</a>
                             </td>
                         </tr>
                 <?php

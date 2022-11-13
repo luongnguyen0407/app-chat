@@ -32,16 +32,13 @@ class StaffModal extends DB
     }
     public function getDetailStaff($maNV)
     {
-        try {
-            $sql = "SELECT tb_nhanvien.ho_ten,  tb_nhanvien.hinh_anh, tb_chucvu.ten_chuc_vu
+        $sql = "SELECT tb_nhanvien.ho_ten,  tb_nhanvien.hinh_anh, tb_chucvu.ten_chuc_vu
             FROM tb_nhanvien
             INNER JOIN tb_chucvu ON tb_nhanvien.maCV = tb_chucvu.maCV WHERE maNV = $maNV;";
-            $kq = $this->link->query($sql)->fetch_assoc();
+        $kq = $this->link->query($sql)->fetch_assoc();
+        if ($kq)
             return $kq;
-        } catch (\Throwable $th) {
-            //throw $th;
-            return false;
-        }
+        return false;
     }
 
     public function getStaffExcel()
@@ -87,7 +84,7 @@ class StaffModal extends DB
                 return false;
             }
         } else {
-            $sql = "SELECT $wh FROM `tb_nhanvien` WHERE $name = '" . $data . "'";
+            $sql = "SELECT $wh FROM `tb_nhanvien` INNER JOIN tb_hopdong ON tb_nhanvien.maNV = tb_hopdong.maNV WHERE tb_nhanvien.$name = '" . $data . "'";
             $kq = $this->link->query($sql);
             return $kq;
         }

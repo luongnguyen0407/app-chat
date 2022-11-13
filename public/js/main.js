@@ -2,7 +2,7 @@ const showDrop = document.querySelector(".nav_profile_show");
 const dropDow = document.querySelector(".dropdown-menu");
 const sideBarList = document.querySelectorAll(".side_bar_item");
 switch (window.location.pathname) {
-  case "/quanlynhanvien/ListStaff":
+  case "/quanlynhanvien/Staff":
     sideBarList[1].classList.add("active");
     break;
   case "/quanlynhanvien/Dashboard":

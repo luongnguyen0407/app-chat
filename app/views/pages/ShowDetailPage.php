@@ -1,12 +1,12 @@
 <div class="detail_page_main">
     <div class="staff_profile">
-        <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" alt="">
+        <img src="./public/img/upload/<?php PrintDisplay::printShow($data['staff'], 'hinh_anh') ?>" alt="">
         <div class="staff_profile_content">
             <p class="staff_name">
-                Nguyễn Đình Thi
+                <?php PrintDisplay::printShow($data['staff'], 'ho_ten') ?>
             </p>
         </div>
-        <button class="global_btn">Sửa thông tin</button>
+        <button class="global_btn"><a href="Staff/Update/<?php PrintDisplay::printShow($data['staff'], 'maNV') ?>">Sửa thông tin</a></button>
     </div>
     <div class="staff_attendance">
         <div id="calendar_staff">
