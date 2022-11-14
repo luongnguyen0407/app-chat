@@ -1,3 +1,7 @@
+<?php
+
+PrintDisplay::printFix($data['staff'])
+?>
 <div class="detail_page_main">
     <div class="staff_profile">
         <img src="https://source.unsplash.com/random" alt="">
@@ -28,13 +32,15 @@
                 <div class="wrap_img">
                     <img id="img_crop" class="image_avatar_crop" src="./public/img/upload/photo-def.1668326701.jpg" alt="">
                 </div>
-                <div class="img_preview">
+                <div>
+                    <div class="img_preview">
+                    </div>
+                    <footer class="modal__footer">
+                        <button type="submit" class="modal__btn modal__btn-primary btn_crop">Save</button>
+                        <button class="modal__btn modal__btn_add" data-micromodal-close aria-label="Close this dialog window"><a href="Profile">Thoát</a></button>
+                    </footer>
                 </div>
             </main>
-            <footer class="modal__footer">
-                <button type="submit" class="modal__btn modal__btn-primary btn_crop">Save</button>
-                <button class="modal__btn modal__btn_add" data-micromodal-close aria-label="Close this dialog window"><a href="Profile">Thoát</a></button>
-            </footer>
         </div>
     </div>
 </div>

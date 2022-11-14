@@ -1610,6 +1610,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
   margin: 10px;
   border: 1px solid red;
 }
+.modal__content6 .modal__footer {
+  margin: 10px;
+}
 .modal__content6 #img_crop {
   display: block;
   max-width: 100%;

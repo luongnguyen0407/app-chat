@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   const date = new Date();
   const currentHours = date.getHours();
-  const alowHour = [8, 12, 13, 16, 18]; //8h, 12h, 13h, 16h.
+  const alowHour = [8, 12, 13, 16]; //8h, 12h, 13h, 16h.
   if (alowHour.includes(currentHours)) {
     $(".attendance_time .global_btn").text("Điểm danh ngay");
   } else {

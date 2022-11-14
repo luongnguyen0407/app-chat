@@ -18,9 +18,10 @@ class User extends Controller
 
     function Show()
     {
+        $user = $_SESSION['user'];
         $this->callView('MasterUser', [
             'Page' => 'UpdateProfile',
-            'staff' => $this->returnArray($this->staffModal->getAllStaff())
+            'staff' => $user
         ]);
     }
 }
