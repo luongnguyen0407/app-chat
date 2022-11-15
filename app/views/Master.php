@@ -21,14 +21,10 @@
 
 <body>
     <div class="loading_main">
-        <div class="music-waves-2">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="loader">
+            <div class="inner one"></div>
+            <div class="inner two"></div>
+            <div class="inner three"></div>
         </div>
     </div>
     <main class="main">

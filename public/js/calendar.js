@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   getData();
   function createCalendar(ev) {
-    console.log(ev);
     const event = ev;
     var calendarEl = document.getElementById("calendar");
 
@@ -62,14 +61,4 @@ document.addEventListener("DOMContentLoaded", function () {
       //   if (!data || data.length <= 0) return;
     },
   });
-  const date = new Date();
-  const currentHours = date.getHours();
-  const alowHour = [8, 12, 13, 16]; //8h, 12h, 13h, 16h.
-  if (alowHour.includes(currentHours)) {
-    $(".attendance_time .global_btn").text("Điểm danh ngay");
-  } else {
-    $(".attendance_time .global_btn")
-      .text("Chưa đến giờ điểm danh")
-      .attr("disabled", true);
-  }
 });

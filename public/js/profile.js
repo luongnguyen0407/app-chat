@@ -1,9 +1,16 @@
 $(document).ready(function () {
   const modal = document.querySelector("#modal-3");
+  const modalPass = document.querySelector("#modal-4");
   const image = document.getElementById("img_crop");
+  const formChangePass = document.querySelector(".form_modal_pass");
   let file;
   let reader;
   let cropper;
+
+  $(".update_pass").click(function () {
+    modalPass.classList.add("is-open");
+    modalPass.setAttribute("aria-hidden", "false");
+  });
 
   $("#input_avatar").change(function () {
     let fileImg = this.files;
@@ -25,18 +32,23 @@ $(document).ready(function () {
         reader.readAsDataURL(file);
       }
     }
-
     cropper = new Cropper(image, {
       aspectRatio: 0,
       viewMode: 2,
       preview: ".img_preview",
     });
   });
-  $(".modal__close").click(function () {
+
+  $("#modal-3 .modal__close").click(function () {
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     cropper.destroy();
     cropper = null;
+  });
+
+  $("#modal-4 .modal__close").click(function () {
+    modalPass.classList.remove("is-open");
+    modalPass.setAttribute("aria-hidden", "true");
   });
 
   $(".btn_crop").click(function () {
@@ -59,16 +71,58 @@ $(document).ready(function () {
             if (data === "ok") {
               location.reload();
             } else {
-              Toastify({
-                text: "Lỗi",
-                className: "Toast_success",
-                duration: 3000,
-                background: "#e74c3c",
-              }).showToast();
+              showToast("Lỗi");
             }
           },
         });
       };
     });
   });
+
+  //change pass
+  formChangePass.addEventListener("submit", (e) => {
+    const passOld = document.querySelector(".passOld").value;
+    const passNew = document.querySelector(".passNew").value;
+    const passNewRef = document.querySelector(".passNewRef").value;
+    e.preventDefault();
+    if (!passOld || !passNew || !passNewRef)
+      return showToast("Bạn cần nhâp đủ trường");
+    if (passNew !== passNewRef)
+      return showToast("Mật khẩu nhập lại không giống");
+    $.ajax({
+      url: "./Ajax/updatePass",
+      method: "POST",
+      data: {
+        passOld,
+        passNew,
+        passNewRef,
+      },
+      success: function (res) {
+        if (Number(res) === 1) {
+          showToast("Đổi mật khẩu thành công");
+          $(".form_modal_pass input").val("");
+          modalPass.classList.remove("is-open");
+          modalPass.setAttribute("aria-hidden", "true");
+        } else {
+          showToast("Sai mật khẩu cũ");
+        }
+      },
+    });
+  });
+
+  function showToast(mess = "This is a toast") {
+    Toastify({
+      text: mess,
+      duration: 2000,
+      newWindow: true,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "#e74c3c",
+      },
+      onClick: function () {}, // Callback after click
+    }).showToast();
+  }
 });

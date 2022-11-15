@@ -1,3 +1,33 @@
+.detail_page_main {
+  #info_staff {
+    @include grid($cols: 2, $gap: 20px);
+    .one_column_input {
+      label {
+        display: block;
+        font-weight: 600;
+        color: $primary-color;
+      }
+      input {
+        width: 100%;
+        border: #d7dbe0;
+        outline: none;
+        padding: 5px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+.form_modal_pass {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #d7dbe0;
+    outline: none;
+  }
+}
 .wrap_img_crop {
   @include flex($aItem: unset, $jus: unset);
   .col-md-8 {
@@ -40,5 +70,10 @@
   #img_crop {
     display: block;
     max-width: 100%;
+  }
+}
+@include maxw(470px) {
+  .detail_page_main #info_staff {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

@@ -7,7 +7,7 @@
         </div>
         <div class="attendance_time">
             <form action="./Attendance/addAttendance" method="POST">
-                <button class="global_btn">Chấm công hôm nay</button>
+                <button class="global_btn">Điểm danh ngay</button>
             </form>
             <div>
                 <h3 class="total_time_work">0h</h3>

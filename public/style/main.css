@@ -161,11 +161,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
   background: #003ad2;
 }
 
-@media screen and (max-width: 640px) {
-  .wrap_content_ad {
-    height: auto;
-  }
-}
 .main {
   display: flex;
 }
@@ -250,6 +245,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 .main .content .header .header_time {
   width: 350px;
@@ -363,6 +359,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
     position: fixed;
     top: 0;
     transform: translateX(-100%);
+  }
+  .main .content .header_flex {
+    justify-content: center;
   }
 }
 .content_dashboard_header {
@@ -1348,56 +1347,62 @@ input[type=date]::-webkit-calendar-picker-indicator {
   justify-content: center;
   align-items: center;
 }
-.loading_main .music-waves-2 {
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.loading_main .loader {
+  position: absolute;
+  top: calc(50% - 32px);
+  left: calc(50% - 32px);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  perspective: 800px;
 }
-.loading_main .music-waves-2 > span {
-  display: block;
-  position: relative;
-  background: #000;
+.loading_main .inner {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
   height: 100%;
-  width: 1rem;
-  border-radius: 1rem;
-  margin: 0 0.2rem;
-  animation: waves-2 1.2s linear infinite;
+  border-radius: 50%;
 }
-.loading_main .music-waves-2 > span:nth-child(1) {
-  animation-delay: 0s;
-  background: #ff8c00;
+.loading_main .inner.one {
+  left: 0%;
+  top: 0%;
+  animation: rotate-one 1s linear infinite;
+  border-bottom: 3px solid #efeffa;
 }
-.loading_main .music-waves-2 > span:nth-child(2) {
-  animation-delay: 0.3s;
-  background: #ffff00;
+.loading_main .inner.two {
+  right: 0%;
+  top: 0%;
+  animation: rotate-two 1s linear infinite;
+  border-right: 3px solid #efeffa;
 }
-.loading_main .music-waves-2 > span:nth-child(3) {
-  animation-delay: 0.6s;
-  background: #26d53a;
+.loading_main .inner.three {
+  right: 0%;
+  bottom: 0%;
+  animation: rotate-three 1s linear infinite;
+  border-top: 3px solid #efeffa;
 }
-.loading_main .music-waves-2 > span:nth-child(4) {
-  animation-delay: 0.9s;
-  background: #26e6a3;
-}
-.loading_main .music-waves-2 > span:nth-child(5) {
-  animation-delay: 0.6s;
-  background: #1da8e2;
-}
-.loading_main .music-waves-2 > span:nth-child(6) {
-  animation-delay: 0.3s;
-  background: #5916ba;
-}
-.loading_main .music-waves-2 > span:nth-child(7) {
-  animation-delay: 0s;
-  background: #d418d9;
-}
-@keyframes waves-2 {
-  50% {
-    height: 20%;
+@keyframes rotate-one {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
   }
   100% {
-    height: 100%;
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate-two {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate-three {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
   }
 }
 
@@ -1569,6 +1574,44 @@ input[type=date]::-webkit-calendar-picker-indicator {
   margin-top: 30px;
 }
 
+@media screen and (max-width: 860px) {
+  .detail_page_main {
+    flex-wrap: wrap;
+  }
+  .detail_page_main .staff_profile {
+    width: 100%;
+  }
+}
+.detail_page_main #info_staff {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.detail_page_main #info_staff .one_column_input label {
+  display: block;
+  font-weight: 600;
+  color: #1f4173;
+}
+.detail_page_main #info_staff .one_column_input input {
+  width: 100%;
+  border: #d7dbe0;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.form_modal_pass {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form_modal_pass input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #d7dbe0;
+  outline: none;
+}
+
 .wrap_img_crop {
   display: flex;
   justify-content: unset;
@@ -1616,6 +1659,12 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .modal__content6 #img_crop {
   display: block;
   max-width: 100%;
+}
+
+@media screen and (max-width: 470px) {
+  .detail_page_main #info_staff {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

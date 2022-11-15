@@ -67,77 +67,49 @@ class Attendance extends Controller
     {
         # code...
         $currentHours = date('H');
-        $alowHours = [8, 12, 13, 16];
-        if (in_array($currentHours, $alowHours)) {
-            switch ($currentHours) {
-                case 8:
-                    # code...
-                    $this->handleCheckIn('SANG');
-                    break;
-                case 13:
-                    # code...
-                    $this->handleCheckIn('CHIEU');
-                    break;
-                case 12:
-                    # code...
-                    $this->handleCheckOut('SANG');
-                    break;
-                case 16:
-                    # code...
-                    $this->handleCheckOut('CHIEU');
-                    break;
-                default:
-                    # code...
-                    break;
-            }
-        } else {
-            $this->callView('MasterUser', [
-                'Page' => 'AttendancePage',
-                'status' => 'Bây giờ không trong giờ điểm danh',
-                'profile' => $this->staffModal->getDetailStaff($this->user['id'])
-            ]);
-        }
-    }
-    private function handleCheckIn($time)
-    {
-        $where = "maNV = '" . $this->user['id'] . "' AND `maCa` = '" . $time . "' AND ";
+        $startAfternoon = 13;
+        $alowTimeCheckIn = [8, 13];
+        $endCheckOut = 16;
+        $timeLine = $currentHours <  $startAfternoon ? 'SANG' : 'CHIEU';
+        $where = "maNV = '" . $this->user['id'] . "' AND `maCa` = '" . $timeLine  . "' AND ";
         $res = $this->attendanceModal->findData($where);
-        $res = !empty($res) ? $res->fetch_assoc() : '';
-        if (empty($res)) {
-            $kq = $this->attendanceModal->addNewAtt($time, $this->user['id']);
-            if ($kq) {
+        if (mysqli_num_rows($res) > 0) {
+            $res = $res->fetch_assoc();
+            if ($currentHours > $endCheckOut) {
+                //17 is end time check out
                 $this->callView('MasterUser', [
                     'Page' => 'AttendancePage',
-                    'status' => 'Điểm danh thành công',
+                    'status' => 'Quá giờ check out',
                     'profile' => $this->staffModal->getDetailStaff($this->user['id'])
                 ]);
+                return;
             }
-        } else {
+            $time = date('H', strtotime($res['gio_vao']));
+            if ($currentHours - $time >= 1 && !$res['gio_ra']) { // alow check out after check in 1 hour
+                $kq = $this->attendanceModal->updateAtt($timeLine, $this->user['id']);
+                $status = 'Check out thành công';
+            } else {
+                $status = 'Quá sớm để check out';
+            }
             $this->callView('MasterUser', [
                 'Page' => 'AttendancePage',
-                'status' => 'Bạn đã điểm danh rồi',
+                'status' => $status,
                 'profile' => $this->staffModal->getDetailStaff($this->user['id'])
             ]);
-        }
-    }
-    private function handleCheckOut($time)
-    {
-        $where = "maNV = '" . $this->user['id'] . "' AND `maCa` = '" . $time . "' AND ";
-        $res = $this->attendanceModal->findData($where);
-        $res = !empty($res) ? $res->fetch_assoc() : '';
-        if (!empty($res) && empty($res['gio_ra'])) {
-            $kq = $this->attendanceModal->updateAtt($time, $this->user['id']);
-            if ($kq) {
-                $this->callView('MasterUser', [
-                    'Page' => 'AttendancePage',
-                    'status' => 'Điểm danh thành công',
-                    'profile' => $this->staffModal->getDetailStaff($this->user['id'])
-                ]);
-            }
         } else {
+            if (in_array($currentHours, $alowTimeCheckIn)) {
+                $kq = $this->attendanceModal->addNewAtt($timeLine, $this->user['id']);
+                if ($kq) {
+                    $status = 'Điểm danh thành công';
+                } else {
+                    $status = 'Error at 105';
+                }
+            } else {
+                $status = 'Quá giờ Check in';
+            }
             $this->callView('MasterUser', [
                 'Page' => 'AttendancePage',
-                'status' => 'Bạn đã điểm danh rồi',
+                'status' => $status,
                 'profile' => $this->staffModal->getDetailStaff($this->user['id'])
             ]);
         }

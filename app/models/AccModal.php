@@ -21,4 +21,21 @@ class AccModal extends DB
         if ($kq) return true;
         return false;
     }
+    public function updatePass($uid, $passNew, $passOld)
+    {
+        $old = $this->findData('tb_taikhoan.maNV', $uid, 'mat_khau, tai_khoan');
+        if ($old) {
+            $oldPass = $old->fetch_assoc();
+            $checkPass =  password_verify($passOld, $oldPass["mat_khau"]);
+            if (!$checkPass) {
+                echo 'error';
+            } else {
+                $newPass = password_hash($passNew, PASSWORD_DEFAULT);
+                $res =  $this->updateData('mat_khau', $newPass,  $oldPass["tai_khoan"]);
+                if ($res) {
+                    echo true;
+                }
+            }
+        }
+    }
 }

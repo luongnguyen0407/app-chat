@@ -19,9 +19,10 @@ class User extends Controller
     function Show()
     {
         $user = $_SESSION['user'];
+        $res = $this->staffModal->findData('maNV', $user['id'], "*");
         $this->callView('MasterUser', [
             'Page' => 'UpdateProfile',
-            'staff' => $user
+            'staff' => $res->fetch_assoc()
         ]);
     }
 }

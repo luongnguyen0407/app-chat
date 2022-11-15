@@ -41,3 +41,11 @@
   display: block;
   margin-top: 30px;
 }
+@include maxw(860px) {
+  .detail_page_main {
+    flex-wrap: wrap;
+    .staff_profile {
+      width: 100%;
+    }
+  }
+}

@@ -3,9 +3,11 @@ class Ajax extends Controller
 {
 
     public $staffModal;
+    public $accModal;
     function __construct()
     {
         $this->staffModal = $this->callModal('StaffModal');
+        $this->accModal = $this->callModal('AccModal');
     }
 
     function updateAvatarBase64()
@@ -32,5 +34,15 @@ class Ajax extends Controller
         } else {
             echo 'error';
         }
+    }
+
+    public function updatePass()
+    {
+        # code...
+        if (!$this->checkUser() || empty($_POST['passOld']) || empty($_POST['passNew']) || empty($_POST['passNewRef'])) return;
+        if ($_POST['passNew'] != $_POST['passNewRef']) return;
+        // print_r($_POST);
+        $uId = $_SESSION['user']['id'];
+        $this->accModal->updatePass($uId, $_POST['passNew'], $_POST['passOld']);
     }
 }
