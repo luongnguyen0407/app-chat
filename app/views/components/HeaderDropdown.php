@@ -9,7 +9,7 @@ $user = $_SESSION['user'];
     </div>
     <div class="dropdown-menu">
         <div class="cotrol-user">
-            <a class="dropdown-item">
+            <a href="User" class="dropdown-item">
                 <i class="fa-solid fa-user"></i> My Profile</a>
             <?php
             if ($user['role'] == 1) {

@@ -1,13 +1,15 @@
 <?php
 class Ajax extends Controller
 {
-
+    use LoopData;
     public $staffModal;
     public $accModal;
+    public $departmentModal;
     function __construct()
     {
         $this->staffModal = $this->callModal('StaffModal');
         $this->accModal = $this->callModal('AccModal');
+        $this->departmentModal = $this->callModal('DepartmentModal');
     }
 
     function updateAvatarBase64()
@@ -44,5 +46,12 @@ class Ajax extends Controller
         // print_r($_POST);
         $uId = $_SESSION['user']['id'];
         $this->accModal->updatePass($uId, $_POST['passNew'], $_POST['passOld']);
+    }
+
+    public function getDepartment()
+    {
+        # code...
+        $listDepartment =  $this->returnArray($this->departmentModal->getDepartment());
+        echo json_encode($listDepartment);
     }
 }

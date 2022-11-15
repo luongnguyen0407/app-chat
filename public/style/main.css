@@ -1594,7 +1594,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 .detail_page_main #info_staff .one_column_input input {
   width: 100%;
-  border: #d7dbe0;
+  border: none;
   outline: none;
   padding: 5px;
   border-radius: 5px;
@@ -1664,6 +1664,96 @@ input[type=date]::-webkit-calendar-picker-indicator {
 @media screen and (max-width: 470px) {
   .detail_page_main #info_staff {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+.wrap_department {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: unset;
+  gap: 10px;
+}
+.wrap_department .form_add_department_wrap {
+  width: 50%;
+}
+.wrap_department .form_add_department_wrap .from_add_department_heading {
+  font-size: 25px;
+  color: #1f4173;
+  font-weight: 600;
+}
+.wrap_department .form_add_department_wrap .form_add_department {
+  margin-top: 10px;
+}
+.wrap_department .form_add_department_wrap .form_add_department .one_field {
+  padding-bottom: 25px;
+  position: relative;
+  margin-bottom: 5px;
+}
+.wrap_department .form_add_department_wrap .form_add_department .one_field .error_from {
+  position: absolute;
+  bottom: 0;
+  color: red;
+}
+.wrap_department .form_add_department_wrap .form_add_department .one_field label {
+  display: block;
+  font-weight: 600;
+  color: #1f4173;
+}
+.wrap_department .form_add_department_wrap .form_add_department .one_field input {
+  width: 100%;
+  border: 1px solid #d7dbe0;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+.wrap_department .form_add_department_wrap .form_add_department button {
+  display: block;
+  margin: 0 auto;
+}
+.wrap_department .list_department {
+  margin-top: 30px;
+  width: 40%;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.wrap_department .list_department table {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+.wrap_department .list_department table tbody svg {
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  color: #28d915;
+}
+.wrap_department .list_department table tbody .wrap_active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.wrap_department .list_department table .list_department_header th {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f4173;
+}
+.wrap_department .list_department table tr {
+  border-bottom: 1px solid #f0e6e6;
+  height: 40px;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 870px) {
+  .wrap_department {
+    flex-wrap: wrap;
+  }
+  .wrap_department .list_department,
+.wrap_department .form_add_department_wrap {
+    width: 100%;
   }
 }
 

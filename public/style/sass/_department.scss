@@ -1,0 +1,90 @@
+.wrap_department {
+  margin-top: 30px;
+  @include flex($jus: space-between, $aItem: unset);
+  gap: 10px;
+  .form_add_department_wrap {
+    width: 50%;
+    .from_add_department_heading {
+      font-size: 25px;
+      color: $primary-color;
+      font-weight: 600;
+    }
+    .form_add_department {
+      margin-top: 10px;
+      .one_field {
+        padding-bottom: 25px;
+        position: relative;
+        margin-bottom: 5px;
+        .error_from {
+          position: absolute;
+          bottom: 0;
+          color: red;
+        }
+        label {
+          display: block;
+          font-weight: 600;
+          color: $primary-color;
+        }
+        input {
+          width: 100%;
+          border: 1px solid #d7dbe0;
+          outline: none;
+          padding: 5px;
+          border-radius: 5px;
+        }
+      }
+      button {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+  .list_department {
+    margin-top: 30px;
+    width: 40%;
+    max-height: 300px;
+    overflow-y: scroll;
+    table {
+      width: 100%;
+      padding: 10px;
+      background-color: white;
+      border-collapse: collapse;
+      width: 100%;
+      text-align: center;
+      tbody {
+        svg {
+          width: 19px;
+          height: 19px;
+          cursor: pointer;
+          color: #28d915;
+        }
+        .wrap_active {
+          @include flex;
+          gap: 5px;
+        }
+      }
+      .list_department_header {
+        th {
+          font-size: 20px;
+          font-weight: 600;
+          color: $primary-color;
+        }
+      }
+      tr {
+        border-bottom: 1px solid #f0e6e6;
+        height: 40px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@include maxw(870px) {
+  .wrap_department {
+    flex-wrap: wrap;
+    .list_department,
+    .form_add_department_wrap {
+      width: 100%;
+    }
+  }
+}
