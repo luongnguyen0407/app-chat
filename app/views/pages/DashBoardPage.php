@@ -1,5 +1,7 @@
 <?php
 $card = $data['Card'][0];
+// echo $card['att'];
+
 ?>
 
 <div class="content_dashboard ">
