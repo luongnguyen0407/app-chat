@@ -2,13 +2,13 @@
 class Holiday extends Controller
 {
     use LoopData;
-    public $departmentModel;
+    public $holidayModel;
     function __construct()
     {
         if (!$this->checkUser(true)) {
             header('location: ./Attendance');
         }
-        $this->departmentModel = $this->callModel('DepartmentModel');
+        $this->holidayModel = $this->callModel('HolidayModel');
     }
 
     public function Show()
@@ -19,45 +19,39 @@ class Holiday extends Controller
             // 'department' => $this->returnArray($this->departmentModel->getDepartment())
         ]);
     }
-    // public function createDepartment()
-    // {
-    //     # code...
-    //     $arrData = [
-    //         "maPb",
-    //         "namePb",
-    //     ];
-    //     $error = $this->LoopCheckError($arrData, $_POST);
-    //     if (empty($error)) {
-    //         $idDepart =  strlen($_POST['maPb']) > 5 ? substr($_POST['maPb'], 0, 5) : $_POST['maPb'];
-    //         $upDepart = strtoupper($idDepart);
-    //         $res = $this->departmentModel->findData($upDepart);
-    //         if (!$res) {
-    //             $kq = $this->departmentModel->newDepartment($upDepart, ucwords($_POST['namePb']));
-    //             if ($kq) {
-    //                 header('location: ../Department');
-    //             } else {
-    //                 $error['maPb'] = 'Lỗi Server';
-    //             }
-    //         } else {
-    //             $error['maPb'] = 'Mã Phòng Ban Đã Tồn Tại';
-    //         }
-    //     }
-    //     $this->callView('Master', [
-    //         'Page' => 'DepartmentPage',
-    //         'department' => $this->returnArray($this->departmentModel->getDepartment()),
-    //         'error' => $error,
-    //         'old_value' => $_POST
-    //     ]);
-    // }
+    public function createHoliday()
+    {
+        # code...
+        $arrData = [
+            "date",
+            "name_holiday",
+        ];
+        $error = $this->LoopCheckError($arrData, $_POST);
+        if (empty($error)) {
+            $dateHoliday =  $_POST['date'];
+            $nameHoliday = $_POST['name_holiday'];
+            $kq = $this->holidayModel->newHoliday($dateHoliday, $nameHoliday);
+            if ($kq) {
+                header('location: ../Holiday');
+            } else {
+                $error['date'] = 'Lỗi Server';
+            }
+        }
+        $this->callView('Master', [
+            'Page' => 'HolidayPage',
+            'error' => $error,
+            'old_value' => $_POST
+        ]);
+    }
 
-    // public function deleteDepartment()
-    // {
-    //     if (empty($_POST['id'])) return;
-    //     $res = $this->departmentModel->deleteData($_POST['id']);
-    //     if ($res) {
-    //         http_response_code(200);
-    //     } else {
-    //         http_response_code(401);
-    //     }
-    // }
+    public function deleteHoliday()
+    {
+        if (empty($_POST['id'])) return;
+        $res = $this->holidayModel->deleteHoliday($_POST['id']);
+        if ($res) {
+            http_response_code(200);
+        } else {
+            http_response_code(401);
+        }
+    }
 }

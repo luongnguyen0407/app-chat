@@ -16,7 +16,7 @@ class Department extends Controller
         # code...
         $this->callView('Master', [
             'Page' => 'DepartmentPage',
-            'department' => $this->returnArray($this->departmentModel->getDepartment())
+            // 'department' => $this->returnArray($this->departmentModel->getDepartment())
         ]);
     }
     public function createDepartment()
@@ -44,7 +44,7 @@ class Department extends Controller
         }
         $this->callView('Master', [
             'Page' => 'DepartmentPage',
-            'department' => $this->returnArray($this->departmentModel->getDepartment()),
+            // 'department' => $this->returnArray($this->departmentModel->getDepartment()),
             'error' => $error,
             'old_value' => $_POST
         ]);

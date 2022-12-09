@@ -20,6 +20,11 @@ $(window).ready(() => {
       },
       success: function (res) {
         const data = JSON.parse(res);
+        console.log(data);
+        const minHoliday = 8 * 60 * +data.holiday; //work 8h for day
+        const totalMinWork = +data.totalMin + minHoliday;
+        const salaryOfMin = +data.salary / (20 * 8 * 60); // 20 day work, 8h of day, 60 min
+        console.log(salaryOfMin * totalMinWork);
       },
       error: function () {
         swal("Server error", "Server Error 500", "error");

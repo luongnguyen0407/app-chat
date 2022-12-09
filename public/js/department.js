@@ -57,7 +57,7 @@ $(window).ready(function () {
             });
             getData();
           },
-          error: function (error) {
+          error: function () {
             swal("Đang có nhân viên thuộc phòng ban này", {
               icon: "error",
             });

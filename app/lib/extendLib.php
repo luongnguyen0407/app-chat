@@ -50,7 +50,7 @@ trait LoopData
         $error = array();
         foreach ($data as &$field) {
             if (empty($dataForm[$field])) {
-                $error[$field] = "This field is required";
+                $error[$field] = "Bắt buộc nhập trường này";
             }
         }
         return $error;

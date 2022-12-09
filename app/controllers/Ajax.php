@@ -2,14 +2,16 @@
 class Ajax extends Controller
 {
     use LoopData;
-    public $staffModel;
-    public $accModel;
-    public $departmentModel;
+    private $staffModel;
+    private $accModel;
+    private $departmentModel;
+    private $holidayModel;
     function __construct()
     {
         $this->staffModel = $this->callModel('StaffModel');
         $this->accModel = $this->callModel('AccModel');
         $this->departmentModel = $this->callModel('DepartmentModel');
+        $this->holidayModel = $this->callModel('HolidayModel');
     }
 
     function updateAvatarBase64()
@@ -58,7 +60,11 @@ class Ajax extends Controller
     public function getHoliday()
     {
         # code...
-        $listDepartment =  $this->returnArray($this->departmentModel->getDepartment());
-        echo json_encode($listDepartment);
+        $kq = $this->holidayModel->getHoliday();
+        if ($kq) {
+            echo json_encode($this->returnArray($kq));
+        } else {
+            http_response_code(500);
+        }
     }
 }
