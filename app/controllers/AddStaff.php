@@ -2,25 +2,25 @@
 class AddStaff extends Controller
 {
     use LoopData;
-    public $positionModal;
-    public $staffModal;
+    public $positionModel;
+    public $staffModel;
     function __construct()
     {
-        //modal
+        //model
         if (!$this->checkUser(true)) {
             header('location: ./Attendance');
         }
-        $this->positionModal = $this->callModal('PositionModal');
-        $this->departmentModal = $this->callModal('DepartmentModal');
-        $this->staffModal = $this->callModal('StaffModal');
+        $this->positionModel = $this->callModel('PositionModel');
+        $this->departmentModel = $this->callModel('DepartmentModel');
+        $this->staffModel = $this->callModel('StaffModel');
     }
     function Show()
     {
 
         $this->callView('Master', [
             'Page' => 'AddStaffPage',
-            'Position' => $this->returnArray($this->positionModal->getPosition()),
-            'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+            'Position' => $this->returnArray($this->positionModel->getPosition()),
+            'Department' => $this->returnArray($this->departmentModel->getDepartment()),
         ]);
     }
     function Add()
@@ -56,15 +56,15 @@ class AddStaff extends Controller
         if (!empty($error)) {
             $this->callView('Master', [
                 'Page' => 'AddStaffPage',
-                'Position' => $this->returnArray($this->positionModal->getPosition()),
-                'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                'Position' => $this->returnArray($this->positionModel->getPosition()),
+                'Department' => $this->returnArray($this->departmentModel->getDepartment()),
                 'error' => $error,
                 'old_value' => $dataOld
             ]);
             return;
         }
-        if ($this->staffModal->findData('can_cuoc', $dataOld['can_cuoc'])) $error['can_cuoc'] = 'Số căn cước này đã tồn tại';
-        if ($this->staffModal->findData('email', $dataOld['email'])) $error['email'] = 'Email này đã tồn tại';
+        if ($this->staffModel->findData('can_cuoc', $dataOld['can_cuoc'])) $error['can_cuoc'] = 'Số căn cước này đã tồn tại';
+        if ($this->staffModel->findData('email', $dataOld['email'])) $error['email'] = 'Email này đã tồn tại';
         //check img
         $imgUp =  $this->ValidateImg($file);
         if (!$imgUp) {
@@ -86,12 +86,12 @@ class AddStaff extends Controller
 
         if (empty($error)) {
             $dataOld['dia_chi'] = $dataOld['thanh_pho'] . "," . $dataOld['huyen'] . "," . $dataOld['xa'];
-            $kq = $this->staffModal->createNewStaff($dataOld);
+            $kq = $this->staffModel->createNewStaff($dataOld);
             if ($kq) {
                 $this->callView('Master', [
                     'Page' => 'AddStaffPage',
-                    'Position' => $this->returnArray($this->positionModal->getPosition()),
-                    'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                    'Position' => $this->returnArray($this->positionModel->getPosition()),
+                    'Department' => $this->returnArray($this->departmentModel->getDepartment()),
                     'status' => "Thêm nhân viên thành công",
                     'error' => $error,
                 ]);
@@ -99,8 +99,8 @@ class AddStaff extends Controller
             } else {
                 $this->callView('Master', [
                     'Page' => 'AddStaffPage',
-                    'Position' => $this->returnArray($this->positionModal->getPosition()),
-                    'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                    'Position' => $this->returnArray($this->positionModel->getPosition()),
+                    'Department' => $this->returnArray($this->departmentModel->getDepartment()),
                     'error' => $error,
                     'old_value' => $dataOld
                 ]);
@@ -108,8 +108,8 @@ class AddStaff extends Controller
         } else {
             $this->callView('Master', [
                 'Page' => 'AddStaffPage',
-                'Position' => $this->returnArray($this->positionModal->getPosition()),
-                'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                'Position' => $this->returnArray($this->positionModel->getPosition()),
+                'Department' => $this->returnArray($this->departmentModel->getDepartment()),
                 'error' => $error,
                 'old_value' => $dataOld
             ]);

@@ -1,5 +1,5 @@
 <?php
-class AccModal extends DB
+class AccModel extends DB
 {
     use LoopData;
     public function findData($where, $data, $get = '')

@@ -2,21 +2,21 @@
 class HandleExcel extends Controller
 {
     use LoopData;
-    public $staffModal;
-    public $positionModal;
+    public $staffModel;
+    public $positionModel;
     function __construct()
     {
-        //modal
+        //model
         if (!$this->checkUser(true)) {
             header('location: ./Attendance');
         }
-        $this->staffModal = $this->callModal('StaffModal');
-        $this->positionModal = $this->callModal('PositionModal');
-        $this->departmentModal = $this->callModal('DepartmentModal');
+        $this->staffModel = $this->callModel('StaffModel');
+        $this->positionModel = $this->callModel('PositionModel');
+        $this->departmentModel = $this->callModel('DepartmentModel');
     }
     public function Export()
     {
-        $kq = $this->returnArray($this->staffModal->getStaffExcel());
+        $kq = $this->returnArray($this->staffModel->getStaffExcel());
         // die;
         if (!empty($kq)) {
             try {
@@ -82,8 +82,8 @@ class HandleExcel extends Controller
         if ($ext != 'xlsx') {
             $this->callView('Master', [
                 'Page' => 'AddStaffPage',
-                'Position' => $this->returnArray($this->positionModal->getPosition()),
-                'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                'Position' => $this->returnArray($this->positionModel->getPosition()),
+                'Department' => $this->returnArray($this->departmentModel->getDepartment()),
                 'status' => "Định dạng file không đúng",
             ]);
         } else {
@@ -132,19 +132,19 @@ class HandleExcel extends Controller
                 }
             }
             if (!empty($data)) {
-                $kq =  $this->staffModal->addNewStaffExcel($data);
+                $kq =  $this->staffModel->addNewStaffExcel($data);
                 if (empty($kq)) {
                     $this->callView('Master', [
                         'Page' => 'AddStaffPage',
-                        'Position' => $this->returnArray($this->positionModal->getPosition()),
-                        'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                        'Position' => $this->returnArray($this->positionModel->getPosition()),
+                        'Department' => $this->returnArray($this->departmentModel->getDepartment()),
                         'status' => "Thêm nhân viên thành công",
                     ]);
                 } else {
                     $this->callView('Master', [
                         'Page' => 'AddStaffPage',
-                        'Position' => $this->returnArray($this->positionModal->getPosition()),
-                        'Department' => $this->returnArray($this->departmentModal->getDepartment()),
+                        'Position' => $this->returnArray($this->positionModel->getPosition()),
+                        'Department' => $this->returnArray($this->departmentModel->getDepartment()),
                         'excelError' => $kq
                     ]);
                 }

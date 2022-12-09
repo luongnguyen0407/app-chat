@@ -2,14 +2,14 @@
 class Ajax extends Controller
 {
     use LoopData;
-    public $staffModal;
-    public $accModal;
-    public $departmentModal;
+    public $staffModel;
+    public $accModel;
+    public $departmentModel;
     function __construct()
     {
-        $this->staffModal = $this->callModal('StaffModal');
-        $this->accModal = $this->callModal('AccModal');
-        $this->departmentModal = $this->callModal('DepartmentModal');
+        $this->staffModel = $this->callModel('StaffModel');
+        $this->accModel = $this->callModel('AccModel');
+        $this->departmentModel = $this->callModel('DepartmentModel');
     }
 
     function updateAvatarBase64()
@@ -24,7 +24,7 @@ class Ajax extends Controller
         $file = 'avatar' . uniqid() . '.png';
         $kq = file_put_contents($folderPath . $file, $image_base64);
         if ($kq) {
-            $res = $this->staffModal->updateData('tb_nhanvien', 'hinh_anh', $file, 'maNV', $user['id']);
+            $res = $this->staffModel->updateData('tb_nhanvien', 'hinh_anh', $file, 'maNV', $user['id']);
             if ($res) {
                 $user['avatar'] =  $file;
                 $_SESSION['user'] = $user;
@@ -45,13 +45,20 @@ class Ajax extends Controller
         if ($_POST['passNew'] != $_POST['passNewRef']) return;
         // print_r($_POST);
         $uId = $_SESSION['user']['id'];
-        $this->accModal->updatePass($uId, $_POST['passNew'], $_POST['passOld']);
+        $this->accModel->updatePass($uId, $_POST['passNew'], $_POST['passOld']);
     }
 
     public function getDepartment()
     {
         # code...
-        $listDepartment =  $this->returnArray($this->departmentModal->getDepartment());
+        $listDepartment =  $this->returnArray($this->departmentModel->getDepartment());
+        echo json_encode($listDepartment);
+    }
+
+    public function getHoliday()
+    {
+        # code...
+        $listDepartment =  $this->returnArray($this->departmentModel->getDepartment());
         echo json_encode($listDepartment);
     }
 }

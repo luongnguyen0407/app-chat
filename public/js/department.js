@@ -51,18 +51,16 @@ $(window).ready(function () {
           data: {
             id,
           },
-          success: function (data) {
-            console.log(data);
-            if (data === "ok") {
-              swal("Xóa thành công", {
-                icon: "success",
-              });
-              getData();
-            } else {
-              swal("Đang có nhân viên thuộc phòng ban này", {
-                icon: "error",
-              });
-            }
+          success: function () {
+            swal("Xóa thành công", {
+              icon: "success",
+            });
+            getData();
+          },
+          error: function (error) {
+            swal("Đang có nhân viên thuộc phòng ban này", {
+              icon: "error",
+            });
           },
         });
       }

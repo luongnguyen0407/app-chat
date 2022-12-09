@@ -83,12 +83,22 @@
     padding: 5px;
     border: 4px;
     cursor: pointer;
-    &:first-child {
-      display: block;
-      color: $blue_color;
-    }
     &:nth-child(2) {
       color: #00ada3;
     }
   }
+  .action_salary {
+    display: block;
+    color: $blue_color;
+    cursor: pointer;
+  }
+}
+.btn-sort {
+  padding: 3px 10px;
+  border: none;
+  background-color: $blue_color;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 600;
 }

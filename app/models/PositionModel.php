@@ -1,5 +1,5 @@
 <?php
-class PositionModal extends DB
+class PositionModel extends DB
 {
     public function getPosition()
     {

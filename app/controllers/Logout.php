@@ -5,7 +5,7 @@ class Logout extends Controller
 
     function __construct()
     {
-        //modal
+        //model
         unset($_SESSION['user']);
         header('location: ./Auth');
     }

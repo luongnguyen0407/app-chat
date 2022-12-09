@@ -79,7 +79,7 @@ trait LoopData
 
     public function ValidateDataExcel($data)
     {
-        require_once "./app/models/StaffModal.php";
+        require_once "./app/models/StaffModel.php";
         if (empty($data)) return;
         // PrintDisplay::printFix($data);
         // die;

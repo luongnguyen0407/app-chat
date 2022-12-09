@@ -787,12 +787,23 @@ input[type=date]::-webkit-calendar-picker-indicator {
   border: 4px;
   cursor: pointer;
 }
-.table_staff_manage .column8 a:first-child {
-  display: block;
-  color: #003ad2;
-}
 .table_staff_manage .column8 a:nth-child(2) {
   color: #00ada3;
+}
+.table_staff_manage .action_salary {
+  display: block;
+  color: #003ad2;
+  cursor: pointer;
+}
+
+.btn-sort {
+  padding: 3px 10px;
+  border: none;
+  background-color: #003ad2;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 600;
 }
 
 .wrap_form_add_staff {

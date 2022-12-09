@@ -1,5 +1,5 @@
 <?php
-class CartModal extends DB
+class CartModel extends DB
 {
     public function getAmountInCart($id)
     {

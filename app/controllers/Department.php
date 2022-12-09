@@ -2,13 +2,13 @@
 class Department extends Controller
 {
     use LoopData;
-    public $departmentModal;
+    public $departmentModel;
     function __construct()
     {
         if (!$this->checkUser(true)) {
             header('location: ./Attendance');
         }
-        $this->departmentModal = $this->callModal('DepartmentModal');
+        $this->departmentModel = $this->callModel('DepartmentModel');
     }
 
     public function Show()
@@ -16,7 +16,7 @@ class Department extends Controller
         # code...
         $this->callView('Master', [
             'Page' => 'DepartmentPage',
-            'department' => $this->returnArray($this->departmentModal->getDepartment())
+            'department' => $this->returnArray($this->departmentModel->getDepartment())
         ]);
     }
     public function createDepartment()
@@ -30,9 +30,9 @@ class Department extends Controller
         if (empty($error)) {
             $idDepart =  strlen($_POST['maPb']) > 5 ? substr($_POST['maPb'], 0, 5) : $_POST['maPb'];
             $upDepart = strtoupper($idDepart);
-            $res = $this->departmentModal->findData($upDepart);
+            $res = $this->departmentModel->findData($upDepart);
             if (!$res) {
-                $kq = $this->departmentModal->newDepartment($upDepart, ucwords($_POST['namePb']));
+                $kq = $this->departmentModel->newDepartment($upDepart, ucwords($_POST['namePb']));
                 if ($kq) {
                     header('location: ../Department');
                 } else {
@@ -44,7 +44,7 @@ class Department extends Controller
         }
         $this->callView('Master', [
             'Page' => 'DepartmentPage',
-            'department' => $this->returnArray($this->departmentModal->getDepartment()),
+            'department' => $this->returnArray($this->departmentModel->getDepartment()),
             'error' => $error,
             'old_value' => $_POST
         ]);
@@ -53,11 +53,11 @@ class Department extends Controller
     public function deleteDepartment()
     {
         if (empty($_POST['id'])) return;
-        $res = $this->departmentModal->deleteData($_POST['id']);
+        $res = $this->departmentModel->deleteData($_POST['id']);
         if ($res) {
-            echo 'ok';
+            http_response_code(200);
         } else {
-            echo 'error';
+            http_response_code(401);
         }
     }
 }

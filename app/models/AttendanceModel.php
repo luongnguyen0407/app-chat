@@ -1,5 +1,5 @@
 <?php
-class AttendanceModal extends DB
+class AttendanceModel extends DB
 {
     use LoopData;
     public function getAttend($uid)
@@ -24,16 +24,26 @@ class AttendanceModal extends DB
         }
     }
 
-    public function getTotal($uid)
+    public function getTotal($uid, $type = false, $date = false)
     {
         if (!$uid) return;
         $currentYear = date("Y");
         $currentMonth = date("m");
-        $sql = "SELECT ( HOUR(gio_ra) - HOUR(gio_vao)) * 60 + MINUTE(gio_ra) - MINUTE(gio_vao) as totalMin FROM tb_bangcong WHERE tb_bangcong.maNV = $uid AND  gio_vao IS NOT NULL AND gio_ra IS NOT NULL AND YEAR(ngay_cham) = $currentYear AND MONTH(ngay_cham) = $currentMonth ;";
+        if (empty($date)) {
+            $sql = "SELECT ( HOUR(gio_ra) - HOUR(gio_vao)) * 60 + MINUTE(gio_ra) - MINUTE(gio_vao) as totalMin FROM tb_bangcong WHERE tb_bangcong.maNV = $uid AND  gio_vao IS NOT NULL AND gio_ra IS NOT NULL AND YEAR(ngay_cham) = $currentYear AND MONTH(ngay_cham) = $currentMonth ;";
+        } else {
+            $sql = "SELECT ( HOUR(gio_ra) - HOUR(gio_vao)) * 60 + MINUTE(gio_ra) - MINUTE(gio_vao) as totalMin FROM tb_bangcong WHERE tb_bangcong.maNV = $uid AND  gio_vao IS NOT NULL AND gio_ra IS NOT NULL AND YEAR(ngay_cham) = " . $date['year'] . " AND MONTH(ngay_cham) = " . $date['month'] . " ;";
+        }
         $res = $this->link->query($sql);
         if ($res) {
             $arr = $this->returnArray($res);
-            echo json_encode($arr);
+            if (empty($type)) {
+                echo json_encode($arr);
+            } else {
+                return $arr;
+            }
+        } else {
+            http_response_code(500);
         }
     }
     public function findData($where)

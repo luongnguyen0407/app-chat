@@ -1,5 +1,5 @@
 <?php
-class StaffModal extends DB
+class StaffModel extends DB
 {
     use LoopData;
     public function createNewStaff($data)
@@ -118,5 +118,16 @@ class StaffModal extends DB
         $kq = $this->link->query($sql);
         if ($kq) return true;
         return false;
+    }
+
+    public function getContract($uId)
+    {
+        $sql = "SELECT `luong_cung` FROM `tb_hopdong` WHERE maNV = $uId";
+        $kq =  $this->link->query($sql);
+        if ($kq) {
+            return $kq->fetch_assoc();
+        } else {
+            http_response_code(401);
+        }
     }
 }

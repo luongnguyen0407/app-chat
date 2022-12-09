@@ -3,17 +3,17 @@ class Auth extends Controller
 {
     use HandleMail;
     use LoopData;
-    public $staffModal;
-    public $accModal;
+    public $staffModel;
+    public $accModel;
 
     function __construct()
     {
         if ($this->checkUser()) {
             header('location: ./Attendance');
         }
-        $this->userModal = $this->callModal('UserModal');
-        $this->staffModal = $this->callModal('StaffModal');
-        $this->accModal = $this->callModal('AccModal');
+        $this->userModel = $this->callModel('UserModel');
+        $this->staffModel = $this->callModel('StaffModel');
+        $this->accModel = $this->callModel('AccModel');
     }
     function Show()
     {
@@ -29,7 +29,7 @@ class Auth extends Controller
         if (empty($error)) {
             $uid = $_POST['cmnd_login'];
             $password = $_POST['password'];
-            $res = $this->accModal->findData('tai_khoan', $uid, "*");
+            $res = $this->accModel->findData('tai_khoan', $uid, "*");
             $res = !empty($res) ? $res->fetch_assoc() : '';
             if (!empty($res['mat_khau'])) {
                 $check_pass = password_verify($password, $res['mat_khau']);
@@ -73,14 +73,14 @@ class Auth extends Controller
             return;
         }
         $can_cuoc = $_POST['can_cuoc'];
-        $res = $this->staffModal->findData('can_cuoc', $can_cuoc, "email");
+        $res = $this->staffModel->findData('can_cuoc', $can_cuoc, "email");
         $email = $res->fetch_assoc();
         if (!empty($email)) {
             $mail = $email['email'];
             $code = uniqid();
             $kq = $this->SendMailPass($code, $mail);
             if ($kq) {
-                $response =  $this->staffModal->updateData('tb_taikhoan', 'khoi_phuc', $code, "tai_khoan", $_POST['can_cuoc']);
+                $response =  $this->staffModel->updateData('tb_taikhoan', 'khoi_phuc', $code, "tai_khoan", $_POST['can_cuoc']);
                 if ($response) {
                     $_SESSION['uid'] = $can_cuoc;
                     $this->callView('MasterAuth', [
@@ -113,14 +113,14 @@ class Auth extends Controller
         }
 
         if (empty($error)) {
-            $res =  $this->accModal->findData('tai_khoan', $uid);
+            $res =  $this->accModel->findData('tai_khoan', $uid);
             if (!empty($res)) {
                 $codeKp = $res->fetch_assoc();
                 if ($_POST['code'] == $codeKp['khoi_phuc']) {
                     $newPass = password_hash($_POST['newpass'], PASSWORD_DEFAULT);
-                    $response =  $this->accModal->updateData('mat_khau', $newPass, $uid);
+                    $response =  $this->accModel->updateData('mat_khau', $newPass, $uid);
                     if ($response) {
-                        $this->accModal->updateData('khoi_phuc', null, $uid);
+                        $this->accModel->updateData('khoi_phuc', null, $uid);
                         $this->callView('MasterAuth', [
                             'Page' => 'LoginPage',
                             'status' => 'Đổi mật khẩu thành công'

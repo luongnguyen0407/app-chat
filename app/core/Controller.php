@@ -1,11 +1,11 @@
 <?php
 class Controller
 {
-    public function callModal($modal)
+    public function callModel($model)
     {
-        if (file_exists("./app/models/" . $modal . ".php")) {
-            require_once "./app/models/" . $modal . ".php";
-            return new $modal;
+        if (file_exists("./app/models/" . $model . ".php")) {
+            require_once "./app/models/" . $model . ".php";
+            return new $model;
         }
     }
     public function checkUser($isAdmin = false)

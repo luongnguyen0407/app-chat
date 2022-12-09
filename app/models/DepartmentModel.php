@@ -1,5 +1,5 @@
 <?php
-class DepartmentModal extends DB
+class DepartmentModel extends DB
 {
     public function getDepartment()
     {

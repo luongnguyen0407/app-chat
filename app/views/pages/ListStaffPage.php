@@ -69,7 +69,6 @@
                             </td>
                             <td class="column7">
                                 <?php
-
                                 if ($row['ngay_ket_thuc'] < $today) {
                                 ?>
                                     <p class="danger">Hết hạn</p>
@@ -82,17 +81,40 @@
                                 ?>
                             </td>
                             <td class="column8">
-                                <a href="" class="action_update">Sửa</a>
+                                <p class="action_salary" data-nv="<?php PrintDisplay::printShow($row, 'maNV') ?>">Lương</p>
                                 <a href="Staff/viewDetails/<?php PrintDisplay::printShow($row, 'maNV') ?>" class="action_del">Xem</a>
                             </td>
                         </tr>
                 <?php
                     }
                 }
-
                 ?>
-
             </tbody>
         </table>
     </div>
 </div>
+<div class="modal micromodal-slide" id="modal-6" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+            <header class="modal__header">
+                <h2 class="modal__title" id="modal-1-title">
+                    Lương tháng 10
+                </h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            <main class="modal__content modal__content2" id="modal-1-content">
+                <input type="month" class="input-month">
+                <button type="button" class="btn btn-sort">Lọc</button>
+                <form action="./HandleExcel/Import" class="form_modal_excel" enctype="multipart/form-data" method="post">
+                    <label for="">Chọn file upload</label>
+                    <input type="file" name="import_excel">
+                    <footer class="modal__footer">
+                        <button type="submit" class="modal__btn modal__btn-primary btn_save">Save</button>
+                        <button class="modal__btn modal__btn_add" data-micromodal-close aria-label="Close this dialog window"><a href="Profile">Thoát</a></button>
+                    </footer>
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+<script src="./public/js/listStaff.js"></script>

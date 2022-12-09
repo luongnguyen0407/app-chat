@@ -1,5 +1,5 @@
 <?php
-class ManageModal extends DB
+class ManageModel extends DB
 {
     use LoopData;
     public function totalCard()
