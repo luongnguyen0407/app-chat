@@ -1349,6 +1349,24 @@ input[type=date]::-webkit-calendar-picker-indicator {
   display: none;
 }
 
+.modal_salary_content {
+  width: 550px;
+}
+
+.btn_detail {
+  display: block;
+  margin: 0 auto;
+  padding: 5px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  background-color: #003ad2;
+  border: none;
+  border-radius: 4px;
+}
+.btn_detail a {
+  color: white;
+}
+
 .loading_main {
   position: fixed;
   inset: 0;

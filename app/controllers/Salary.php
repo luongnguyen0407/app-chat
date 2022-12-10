@@ -38,10 +38,14 @@ class Salary extends Controller
             $totalMin += $row['totalMin'];
         }
         $salary = $this->staffModel->getContract($_POST['uId']);
+        $totalMinHoliday = 8 * 60 * $holiday; //work 8h for day;
+        $totalMinWork = $totalMin + $totalMinHoliday;
+        $salaryOfMin = $salary['luong_cung'] / (20 * 8 * 60); // 20 day work, 8h of day, 60 min
         print_r(json_encode([
             'totalMin' => $totalMin,
             'salary' => $salary['luong_cung'],
-            'holiday' => $holiday
+            'holiday' => $holiday,
+            'monthSalary' => $salaryOfMin * $totalMinWork
         ]));
     }
 }

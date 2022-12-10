@@ -28,10 +28,9 @@ class Staff extends Controller
     {
         if (empty($id)) return;
         $res = $this->staffModel->findData('maNV', $id, "*");
-        if (!$res) {
+        if (mysqli_num_rows($res) == 0) {
             $this->callView('Master', [
-                'Page' => 'pagenotpound',
-                'staff' => $res
+                'Page' => 'PageNotPound',
             ]);
             return;
         }
@@ -133,10 +132,9 @@ class Staff extends Controller
         if (empty($id)) return;
         $res = $this->staffModel->findData('maNV', $id, "*");
         // PrintDisplay::printFix($res);
-        if (!$res) {
+        if (mysqli_num_rows($res) == 0) {
             $this->callView('Master', [
-                'Page' => 'pagenotpound',
-                'staff' => $res
+                'Page' => 'PageNotPound',
             ]);
             return;
         }

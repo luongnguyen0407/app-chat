@@ -95,25 +95,35 @@
 </div>
 <div class="modal micromodal-slide" id="modal-6" aria-hidden="true">
     <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <div class="modal__container modal_salary_content" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
             <header class="modal__header">
                 <h2 class="modal__title" id="modal-1-title">
                     Lương tháng 10
                 </h2>
                 <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
             </header>
-            <main class="modal__content modal__content2" id="modal-1-content">
+            <main class="modal__content modal__content2 " id="modal-1-content">
                 <input type="month" class="input-month">
-                <button type="button" class="btn btn-sort">Lọc</button>
-                <form action="./HandleExcel/Import" class="form_modal_excel" enctype="multipart/form-data" method="post">
-                    <label for="">Chọn file upload</label>
-                    <input type="file" name="import_excel">
-                    <footer class="modal__footer">
-                        <button type="submit" class="modal__btn modal__btn-primary btn_save">Save</button>
-                        <button class="modal__btn modal__btn_add" data-micromodal-close aria-label="Close this dialog window"><a href="Profile">Thoát</a></button>
-                    </footer>
-                </form>
+                <table class="table table-light table_staff_manage">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Lương</th>
+                            <th>Số giờ làm</th>
+                            <th>Số ngày lễ</th>
+                            <th>Lương nhận</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="salary">12.000.000đ</td>
+                            <td class="hour_work"></td>
+                            <td class="holiday_month">2</td>
+                            <td class="salary_month">10.000.000đ</td>
+                        </tr>
+                    </tbody>
+                </table>
             </main>
+            <button class="btn_detail"><a href="">Chi Tiết</a></button>
         </div>
     </div>
 </div>
