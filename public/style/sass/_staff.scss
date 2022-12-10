@@ -9,6 +9,8 @@
   @include flex($jus: space-between);
   margin-bottom: 20px;
   .add_new_staff {
+    display: flex;
+    gap: 0 10px;
     button {
       padding: 10px 20px;
       border-radius: 100rem;
@@ -101,4 +103,16 @@
   cursor: pointer;
   border-radius: 3px;
   font-weight: 600;
+}
+.table_staff_manage_search .form_sort_salary {
+  display: flex;
+  align-items: center;
+  gap: 0 10px;
+  button {
+    padding: 3px 10px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 3px;
+  }
 }

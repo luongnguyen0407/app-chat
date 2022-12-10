@@ -3,6 +3,14 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+function calculatorSalary($holiday, $totalMin, $salary)
+{
+    $totalMinHoliday = 8 * 60 * $holiday; //work 8h for day;
+    $totalMinWork = $totalMin + $totalMinHoliday;
+    $salaryOfMin = $salary / (20 * 8 * 60);
+    return $salaryOfMin * $totalMinWork;
+}
+
 class PrintDisplay
 {
     static public function printError($data, $nameField)
@@ -152,15 +160,6 @@ trait HandleMail
             //Recipients
             $mail->setFrom('xshophello@gmail.com', 'Admin');
             $mail->addAddress($email, 'Hello');     // Add a recipient
-            // $mail->addAddress('ellen@example.com');               // Name is optional
-            // $mail->addReplyTo('info@example.com', 'Information');
-            // $mail->addCC('cc@example.com');
-            // $mail->addBCC('bcc@example.com');
-
-            //Attachments
-            // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
             //Content
 
             if (isset($email_vars)) {

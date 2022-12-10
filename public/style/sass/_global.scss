@@ -112,3 +112,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 //     height: auto;
 //   }
 // }
+.fc-toolbar-title {
+  text-transform: capitalize;
+}

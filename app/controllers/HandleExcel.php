@@ -72,6 +72,63 @@ class HandleExcel extends Controller
             }
         }
     }
+
+    public function ExportSalary($date)
+    {
+        if (empty($date)) {
+            header('location: ../../Salary');
+        }
+        $date = explode("-", $date);
+        $kq = $this->staffModel->getAllSalary($date[1], $date[0]);
+        // PrintDisplay::printFix($kq);
+        // return;
+        // die;
+        if (!empty($kq)) {
+            try {
+                //code...
+
+                $excel = new PHPExcel();
+                $excel->setActiveSheetIndex(0);
+                $excel->getActiveSheet()->setTitle('Danh Sách Nhân Viên');
+
+                $excel->getActiveSheet()->getStyle('A1:I1')->getFont()->setBold(true);
+
+
+                $excel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('E')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+
+                $excel->getActiveSheet()->setCellValue('A1', 'HỌ VÀ TÊN');
+                $excel->getActiveSheet()->setCellValue('B1', 'GIOI TINH');
+                $excel->getActiveSheet()->setCellValue('C1', 'LUONG CUNG');
+                $excel->getActiveSheet()->setCellValue('D1', 'SO GIO LAM');
+                $excel->getActiveSheet()->setCellValue('E1', 'LUONG NHAN');
+                $excel->getActiveSheet()->setCellValue('F1', 'NGAY NGHI LE');
+
+                $startRow = 2;
+                foreach ($kq as $row) {
+                    $hoursWork = intdiv($row['min'], 60) . 'h' . ($row['min'] % 60);
+                    $salaryMonth = calculatorSalary($row['holiday'], $row['min'], $row['luong_cung']);
+                    $excel->getActiveSheet()->setCellValue('A' . $startRow, $row['ho_ten']);
+                    $excel->getActiveSheet()->setCellValue('B' . $startRow, $row['gioi_tinh']);
+                    $excel->getActiveSheet()->setCellValue('C' . $startRow, $row['luong_cung']);
+                    $excel->getActiveSheet()->setCellValue('D' . $startRow, $hoursWork);
+                    $excel->getActiveSheet()->setCellValue('E' . $startRow, number_format($salaryMonth, 0, ".", ".") . "đ");
+                    $excel->getActiveSheet()->setCellValue('F' . $startRow, $row['holiday']);
+                    $startRow++;
+                }
+                ob_end_clean();
+                header('Content-type:application/vnd.ms-excel');
+                header('Content-Disposition:attachment; filename="danh_sach_luong_thang_' . $date[0] . '_' . time() . '.xlsx"');
+                PHPExcel_IOFactory::createWriter($excel, 'Excel2007')->save('php://output');
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+        }
+    }
     public function Import()
     {
         $status = array();

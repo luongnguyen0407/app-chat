@@ -39,7 +39,7 @@
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 0H8V8H0V0ZM0 10H8V18H0V10ZM10 0H18V8H10V0ZM10 10H18V18H10V10ZM12 2V6H16V2H12ZM12 12V16H16V12H12ZM2 2V6H6V2H2ZM2 12V16H6V12H2Z" fill="#003AD2" />
                     </svg>
-                    <p>Dashboard</p>
+                    <p>Quản lý</p>
                 </a>
                 <a href="Staff" class="side_bar_item">
                     <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,20 +80,19 @@
                             <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18 0L20 4V17C20 17.2652 19.8946 17.5196 19.7071 17.7071C19.5196 17.8946 19.2652 18 19 18H1C0.734784 18 0.48043 17.8946 0.292893 17.7071C0.105357 17.5196 0 17.2652 0 17V4.004L2 0H18ZM18 6H2V16H18V6ZM10 7L14 11H11V15H9V11H6L10 7ZM16.764 2H3.236L2.237 4H17.764L16.764 2Z" fill="#003AD2" />
                             </svg>
-                            <a href="#">Sales Orders</a>
+                            <a href="#">Top Salary</a>
                         </li>
                         <li class="nav_item">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15.366 3.43799L18.577 8.99999H22V11H20.833L20.076 20.083C20.0552 20.3329 19.9413 20.5658 19.7568 20.7357C19.5723 20.9055 19.3308 20.9999 19.08 21H4.92C4.66925 20.9999 4.4277 20.9055 4.24322 20.7357C4.05875 20.5658 3.94481 20.3329 3.924 20.083L3.166 11H2V8.99999H5.422L8.634 3.43799L10.366 4.43799L7.732 8.99999H16.267L13.634 4.43799L15.366 3.43799V3.43799ZM18.826 11H5.173L5.84 19H18.159L18.826 11ZM13 13V17H11V13H13ZM9 13V17H7V13H9ZM17 13V17H15V13H17Z" fill="#003AD2" />
                             </svg>
-                            <a href="#">Products</a>
+                            <a href="#">Thời tiết</a>
                         </li>
                         <li class="nav_item">
                             <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 0H18L20 4V17C20 17.2652 19.8946 17.5196 19.7071 17.7071C19.5196 17.8946 19.2652 18 19 18H1C0.734784 18 0.48043 17.8946 0.292893 17.7071C0.105357 17.5196 0 17.2652 0 17V4.004L2 0ZM18 6H2V16H18V6ZM17.764 4L16.764 2H3.237L2.237 4H17.764ZM11 11H14L10 15L6 11H9V7H11V11Z" fill="#003AD2" />
                             </svg>
-
-                            <a href="#">Purchase Orders</a>
+                            <a href="#">Tin tức</a>
                         </li>
                     </ul>
                     <div class="nav_search">

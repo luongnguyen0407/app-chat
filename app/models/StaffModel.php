@@ -130,4 +130,17 @@ class StaffModel extends DB
             http_response_code(401);
         }
     }
+
+    public function getAllSalary($year, $month)
+    {
+        $sql = "SELECT (SELECT COUNT(maNN) as holiday FROM `tb_ngaynghi` WHERE YEAR(ngay_nghi) = '" . $year . "' AND MONTH(ngay_nghi) = '" . $month . "') AS holiday, 
+        (SELECT SUM(( HOUR(gio_ra) - HOUR(gio_vao)) * 60 + MINUTE(gio_ra) - MINUTE(gio_vao)) as totalMin FROM tb_bangcong WHERE tb_nhanvien.maNV = tb_bangcong.maNV AND gio_vao IS NOT NULL AND gio_ra IS NOT NULL AND YEAR(ngay_cham) = $year AND MONTH(ngay_cham) = $month GROUP BY tb_bangcong.maNV) as min
+        ,tb_nhanvien.maNV, tb_nhanvien.ho_ten, tb_nhanvien.hinh_anh, tb_nhanvien.gioi_tinh, tb_hopdong.luong_cung FROM tb_hopdong INNER JOIN tb_nhanvien ON tb_hopdong.maNV=tb_nhanvien.maNV;";
+        $kq =  $this->link->query($sql);
+        if ($kq) {
+            return $this->returnArray($kq);
+        } else {
+            return false;
+        }
+    }
 }

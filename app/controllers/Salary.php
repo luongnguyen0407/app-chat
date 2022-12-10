@@ -12,10 +12,28 @@ class Salary extends Controller
     }
     function Show()
     {
-
+        $currenYear = date("Y");
+        $currenMonth = date("m");
         $this->callView('Master', [
             'Page' => 'SalaryPage',
+            'staff' => $this->staffModel->getAllSalary($currenYear, $currenMonth),
+            'month' => $currenMonth,
+            'year' => $currenYear
         ]);
+    }
+    function Sort()
+    {
+        if (!empty($_POST)) {
+            $date = explode('-', $_POST['date_sort']);
+            $this->callView('Master', [
+                'Page' => 'SalaryPage',
+                'staff' => $this->staffModel->getAllSalary($date[0], $date[1]),
+                'month' => $date[1],
+                'year' => $date[0]
+            ]);
+        } else {
+            header('Location: ../Salary');
+        }
     }
     function calculatorSalary()
     {
@@ -38,14 +56,11 @@ class Salary extends Controller
             $totalMin += $row['totalMin'];
         }
         $salary = $this->staffModel->getContract($_POST['uId']);
-        $totalMinHoliday = 8 * 60 * $holiday; //work 8h for day;
-        $totalMinWork = $totalMin + $totalMinHoliday;
-        $salaryOfMin = $salary['luong_cung'] / (20 * 8 * 60); // 20 day work, 8h of day, 60 min
         print_r(json_encode([
             'totalMin' => $totalMin,
             'salary' => $salary['luong_cung'],
             'holiday' => $holiday,
-            'monthSalary' => $salaryOfMin * $totalMinWork
+            'monthSalary' => calculatorSalary($holiday, $totalMin, $salary['luong_cung']) // function in lib
         ]));
     }
 }

@@ -11,9 +11,9 @@
             <button>
                 <a href="HandleExcel/Export">Xuất file excel</a>
             </button>
-            <!-- <button>
+            <button>
                 <a href="Salary">Theo dõi lương</a>
-            </button> -->
+            </button>
         </div>
         <div class="table_staff_manage_search_input">
             <input type="text" placeholder="Search....">

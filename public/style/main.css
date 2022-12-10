@@ -161,6 +161,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
   background: #003ad2;
 }
 
+.fc-toolbar-title {
+  text-transform: capitalize;
+}
+
 .main {
   display: flex;
 }
@@ -708,6 +712,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
   align-items: center;
   margin-bottom: 20px;
 }
+.table_staff_manage_search .add_new_staff {
+  display: flex;
+  gap: 0 10px;
+}
 .table_staff_manage_search .add_new_staff button {
   padding: 10px 20px;
   border-radius: 100rem;
@@ -804,6 +812,19 @@ input[type=date]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   border-radius: 3px;
   font-weight: 600;
+}
+
+.table_staff_manage_search .form_sort_salary {
+  display: flex;
+  align-items: center;
+  gap: 0 10px;
+}
+.table_staff_manage_search .form_sort_salary button {
+  padding: 3px 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 3px;
 }
 
 .wrap_form_add_staff {

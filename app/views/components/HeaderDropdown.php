@@ -10,15 +10,15 @@ $user = $_SESSION['user'];
     <div class="dropdown-menu">
         <div class="cotrol-user">
             <a href="User" class="dropdown-item">
-                <i class="fa-solid fa-user"></i> My Profile</a>
+                <i class="fa-solid fa-user"></i>Hồ sơ</a>
             <?php
             if ($user['role'] == 1) {
             ?>
-                <a style="color:black;" href="DashBoard" class="dropdown-item"><i class="fa-solid fa-house"></i>DashBoard</a>
+                <a style="color:black;" href="DashBoard" class="dropdown-item"><i class="fa-solid fa-house"></i>Quản lý</a>
             <?php
             }
             ?>
-            <a style="color:red;" href="Logout" class="dropdown-item"><i class="fa-solid fa-power-off"></i> Sign Out</a>
+            <a style="color:red;" href="Logout" class="dropdown-item"><i class="fa-solid fa-power-off"></i>Đăng xuất</a>
         </div>
     </div>
 </div>

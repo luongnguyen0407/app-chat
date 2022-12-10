@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
       events: event,
+      locale: "vi",
       dateClick: function (info) {
         getDataByDay(info.dateStr);
         $(".list_att_title").text(`Điểm danh ngày ${info.dateStr}`);

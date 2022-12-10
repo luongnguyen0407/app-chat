@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function createCalendar(ev) {
     const event = ev;
     var calendarEl = document.getElementById("calendar");
-
     var calendar = new FullCalendar.Calendar(calendarEl, {
       validRange: {
         end: "2022-12-30",
@@ -38,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
       events: event,
+      locale: "vi",
     });
     calendar.render();
   }
