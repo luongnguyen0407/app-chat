@@ -110,15 +110,18 @@ document.addEventListener("DOMContentLoaded", function () {
         timeEnd,
         id,
       },
-      success: function (res) {
-        if (res === "ok") {
-          CreateToast("Sửa thành công");
-          getData();
-          let day = getDayFromHeader();
-          if (!day) return;
-          day = day[0];
-          getDataByDay(day.trim());
-        }
+      success: function () {
+        CreateToast("Sửa thành công");
+        getData();
+        let day = getDayFromHeader();
+        if (!day) return;
+        day = day[0];
+        getDataByDay(day.trim());
+      },
+      else: function () {
+        swal(err.statusText, {
+          icon: "error",
+        });
       },
     });
   });
@@ -150,13 +153,16 @@ document.addEventListener("DOMContentLoaded", function () {
         timeLine: selectValue,
         uid: idStaff,
       },
-      success: function (res) {
-        if (res === "ok") {
-          CreateToast("Thêm thành công");
-          getData();
-          getDataByDay(day[0].trim());
-          $(".modal__container_add").hide();
-        }
+      success: function () {
+        CreateToast("Thêm thành công");
+        getData();
+        getDataByDay(day[0].trim());
+        $(".modal__container_add").hide();
+      },
+      error: function (err) {
+        swal(err.statusText, {
+          icon: "error",
+        });
       },
     });
   });
@@ -215,5 +221,37 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.setAttribute("aria-hidden", "true");
     $(".modal__container_edit").hide();
     $(".modal__container_add").hide();
+  });
+
+  //reset password
+
+  $(".reset_password").click(() => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          url: "./Ajax/ResetPassword",
+          method: "POST",
+          data: {
+            idStaff,
+          },
+          success: function (res) {
+            swal("Khôi phục thành công", {
+              icon: "success",
+            });
+          },
+          error: function () {
+            swal("Khôi thất bại", {
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
   });
 });

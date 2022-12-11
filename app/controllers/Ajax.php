@@ -2,6 +2,7 @@
 class Ajax extends Controller
 {
     use LoopData;
+    use HandleMail;
     private $staffModel;
     private $accModel;
     private $departmentModel;
@@ -30,13 +31,12 @@ class Ajax extends Controller
             if ($res) {
                 $user['avatar'] =  $file;
                 $_SESSION['user'] = $user;
-                echo 'ok';
-                return;
+                return http_response_code(200);
             } else {
-                echo 'error';
+                return http_response_code(500);
             }
         } else {
-            echo 'error';
+            return http_response_code(401);
         }
     }
 
@@ -56,7 +56,29 @@ class Ajax extends Controller
         $listDepartment =  $this->returnArray($this->departmentModel->getDepartment());
         echo json_encode($listDepartment);
     }
+    public function updateDepartment()
+    {
+        # code...
+        if (empty($_POST['id']) || empty($_POST['idNew']) || empty($_POST['nameNew'])) {
+            return  http_response_code(401);
+        }
+        $idDepart =  strlen($_POST['idNew']) > 5 ? substr($_POST['idNew'], 0, 5) : $_POST['idNew'];
+        $upDepart = strtoupper($idDepart);
+        $kq =  $this->departmentModel->updateDepartment($_POST['id'], $upDepart, ucwords($_POST['nameNew']));
+        if ($kq) return http_response_code(200);
+        http_response_code(500);
+    }
 
+    public function updateHoliday()
+    {
+        # code...
+        if (empty($_POST['id']) || empty($_POST['dateNew']) || empty($_POST['nameNew'])) {
+            return  http_response_code(401);
+        }
+        $kq =  $this->holidayModel->updateHoliday($_POST['id'], $_POST['dateNew'], ucwords($_POST['nameNew']));
+        if ($kq) return http_response_code(200);
+        http_response_code(500);
+    }
     public function getHoliday()
     {
         # code...
@@ -65,6 +87,33 @@ class Ajax extends Controller
             echo json_encode($this->returnArray($kq));
         } else {
             http_response_code(500);
+        }
+    }
+
+    public function ResetPassword()
+    {
+        if (empty($_POST['idStaff'])) {
+            return  http_response_code(401);
+        }
+        try {
+            //code...
+            $res = $this->staffModel->findData('maNV', $_POST['idStaff'], "email");
+            $email = $res->fetch_assoc();
+            if (!empty($email)) {
+                $mail = $email['email'];
+                $code = uniqid();
+                $kq = $this->SendMailPass($code, $mail);
+                if ($kq) {
+                    $passHash = password_hash($code, PASSWORD_DEFAULT);
+                    $response =  $this->staffModel->updateData('tb_taikhoan', 'mat_khau', $passHash, "maNV", $_POST['idStaff']);
+                    if ($response) return http_response_code(200);
+                    return  http_response_code(401);
+                }
+            } else {
+                return  http_response_code(401);
+            }
+        } catch (\Throwable $th) {
+            return  http_response_code(401);
         }
     }
 }

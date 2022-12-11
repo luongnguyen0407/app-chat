@@ -52,11 +52,14 @@
       width: 100%;
       text-align: center;
       tbody {
+        span {
+          cursor: pointer;
+        }
         svg {
           width: 19px;
           height: 19px;
-          cursor: pointer;
           color: #28d915;
+          pointer-events: none;
         }
         .wrap_active {
           @include flex;

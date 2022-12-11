@@ -7,6 +7,7 @@
             </p>
         </div>
         <button class="global_btn"><a href="Staff/Update/<?php PrintDisplay::printShow($data['staff'], 'maNV') ?>">Sửa thông tin</a></button>
+        <button class="global_btn reset_password" data-nv="<?php PrintDisplay::printShow($data['staff'], 'maNV') ?>">Khôi phục mật khẩu</button>
     </div>
     <div class="staff_attendance">
         <div id="calendar_staff">

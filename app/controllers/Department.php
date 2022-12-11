@@ -31,7 +31,7 @@ class Department extends Controller
             $idDepart =  strlen($_POST['maPb']) > 5 ? substr($_POST['maPb'], 0, 5) : $_POST['maPb'];
             $upDepart = strtoupper($idDepart);
             $res = $this->departmentModel->findData($upDepart);
-            if (mysqli_num_rows($res) == 0) {
+            if (!$res) {
                 $kq = $this->departmentModel->newDepartment($upDepart, ucwords($_POST['namePb']));
                 if ($kq) {
                     header('location: ../Department');

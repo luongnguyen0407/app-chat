@@ -28,12 +28,14 @@ class AccModel extends DB
             $oldPass = $old->fetch_assoc();
             $checkPass =  password_verify($passOld, $oldPass["mat_khau"]);
             if (!$checkPass) {
-                echo 'error';
+                http_response_code(422);
             } else {
                 $newPass = password_hash($passNew, PASSWORD_DEFAULT);
                 $res =  $this->updateData('mat_khau', $newPass,  $oldPass["tai_khoan"]);
                 if ($res) {
-                    echo true;
+                    http_response_code(200);
+                } else {
+                    http_response_code(500);
                 }
             }
         }

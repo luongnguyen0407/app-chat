@@ -73,10 +73,9 @@ class AttendanceModel extends DB
 
         $res = $this->link->query($sql);
         if ($res) {
-            echo 'ok';
-            return;
+            return http_response_code(200);
         }
-        echo 'error';
+        http_response_code(500);
     }
 
     public function updateAtt($maCA, $maNV)
@@ -95,9 +94,8 @@ class AttendanceModel extends DB
         $sql = "UPDATE `tb_bangcong` SET `gio_vao`= $time_start, `gio_ra`= $time_end WHERE  maBC = '" . $id . "'";
         $kq = $this->link->query($sql);
         if ($kq) {
-            echo 'ok';
-            return;
+            return http_response_code(200);
         }
-        echo 'error';
+        http_response_code(500);
     }
 }

@@ -1774,11 +1774,14 @@ input[type=date]::-webkit-calendar-picker-indicator {
   width: 100%;
   text-align: center;
 }
+.wrap_department .list_department table tbody span {
+  cursor: pointer;
+}
 .wrap_department .list_department table tbody svg {
   width: 19px;
   height: 19px;
-  cursor: pointer;
   color: #28d915;
+  pointer-events: none;
 }
 .wrap_department .list_department table tbody .wrap_active {
   display: flex;

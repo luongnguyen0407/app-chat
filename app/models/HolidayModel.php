@@ -27,4 +27,11 @@ class HolidayModel extends DB
         $res = $this->link->query($sql);
         return $res;
     }
+
+    public function updateHoliday($id, $date, $name)
+    {
+        $sql = "UPDATE `tb_ngaynghi` SET `ngay_nghi`='$date',`ten_ngay_nghi`='$name' WHERE maNN = '$id'";
+        $res = $this->link->query($sql);
+        return $res;
+    }
 }

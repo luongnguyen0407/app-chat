@@ -13,4 +13,14 @@ class ManageModel extends DB
         }
         return false;
     }
+    public function getTotalStaffDep()
+    {
+        $sql = "SELECT tb_phongban.maPB,tb_phongban.ten_phong, COUNT(tb_nhanvien.maNV) as total FROM tb_phongban LEFT JOIN tb_nhanvien ON tb_phongban.maPB = tb_nhanvien.maPB GROUP BY tb_phongban.maPB;";
+        $res = $this->link->query($sql);
+        if ($res) {
+            $arr = $this->returnArray($res);
+            return $arr;
+        }
+        return false;
+    }
 }

@@ -12,7 +12,7 @@
             <p class=" error_from"><?php PrintDisplay::printError($data, 'password') ?></p>
         </div>
         <button class="global_btn" style="margin-top: 10px;">Đăng nhập</button>
-        <p class="forgot_pass btn_open_modal">Forgot Password?</p>
+        <p class="forgot_pass btn_open_modal" style="display: none;">Forgot Password?</p>
     </form>
 </div>
 <div class="modal micromodal-slide" id="modal-3" aria-hidden="true">

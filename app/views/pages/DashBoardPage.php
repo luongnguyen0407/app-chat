@@ -1,7 +1,5 @@
 <?php
 $card = $data['Card'][0];
-// echo $card['att'];
-
 ?>
 
 <div class="content_dashboard ">
@@ -189,8 +187,8 @@ $card = $data['Card'][0];
     </div>
     <section class="dashboard_list_table">
         <div class="dashboard_table_item_1">
-            <p class="dashboard_table_item_1_header">Danh sách nhân viên mớ<i></i></p>
-            <div class="dashboard_table_search">
+            <p class="dashboard_table_item_1_header">Danh sách phòng ban<i></i></p>
+            <!-- <div class="dashboard_table_search">
                 <div class="dashboard_table_input">
                     <input type="text" placeholder="Search">
                     <div class="table_icon_search">
@@ -205,61 +203,48 @@ $card = $data['Card'][0];
                     <div>Completed</div>
                     <div>Fulfilled</div>
                 </div>
-            </div>
+            </div> -->
             <ul class="dashboard_table_list hide_scroll">
                 <li class="dashboard_table_list_item dashboard_table_list_item_head">
-                    <p>Order ID</p>
-                    <p>Customer</p>
-                    <p>Fulfillment status</p>
-                    <p>Total</p>
+                    <p>ID Phòng ban</p>
+                    <p>Tên phòng ban</p>
+                    <p>Trạng thái</p>
+                    <p>Số nhân viên</p>
                 </li>
-                <li class="dashboard_table_list_item dashboard_table_list_item_content">
-                    <p class="table_item_id">Order ID</p>
-                    <p class="table_item_customer">Customer</p>
-                    <p class="table_item_status success">Fulfillment</p>
-                    <p class="table_item_total">200.000</p>
-                </li>
-                <li class="dashboard_table_list_item dashboard_table_list_item_content">
-                    <p class="table_item_id">Order ID</p>
-                    <p class="table_item_customer">Customer</p>
-                    <p class="table_item_status success">Fulfillment</p>
-                    <p class="table_item_total">200.000</p>
-                </li>
+                <?php
+                if (!empty($data['Department'])) {
+                    foreach ($data['Department'] as &$dep) {
+                ?>
+                        <li class="dashboard_table_list_item dashboard_table_list_item_content">
+                            <p class="table_item_id"><?php PrintDisplay::printShow($dep, 'maPB') ?></p>
+                            <p class="table_item_customer"><?php PrintDisplay::printShow($dep, 'ten_phong') ?></p>
+                            <p class="table_item_status success">Hoạt động</p>
+                            <p class="table_item_total"><?php PrintDisplay::printShow($dep, 'total') ?></p>
+                        </li>
+                <?php
+                    }
+                }
+                ?>
             </ul>
         </div>
         <div class="dashboard_table_item_1 dashboard_table_item_2">
             <p class="dashboard_table_item_1_header">Top lương tháng trước</p>
             <div class="wrap_top_salary">
-                <div class="wrap_top_salary_item">
-                    <img class="top_salary_avatar" src="https://images.unsplash.com/photo-1620523162656-4f968dca355a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="avatar">
-                    <p class="top_salary_name">Nguyen van a</p>
-                    <p class="top_salary_money">12.000.000</p>
-                </div>
-                <div class="wrap_top_salary_item">
-                    <img class="top_salary_avatar" src="https://images.unsplash.com/photo-1620523162656-4f968dca355a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="avatar">
-                    <p class="top_salary_name">Nguyen van a</p>
-                    <p class="top_salary_money">12.000.000</p>
-                </div>
-                <div class="wrap_top_salary_item">
-                    <img class="top_salary_avatar" src="https://images.unsplash.com/photo-1620523162656-4f968dca355a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="avatar">
-                    <p class="top_salary_name">Nguyen van a</p>
-                    <p class="top_salary_money">12.000.000</p>
-                </div>
-                <div class="wrap_top_salary_item">
-                    <img class="top_salary_avatar" src="https://images.unsplash.com/photo-1620523162656-4f968dca355a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="avatar">
-                    <p class="top_salary_name">Nguyen van a</p>
-                    <p class="top_salary_money">12.000.000</p>
-                </div>
-                <div class="wrap_top_salary_item">
-                    <img class="top_salary_avatar" src="https://images.unsplash.com/photo-1620523162656-4f968dca355a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="avatar">
-                    <p class="top_salary_name">Nguyen van a</p>
-                    <p class="top_salary_money">12.000.000</p>
-                </div>
-                <div class="wrap_top_salary_item">
-                    <img class="top_salary_avatar" src="https://images.unsplash.com/photo-1620523162656-4f968dca355a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="avatar">
-                    <p class="top_salary_name">Nguyen van a</p>
-                    <p class="top_salary_money">12.000.000</p>
-                </div>
+                <?php
+                if (!empty($data['staff'])) {
+                    foreach (array_chunk($data['staff'], 6)[0] as &$row) {
+                        $salaryMonth = calculatorSalary($row['holiday'], $row['min'], $row['luong_cung']);
+                ?>
+                        <div class="wrap_top_salary_item">
+                            <img class="top_salary_avatar" src="./public/img/upload/<?php PrintDisplay::printShow($row, 'hinh_anh') ?>" alt="avatar">
+                            <p class="top_salary_name" title="<?php PrintDisplay::printShow($row, 'ho_ten') ?>"><?php PrintDisplay::printShow($row, 'ho_ten') ?></p>
+                            <p class="top_salary_money"><?= number_format($salaryMonth, 0, ".", ".") . "đ" ?></p>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
+
             </div>
         </div>
     </section>

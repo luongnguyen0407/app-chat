@@ -97,6 +97,8 @@ class StaffModel extends DB
 
     public function findData($name, $data, $wh = 0)
     {
+        $name = mysqli_real_escape_string($this->link, $name);
+        $data = mysqli_real_escape_string($this->link, $data);
         if (empty($wh)) {
             $sql = "SELECT $name FROM `tb_nhanvien` WHERE $name = '" . $data . "'";
             $kq = $this->link->query($sql);

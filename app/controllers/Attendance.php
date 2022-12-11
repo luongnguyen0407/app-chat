@@ -34,7 +34,7 @@ class Attendance extends Controller
     {
         $arr = ['id', 'timeStart', 'timeEnd'];
         $error = $this->LoopCheckError($arr, $_POST);
-        if (!empty($error)) return;
+        if (!empty($error)) return http_response_code(400);
         $this->attendanceModel->updateAttByAdmin($_POST['timeStart'], $_POST['timeEnd'], $_POST['id']);
     }
 
@@ -48,7 +48,7 @@ class Attendance extends Controller
     {
         $arr = ['uid', 'timeStart', 'timeEnd', 'timeLine', 'day'];
         $error = $this->LoopCheckError($arr, $_POST);
-        if (!empty($error)) return;
+        if (!empty($error)) return http_response_code(400);
         $this->attendanceModel->addNewAttByAdmin($_POST);
     }
     function getCalendarByDay()

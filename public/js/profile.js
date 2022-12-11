@@ -67,12 +67,11 @@ $(document).ready(function () {
           url: "./Ajax/updateAvatarBase64",
           method: "POST",
           data: { image: base64data },
-          success: function (data) {
-            if (data === "ok") {
-              location.reload();
-            } else {
-              showToast("Lỗi");
-            }
+          success: function () {
+            location.reload();
+          },
+          error: function () {
+            showToast("Lỗi");
           },
         });
       };
@@ -98,14 +97,13 @@ $(document).ready(function () {
         passNewRef,
       },
       success: function (res) {
-        if (Number(res) === 1) {
-          showToast("Đổi mật khẩu thành công");
-          $(".form_modal_pass input").val("");
-          modalPass.classList.remove("is-open");
-          modalPass.setAttribute("aria-hidden", "true");
-        } else {
-          showToast("Sai mật khẩu cũ");
-        }
+        showToast("Đổi mật khẩu thành công");
+        $(".form_modal_pass input").val("");
+        modalPass.classList.remove("is-open");
+        modalPass.setAttribute("aria-hidden", "true");
+      },
+      error: function () {
+        showToast("Sai mật khẩu cũ");
       },
     });
   });
@@ -120,7 +118,7 @@ $(document).ready(function () {
       position: "right", // `left`, `center` or `right`
       stopOnFocus: true, // Prevents dismissing of toast on hover
       style: {
-        background: "#e74c3c",
+        background: "#9CFF2E",
       },
       onClick: function () {}, // Callback after click
     }).showToast();
