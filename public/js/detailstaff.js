@@ -227,25 +227,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   $(".reset_password").click(() => {
     swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      title: "Khôi phục mật khẩu ?",
+      text: "Việc này sẽ gửi 1 mật khẩu ngẫu nhiên về email của nhân viên",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
+        $(".toast-sendmail").show();
         $.ajax({
           url: "./Ajax/ResetPassword",
           method: "POST",
           data: {
             idStaff,
           },
-          success: function (res) {
+          success: function () {
+            $(".toast-sendmail").hide();
             swal("Khôi phục thành công", {
               icon: "success",
             });
           },
           error: function () {
+            $(".toast-sendmail").hide();
             swal("Khôi thất bại", {
               icon: "error",
             });

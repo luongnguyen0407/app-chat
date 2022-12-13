@@ -158,29 +158,18 @@ class HandleExcel extends Controller
             $readFile = './public/excel/' . $newFileName;
             $objFile = PHPExcel_IOFactory::identify($readFile);
             $objData = PHPExcel_IOFactory::createReader($objFile);
-
             //only read
-
             // $objData->setReadDataOnly(true);
-
             // cover data to obj
-
             $objPHPExcel =  $objData->load($readFile);
-
             //ch sheet
-
             $sheet = $objPHPExcel->setActiveSheetIndex(0);
-
             //get row end
             $totalRow = $sheet->getHighestRow();
             //get name col end
             $lastCol = $sheet->getHighestColumn();
-
-
             $totalCol = PHPExcel_Cell::columnIndexFromString($lastCol);
-
             $data = array();
-
             for ($i = 2; $i <=  $totalRow; $i++) {
                 # code...
                 for ($j = 0; $j <  $totalCol; $j++) {
@@ -205,6 +194,13 @@ class HandleExcel extends Controller
                         'excelError' => $kq
                     ]);
                 }
+            } else {
+                $this->callView('Master', [
+                    'Page' => 'AddStaffPage',
+                    'Position' => $this->returnArray($this->positionModel->getPosition()),
+                    'Department' => $this->returnArray($this->departmentModel->getDepartment()),
+                    'excelError' => 'Dữ Liệu Không Hợp Lệ'
+                ]);
             }
             unlink('./public/excel/' . $newFileName);
         }

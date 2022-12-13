@@ -145,4 +145,11 @@ class StaffModel extends DB
             return false;
         }
     }
+    public function delStaff($id)
+    {
+        $sql = "DELETE FROM `tb_nhanvien` WHERE maNV = '$id'";
+        $kq =  $this->link->query($sql);
+        if ($kq) return true;
+        return false;
+    }
 }

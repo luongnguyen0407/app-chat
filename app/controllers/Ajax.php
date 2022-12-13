@@ -116,4 +116,19 @@ class Ajax extends Controller
             return  http_response_code(401);
         }
     }
+
+    public function DeleteStaff()
+    {
+        if (empty($_POST['idStaff'])) {
+            return  http_response_code(401);
+        } else if ($_POST['idStaff'] == 84) {
+            return http_response_code(403);
+        }
+        $kq = $this->staffModel->delStaff($_POST['idStaff']);
+        if ($kq) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+        }
+    }
 }

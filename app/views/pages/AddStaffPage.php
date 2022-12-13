@@ -175,8 +175,12 @@ if (!empty($data['status'])) {
 
 if (!empty($data['excelError'])) {
     $error = "";
-    foreach ($data['excelError'] as $item) {
-        $error .= $item . ';' . '--';
+    if (is_array($data['excelError'])) {
+        foreach ($data['excelError'] as $item) {
+            $error .= $item . ';' . '--';
+        }
+    } else {
+        $error = $data['excelError'];
     }
 ?>
     <script>

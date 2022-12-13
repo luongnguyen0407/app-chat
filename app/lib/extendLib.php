@@ -96,7 +96,6 @@ trait LoopData
         $td = ['DH', 'CD', 'C3'];
         $rexPhone = "/(84|0[3|5|7|8|9])+([0-9]{8})\b/";
         $rexCMND = "/^([04]){2}([0-9]{10})$/";
-
         // if()
         if (count($data) != 15) {
             return 'Không đủ dữ liệu';
@@ -107,7 +106,6 @@ trait LoopData
         if ($this->findData('can_cuoc', $data[3])) return 'Số căn cước này đã tồn tại';
         if ($this->findData('email', $data[2])) return 'Email này đã tồn tại';
         if ($data[14] != 'photo-def.jpg') return 'Lỗi ảnh';
-
         // return true;
         $keyArray = [
             'name', 'phone', 'email', 'can_cuoc', 'hop_dong_id', 'date_start', 'date_end', 'department', 'dia_chi', 'gender', 'trinh_do', 'salary', 'position', 'sinh_nhat', 'img'
@@ -161,7 +159,6 @@ trait HandleMail
             $mail->setFrom('xshophello@gmail.com', 'Admin');
             $mail->addAddress($email, 'Hello');     // Add a recipient
             //Content
-
             if (isset($email_vars)) {
                 foreach ($email_vars as $k => $v) {
                     $body = str_replace('{' . strtoupper($k) . '}', $v, $body);

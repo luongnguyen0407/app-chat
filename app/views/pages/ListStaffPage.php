@@ -15,7 +15,7 @@
                 <a href="Salary">Theo dõi lương</a>
             </button>
         </div>
-        <div class="table_staff_manage_search_input">
+        <div class="table_staff_manage_search_input" style="display: none;">
             <input type="text" placeholder="Search....">
             <div class="search_icon">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +50,7 @@
                                 <img src="./public/img/upload/<?php PrintDisplay::printShow($row, 'hinh_anh') ?>" alt="">
                             </td>
                             <td class="column2">
-                                <p><?php PrintDisplay::printShow($row, 'ho_ten') ?></p>
+                                <p title="<?php PrintDisplay::printShow($row, 'ho_ten') ?>"><?php PrintDisplay::printShow($row, 'ho_ten') ?></p>
                             </td>
                             <td class="column3">
                                 <p><?php PrintDisplay::printShow($row, 'gioi_tinh') ?></p>
@@ -83,6 +83,7 @@
                             <td class="column8">
                                 <p class="action_salary" data-nv="<?php PrintDisplay::printShow($row, 'maNV') ?>">Lương</p>
                                 <a href="Staff/viewDetails/<?php PrintDisplay::printShow($row, 'maNV') ?>" class="action_del">Xem</a>
+                                <p data-id="<?php PrintDisplay::printShow($row, 'maNV') ?>" class="remove_staff">Xóa</p>
                             </td>
                         </tr>
                 <?php

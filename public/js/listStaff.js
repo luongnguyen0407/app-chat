@@ -47,4 +47,43 @@ $(window).ready(() => {
   function formatPrice(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
   }
+  $(".remove_staff").click(function () {
+    const id = $(this).data("id");
+    if (!id) return;
+    swal({
+      title: "Bạn muốn xóa nhân viên này ?",
+      text: "Việc này có thể khiến mất dữ liệu lương và hợp đồng",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          url: "./Ajax/DeleteStaff",
+          method: "POST",
+          data: {
+            idStaff: id,
+          },
+          success: function () {
+            swal("Xóa thành công", {
+              icon: "success",
+            }).then(() => {
+              location.reload();
+            });
+          },
+          error: function (error) {
+            $status =
+              error.status === 401
+                ? "Thiếu id nhân viên"
+                : error.status === 403
+                ? "Nhân viên này là admin không thể xóa"
+                : "Lỗi server";
+            swal($status, {
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
+  });
 });
