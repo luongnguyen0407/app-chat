@@ -228,7 +228,7 @@ $card = $data['Card'][0];
             </ul>
         </div>
         <div class="dashboard_table_item_1 dashboard_table_item_2">
-            <p class="dashboard_table_item_1_header">Top lương tháng trước</p>
+            <p class="dashboard_table_item_1_header">Lương tháng trước</p>
             <div class="wrap_top_salary">
                 <?php
                 if (!empty($data['staff'])) {
